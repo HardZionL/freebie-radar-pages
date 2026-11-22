@@ -83,6 +83,8 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - uses: actions/download-artifact@v4
         with:
           name: radar-snapshot
@@ -98,9 +100,11 @@ jobs:
             git commit -m 'chore: refresh public resource radar'
             git push
           fi
+      - name: Package versioned frontend
+        run: python3 scripts/package_frontend.py
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: dist-pages
   deploy:
     needs: publish
     runs-on: ubuntu-latest
