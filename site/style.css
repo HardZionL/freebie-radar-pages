@@ -197,3 +197,13 @@
 .sidebar nav button small{font-size:9px;color:#bb7b43;margin-left:auto;letter-spacing:.025em}
 .quality[data-score="0"]{color:#a26727;font-weight:700;border:1px solid #e9d3b6;padding:2px 6px;border-radius:8px;background:#fff4e7}
 @media(max-width:760px){.retail-banner{padding:10px;gap:8px;flex-wrap:wrap}.retail-banner button{width:100%}.retail-banner strong{font-size:12px}}
+
+/* Coupons are text-led, not six repeats of the same large shopping basket. */
+.item.voucher-card .thumb{display:none}
+.item.voucher-card{border-left:3px solid #6e86d1;background:linear-gradient(112deg,#fffdfa,#f9f5f0)}
+.item.voucher-card.unverified{border-left-color:#cb9465}
+.item.voucher-card .tag{background:#e7eaf9;color:#3555a0}
+.item.voucher-card .item-content{min-height:125px}
+.retail-banner .retail-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.retail-banner .retail-actions button{font-size:11px;white-space:nowrap}
+@media(max-width:760px){.retail-banner .retail-actions{width:100%;justify-content:stretch}.retail-banner .retail-actions button{flex:1}}

@@ -1,7 +1,8 @@
 import unittest, sys, datetime as dt
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
-from review import candidate,safe_url,select_daily,iso,UTC,clean,bucket_hint,shopping_lead
+from review import candidate,safe_url,select_daily,iso,UTC,clean,bucket_hint,shopping_lead,offer_type,shortlist
+from collect_coupons import canonical,parse_page
 class TestRadar(unittest.TestCase):
     def test_urls(self):
         self.assertEqual(safe_url('https://www.smzdm.com/p/123/?token=secret#x','rss-smzdm'),'https://www.smzdm.com/p/123/')
@@ -36,6 +37,38 @@ class TestRadar(unittest.TestCase):
         r=dict(source_id='rss-smzdm',url='https://www.smzdm.com/p/987/',title='视频会员七天优惠',summary='活动',category='media',published_at=iso(now-dt.timedelta(days=5)))
         self.assertIsNotNone(candidate(r,now))
         self.assertIsNone(candidate(dict(r,published_at=iso(now-dt.timedelta(days=9))),now))
+    def test_coupon_regex_never_matches_empty(self):
+        from collect_coupons import BLOCK
+        self.assertIsNone(BLOCK.search(''))
+        self.assertIsNone(BLOCK.search('美团外卖满29-14元优惠券'))
+    def test_coupon_source_parser(self):
+        html='''<a href="https://m.smzdm.com/p/174492951/?utm_source=x">
+          美团外卖 满29-14元优惠券天天领</a>
+          <a href="https://evil.example/p/174492952">红包20元</a>
+          <a href="https://www.smzdm.com/p/123456789">普通测评文章</a>'''
+        rows=parse_page(html,'https://m.smzdm.com/lanmu/a21qz15/','rss-smzdm-delivery')
+        self.assertEqual(len(rows),1)
+        self.assertEqual(rows[0]['url'],'https://www.smzdm.com/p/174492951')
+        self.assertIsNone(rows[0]['published_at'])
+        self.assertEqual(rows[0]['source_id'],'rss-smzdm-delivery')
+        self.assertIsNone(canonical('https://evil.example/p/174492951','https://m.smzdm.com/'))
+    def test_coupon_prioritized_but_not_autoapproved(self):
+        self.assertEqual(offer_type('美团外卖 满30-15 领券'),'delivery')
+        self.assertEqual(offer_type('京东 2元无门槛立减券'),'coupon')
+        self.assertEqual(offer_type('平台 红包天天领'),'redpacket')
+        self.assertEqual(offer_type('蓝牙耳机 89元需用券'),'product')
+        now=dt.datetime.now(UTC)
+        candidates={}
+        for i in range(24):
+            src='rss-smzdm-coupon' if i<8 else 'rss-smzdm'
+            title='美团外卖满30-15红包'+str(i) if i<8 else '数码好价'+str(i)
+            row={'id':str(i),'title':title,'source':src,'hint':'shopping',
+                 'offerType':offer_type(title),'published':iso(now),'fingerprint':str(i)}
+            candidates[row['id']]=row
+        selected=shortlist(candidates,24)
+        self.assertEqual(len(selected),24)
+        self.assertEqual(len({x['id'] for x in selected}),24)
+        self.assertTrue(all(x['offerType']!='product' for x in selected[:8]))
     def test_quota(self):
         now=dt.datetime.now(UTC); items=[]
         for b in ['ai','shopping','media','other']:
