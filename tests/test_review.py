@@ -1,7 +1,7 @@
 import unittest, sys, datetime as dt
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
-from review import candidate,safe_url,select_daily,iso,UTC,clean
+from review import candidate,safe_url,select_daily,iso,UTC,clean,bucket_hint
 class TestRadar(unittest.TestCase):
     def test_urls(self):
         self.assertEqual(safe_url('https://www.smzdm.com/p/123/?token=secret#x','rss-smzdm'),'https://www.smzdm.com/p/123/')
@@ -14,6 +14,10 @@ class TestRadar(unittest.TestCase):
         self.assertIsNone(candidate(dict(r,title='账号出售'),now))
         self.assertIsNone(candidate(dict(r,expires_at=iso(now-dt.timedelta(days=1))),now))
         self.assertIn('[已隐藏]',clean('api key sk-12345678901234567',100))
+    def test_shopping_source_priority(self):
+        self.assertEqual(bucket_hint({'title':'某品牌耳机 199 元', 'source':'rss-smzdm', 'category':'other'}),'shopping')
+        self.assertEqual(bucket_hint({'title':'LEGO holiday deal', 'source':'rss-9to5toys', 'category':'other'}),'shopping')
+        self.assertEqual(bucket_hint({'title':'腾讯视频会员 5 折', 'source':'rss-smzdm', 'category':'other'}),'media')
     def test_seven_day_horizon(self):
         now=dt.datetime.now(UTC)
         r=dict(source_id='rss-smzdm',url='https://www.smzdm.com/p/987/',title='视频会员七天优惠',summary='活动',category='media',published_at=iso(now-dt.timedelta(days=5)))

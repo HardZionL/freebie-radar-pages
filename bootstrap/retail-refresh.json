@@ -1,0 +1,5 @@
+{
+  "purpose": "one-time shopping audit refresh",
+  "createdOn": "2026-11-22",
+  "trigger": "one time only; scheduled runs remain every two hours"
+}
