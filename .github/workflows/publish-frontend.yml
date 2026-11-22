@@ -1,0 +1,50 @@
+name: Publish frontend to Pages
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'site/index.html'
+      - 'site/app.js'
+      - 'site/style.css'
+      - 'site/art/**'
+      - '.github/workflows/publish-frontend.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: radar-production
+  cancel-in-progress: false
+jobs:
+  package:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Validate frontend
+        run: |
+          node --check site/app.js
+          python3 -m json.tool site/data.json > /dev/null
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+  deploy:
+    needs: package
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy static Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
