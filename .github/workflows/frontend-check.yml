@@ -1,0 +1,54 @@
+name: Editorial frontend checks
+on:
+  pull_request:
+    paths:
+      - 'site/**'
+      - '.github/workflows/frontend-check.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Syntax and security checks
+        run: |
+          node --check site/app.js
+          python3 - <<'PY'
+          from pathlib import Path
+          from html.parser import HTMLParser
+          from xml.etree import ElementTree
+          import re, json
+          class Page(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.ids = set()
+              def handle_starttag(self, tag, attrs):
+                  d = dict(attrs)
+                  if 'id' in d:
+                      assert d['id'] not in self.ids, d['id']
+                      self.ids.add(d['id'])
+                  assert not any(k.startswith('on') for k in d), 'inline handler'
+          p = Page()
+          p.feed(Path('site/index.html').read_text())
+          js = Path('site/app.js').read_text()
+          assert set(re.findall(r"\$\('([\w-]+)'\)",js)) <= p.ids
+          assert 'innerHTML' not in js and 'eval(' not in js
+          for f in Path('site/art').glob('*.svg'):
+              ElementTree.parse(f)
+          d = json.loads(Path('site/data.json').read_text())
+          assert {'items','daily','sources'} <= d.keys()
+          print('Syntax, DOM IDs, SVG and static snapshot checks passed.')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: editorial-preview
+          path: site
+          retention-days: 7
