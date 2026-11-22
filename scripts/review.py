@@ -7,7 +7,10 @@ from zoneinfo import ZoneInfo
 ROOT=Path(__file__).resolve().parents[1]
 UTC=dt.timezone.utc
 TZ=ZoneInfo('Asia/Shanghai')
-HOSTS={'linuxdo-welfare':('linux.do',),'v2ex-free':('v2ex.com',),'v2ex-deals':('v2ex.com',),'rss-smzdm':('smzdm.com',),'rss-fuliba':('fuliba.net',),'rss-ithome':('ithome.com',),'openrouter-free':('openrouter.ai',),'rss-nodeseek':('nodeseek.com',),'epic-free':('epicgames.com',),'gamerpower':('gamerpower.com',)}
+HOSTS={'linuxdo-welfare':('linux.do',),'v2ex-free':('v2ex.com',),'v2ex-deals':('v2ex.com',),'rss-smzdm':('smzdm.com',),'rss-fuliba':('fuliba.net',),'rss-ithome':('ithome.com',),'openrouter-free':('openrouter.ai',),'rss-nodeseek':('nodeseek.com',),'epic-free':('epicgames.com',),'gamerpower':('gamerpower.com',),'gamerpower-loot':('gamerpower.com',),
+'rss-meta-appinn':('meta.appinn.net',),'rss-sharewareonsale':('sharewareonsale.com',),
+'rss-giveawayoftheday':('giveawayoftheday.com',),'rss-isthereanydeal':('isthereanydeal.com',),
+'rss-9to5toys':('9to5toys.com',),'rss-itch-free':('itch.io',)}
 BUCKETS={'ai':'AI 与开发者','shopping':'电商优惠','media':'影音会员','other':'其他福利'}
 QUOTAS={'ai':4,'shopping':3,'media':3,'other':2}
 REASONS={'free':'有明确免费领取或使用信息','discount':'有明确优惠信息，实际价格需核实','membership':'会员活动，资格和续费条件需核实','developer':'有明确开发者福利信息'}
@@ -46,7 +49,7 @@ def candidate(r,now):
     title=clean(r.get('title'),180); summary=clean(r.get('summary'),700)
     if not url or not title or BLOCK.search(title) or '[已隐藏]' in title: return None
     pub=date(r.get('published_at')); exp=date(r.get('expires_at'))
-    if exp and exp<=now or pub and (pub<now-dt.timedelta(days=3) or pub>now+dt.timedelta(days=1)): return None
+    if exp and exp<=now or pub and (pub<now-dt.timedelta(days=7) or pub>now+dt.timedelta(days=1)): return None
     price=r.get('price'); price=round(price,2) if type(price) in (int,float) and math.isfinite(price) and 0<=price<=100000 else None
     row={'id':digest_key(url),'source':src,'title':title,'url':url,'summary':summary,'published':iso(pub) if pub else None,'expires':iso(exp) if exp else None,'price':price,'category':r.get('category'),'kind':r.get('kind')}
     row['hint']=bucket_hint(row);row['fingerprint']=digest_key(url+'\n'+title+'\n'+summary)
@@ -76,7 +79,7 @@ def request_review(batch,key,model):
     return checked
 def active(r,now):
     exp=date(r.get('expires')); start=date(r.get('published')) or date(r.get('firstSeen'))
-    return (not exp or exp>now) and bool(start and start>=now-dt.timedelta(days=3))
+    return (not exp or exp>now) and bool(start and start>=now-dt.timedelta(days=7))
 def select_daily(items,archive,day,now):
     seen={x['id'] for a in archive if a['date']!=day for x in a['items']}
     seen_titles={title_key(x['title']) for a in archive if a['date']!=day for x in a['items']}
@@ -90,12 +93,23 @@ def select_daily(items,archive,day,now):
             if k in used:continue
             out.append(x);used.add(k);n+=1
             if n>=cap:break
-    return out
+    # If a category has no suitable offers, backfill from other eligible
+    # high-quality categories rather than publishing an unnecessarily short daily.
+    # Never fabricate items or relax the minimum AI quality threshold.
+    if len(out)<12:
+        extra=[x for x in items if x['quality']>=4 and active(x,now) and x['id'] not in seen and title_key(x['title']) not in seen_titles]
+        extra.sort(key=lambda x:(x['quality'],x.get('published') or x['firstSeen']),reverse=True)
+        for x in extra:
+            if len(out)>=12:break
+            k=title_key(x['title'])
+            if k in used:continue
+            out.append(x);used.add(k)
+    return out[:12]
 def load(p,default):return json.loads(p.read_text(encoding='utf-8')) if p.exists() else default
 def save(p,data):
     p.parent.mkdir(parents=True,exist_ok=True);tmp=p.with_suffix('.tmp');tmp.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8');tmp.replace(p)
 def main():
-    ap=argparse.ArgumentParser();ap.add_argument('raw',type=Path);ap.add_argument('--daily',action='store_true');ap.add_argument('--root',type=Path,default=ROOT);args=ap.parse_args()
+    ap=argparse.ArgumentParser();ap.add_argument('raw',type=Path);ap.add_argument('--daily',action='store_true');ap.add_argument('--bootstrap',action='store_true');ap.add_argument('--root',type=Path,default=ROOT);args=ap.parse_args()
     now=dt.datetime.now(UTC);day=now.astimezone(TZ).date().isoformat()
     key=os.environ.get('MIMO_API_KEY','').strip();model=os.environ.get('MIMO_MODEL','').strip() or 'mimo-v2.6-flash'
     if not key: raise SystemExit('Missing MIMO_API_KEY repository secret; no review performed.')
@@ -110,9 +124,10 @@ def main():
     for x in candidates.values():groups[x['hint']].append(x)
     for g in groups.values():g.sort(key=lambda x:x['published'] or iso(now),reverse=True)
     pending=[]
-    while len(pending)<24 and any(groups.values()):
+    review_cap=72 if args.bootstrap else 24
+    while len(pending)<review_cap and any(groups.values()):
         for g in groups.values():
-            if g and len(pending)<24:pending.append(g.pop(0))
+            if g and len(pending)<review_cap:pending.append(g.pop(0))
     done=errors=0
     for i in range(0,len(pending),2):
         batch=pending[i:i+2]
@@ -131,11 +146,15 @@ def main():
     if pending and done==0:raise SystemExit('AI unavailable or response invalid; previous published snapshot kept.')
     items=sorted(rows.values(),key=lambda x:(x.get('published') or x['firstSeen'],x['quality']),reverse=True)[:300]
     archive=[a for a in old.get('daily',[]) if a['date']>= (now.astimezone(TZ).date()-dt.timedelta(days=14)).isoformat()]
-    if (args.daily or now.astimezone(TZ).time()>=dt.time(20,30)) and not any(a['date']==day for a in archive):
+    # An explicit daily/initial run refreshes today's snapshot, including the
+    # earlier accepted picks; the routine two-hour runs do not rewrite it.
+    if args.daily or args.bootstrap:
+        archive=[a for a in archive if a['date']!=day]
+    if (args.daily or args.bootstrap or now.astimezone(TZ).time()>=dt.time(20,30)) and not any(a['date']==day for a in archive):
         recent=[a for a in archive if a['date']>=(now.astimezone(TZ).date()-dt.timedelta(days=3)).isoformat()]
         archive.append({'date':day,'items':select_daily(items,recent,day,now)})
     sources=[{k:r[k] for k in ('id','status','fetched','inserted')} for r in raw.get('sources',[]) if r.get('id') in HOSTS]
-    save(args.root/'site/data.json',{'updatedAt':iso(now),'items':items,'daily':sorted(archive,key=lambda x:x['date'],reverse=True),'sources':sources,'review':{'reviewed':done,'failedBatches':errors,'unreviewedCandidates':len(candidates)-done}})
+    save(args.root/'site/data.json',{'updatedAt':iso(now),'items':items,'daily':sorted(archive,key=lambda x:x['date'],reverse=True),'sources':sources,'review':{'reviewed':done,'failedBatches':errors,'unreviewedCandidates':max(0,len(candidates)-done),'mode':'bootstrap' if args.bootstrap else 'regular'}})
     save(args.root/'state/reviewed.json',seen)
-    print(f'Reviewed {done} items; {errors} batch failures; {len(items)} published items.')
+    print(f'Mode={"bootstrap" if args.bootstrap else "regular"}; reviewed {done}/{len(pending)} shortlisted items; {errors} batch failures; {len(items)} published items; daily={len(archive[0]["items"]) if archive else 0}.')
 if __name__=='__main__':main()

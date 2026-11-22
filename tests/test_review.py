@@ -14,6 +14,11 @@ class TestRadar(unittest.TestCase):
         self.assertIsNone(candidate(dict(r,title='账号出售'),now))
         self.assertIsNone(candidate(dict(r,expires_at=iso(now-dt.timedelta(days=1))),now))
         self.assertIn('[已隐藏]',clean('api key sk-12345678901234567',100))
+    def test_seven_day_horizon(self):
+        now=dt.datetime.now(UTC)
+        r=dict(source_id='rss-smzdm',url='https://www.smzdm.com/p/987/',title='视频会员七天优惠',summary='活动',category='media',published_at=iso(now-dt.timedelta(days=5)))
+        self.assertIsNotNone(candidate(r,now))
+        self.assertIsNone(candidate(dict(r,published_at=iso(now-dt.timedelta(days=9))),now))
     def test_quota(self):
         now=dt.datetime.now(UTC); items=[]
         for b in ['ai','shopping','media','other']:
@@ -22,4 +27,10 @@ class TestRadar(unittest.TestCase):
         self.assertEqual(len(out),12)
         self.assertEqual(sum(x['bucket']=='media' for x in out),3)
         self.assertFalse(set(x['id'] for x in out)&set(x['id'] for x in select_daily(items,[{'date':'2026-11-21','items':out}],'2026-11-22',now)))
+    def test_quota_fill_from_available_categories(self):
+        now=dt.datetime.now(UTC)
+        items=[dict(id=f'ai{i}',title=f'独立活动ai{i}',bucket='ai',quality=5,firstSeen=iso(now),expires=None) for i in range(22)]
+        out=select_daily(items,[],'2026-11-22',now)
+        self.assertEqual(len(out),12)
+        self.assertEqual(len(set(x['id'] for x in out)),12)
 if __name__=='__main__':unittest.main()

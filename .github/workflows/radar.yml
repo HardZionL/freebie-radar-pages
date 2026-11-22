@@ -1,10 +1,18 @@
 name: Radar cloud collection and Pages
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'bootstrap/initial-seed.json'
   schedule:
     - cron: '30 0-10/2,14-22/2 * * *'
     - cron: '30 12 * * *'
   workflow_dispatch:
     inputs:
+      bootstrap:
+        description: One-time broader source scan and up to 72 AI decisions
+        type: boolean
+        default: false
       daily:
         description: Generate today's digest too (if not already generated)
         type: boolean
@@ -17,7 +25,7 @@ permissions:
 jobs:
   collect:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
         with:
@@ -52,7 +60,8 @@ jobs:
           AI_MODEL: ''
           AI_API_KEY: ''
           FETCH_TIMEOUT_MS: '15000'
-          MAX_ITEMS_PER_RUN: '15'
+          MAX_ITEMS_PER_RUN: '40'
+          RADAR_BOOTSTRAP: ${{ github.event_name == 'push' || inputs.bootstrap == true }}
           DATABASE_PATH: ${{ runner.temp }}/radar.db
         run: |
           cp ../scripts/collect.mjs ./radar-collect.mjs
@@ -61,10 +70,12 @@ jobs:
         env:
           MIMO_API_KEY: ${{ secrets.MIMO_API_KEY }}
           MIMO_MODEL: ${{ vars.MIMO_MODEL }}
-          DAILY: ${{ github.event.schedule == '30 12 * * *' || inputs.daily == true }}
+          DAILY: ${{ github.event.schedule == '30 12 * * *' || inputs.daily == true || github.event_name == 'push' }}
+          BOOTSTRAP: ${{ github.event_name == 'push' || inputs.bootstrap == true }}
         run: |
           args=()
           if [[ "$DAILY" == "true" ]]; then args+=(--daily); fi
+          if [[ "$BOOTSTRAP" == "true" ]]; then args+=(--bootstrap); fi
           python3 scripts/review.py "$RUNNER_TEMP/candidates.json" "${args[@]}"
       - name: Upload only sanitized state and public snapshot
         uses: actions/upload-artifact@v4

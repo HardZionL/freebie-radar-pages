@@ -1,0 +1,5 @@
+{
+  "purpose": "initial backfill only",
+  "createdOn": "2026-11-22",
+  "note": "This commit triggers a one-time broader collection; later pushes do not re-trigger unless this file is modified."
+}
