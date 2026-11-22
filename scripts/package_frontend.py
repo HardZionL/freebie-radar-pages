@@ -24,7 +24,8 @@ for original, attr in (("app.js", "src"), ("style.css", "href")):
     assert count == 1, (original, count)
     names[original] = name
 assert '<h1 id="heading">每日精选' in html
-assert "mode='daily',bucket=''" in (out / names["app.js"]).read_text()
+client_script = (out / names["app.js"]).read_text(encoding="utf-8")
+assert re.search(r"\blet data=.*\bmode='daily',", client_script), "Daily must remain the homepage"
 css = (out / names["style.css"]).read_text()
 for name in ("lighthouse-hero", "lighthouse-postcard", "ai-art", "shopping-art", "media-art", "other-art"):
     file = out / "art" / (name + ".webp")
