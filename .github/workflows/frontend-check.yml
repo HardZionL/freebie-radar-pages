@@ -50,7 +50,11 @@ jobs:
           for f in Path('site/art').glob('*.svg'):
               ElementTree.parse(f)
           d = json.loads(Path('site/data.json').read_text())
-          assert {'items','daily','sources'} <= d.keys()
+          assert set(d) <= {'updatedAt','items','daily','shoppingLeads'}
+          assert {'items','daily','shoppingLeads'} <= d.keys()
+          assert not any(x in js for x in ('mode===\'health\'','sourceReview','failedBatches','GitHub 配置'))
+          assert '运行状态' not in Path('site/index.html').read_text()
+          assert 'data-mode="health"' not in Path('site/index.html').read_text()
           print('Syntax, DOM IDs, SVG and static snapshot checks passed.')
           PY
       - uses: actions/upload-artifact@v4

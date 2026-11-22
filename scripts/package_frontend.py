@@ -10,6 +10,14 @@ out = Path("dist-pages")
 if out.exists():
     shutil.rmtree(out)
 shutil.copytree(src, out)
+# Defense in depth: only curated public content may be deployed to Pages.
+# Ignore any operational metadata from older snapshots.
+raw = json.loads((src / "data.json").read_text(encoding="utf-8"))
+public = {k: raw[k] for k in ("updatedAt", "items", "daily", "shoppingLeads") if k in raw}
+assert {"items", "daily", "shoppingLeads"} <= public.keys()
+assert isinstance(public["items"], list) and isinstance(public["daily"], list)
+assert isinstance(public["shoppingLeads"], list)
+(out / "data.json").write_text(json.dumps(public, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 html_path = out / "index.html"
 html = html_path.read_text(encoding="utf-8")
 names = {}

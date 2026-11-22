@@ -159,11 +159,9 @@ def main():
         # changing reviewed daily picks and previous AI statistics.
         available=[x for x in leads.values() if x['id'] not in rows]
         available.sort(key=lambda x:x['published'] or x['firstSeen'],reverse=True)
-        previous=dict(old)
+        previous={k:old[k] for k in ('items','daily') if k in old}
         previous['shoppingLeads']=available[:30]
         previous['updatedAt']=iso(now)
-        previous['sources']=[{k:v[k] for k in ('id','status','fetched','inserted')}
-                             for v in raw.get('sources',[]) if v.get('id') in HOSTS]
         save(args.root/'site/data.json',previous)
         print('Source-only update: '+str(len(previous['shoppingLeads']))+
               ' safe public shopping leads; no AI request made.',flush=True)
@@ -243,7 +241,11 @@ def main():
                                        'shortlisted':shortlisted_by_source.get(src,0),
                                        'published':public_by_source.get(src,0)}
                                   for src in HOSTS if src in eligible_by_source or src in public_by_source}}
-    save(args.root/'site/data.json',{'updatedAt':iso(now),'items':items,'daily':sorted(archive,key=lambda x:x['date'],reverse=True),'shoppingLeads':leads,'sources':sources,'review':review_stats})
+    # Only user-facing content belongs in the publicly hosted snapshot.
+    # Operational diagnostics stay in GitHub Actions logs, not site/data.json.
+    save(args.root/'site/data.json',{'updatedAt':iso(now),'items':items,
+        'daily':sorted(archive,key=lambda x:x['date'],reverse=True),
+        'shoppingLeads':leads})
     save(args.root/'state/reviewed.json',seen)
     print('Public shopping leads (unverified): '+str(len(leads)),flush=True)
     print(f'Mode={"bootstrap" if args.bootstrap else "retail" if args.retail else "regular"}; reviewed {done}/{len(pending)} shortlisted items; {errors} batch failures; {len(items)} published items; daily={len(archive[0]["items"]) if archive else 0}.')
