@@ -2,12 +2,12 @@
 const $=id=>document.getElementById(id);
 const groups={ai:['AI 与开发者','AI & Dev'],shopping:['电商优惠','E-commerce Deals'],media:['影音会员','Media Membership'],other:['其他福利','More Benefits']};
 const sources={'linuxdo-welfare':'LINUX DO','v2ex-free':'V2EX 免费赠送','v2ex-deals':'V2EX 优惠','rss-smzdm':'什么值得买','rss-fuliba':'福利吧','rss-ithome':'IT之家','openrouter-free':'OpenRouter','rss-nodeseek':'NodeSeek','epic-free':'Epic','gamerpower':'GamerPower'};
-const modes={all:'资源流',hot:'今日热点',daily:'每日精选',retail:'购物线索 · 待核实',deadline:'今日截止',favorites:'我的收藏',hidden:'已关闭',health:'采集状态'};
+const modes={all:'资源流',hot:'今日热点',daily:'每日精选',retail:'购物线索 · 待核实',deadline:'今日截止',favorites:'我的收藏',hidden:'已关闭'};
 function loadLocal(key,fallback){try{return JSON.parse(localStorage.getItem('radar.editorial.'+key))??fallback}catch{return fallback}}
 function store(key,value){try{localStorage.setItem('radar.editorial.'+key,JSON.stringify(value))}catch{}}
 const setLocal=key=>{const v=loadLocal(key,[]);return new Set(Array.isArray(v)?v:[])};
 const fav=setLocal('favorites'),read=setLocal('read'),closed=setLocal('closed');
-let data={items:[],daily:[],shoppingLeads:[],sources:[],review:{}},mode='daily',bucket='',view=loadLocal('view','two'),visible=[];
+let data={items:[],daily:[],shoppingLeads:[]},mode='daily',bucket='',view=loadLocal('view','two'),visible=[];
 if(!['list','two','three'].includes(view))view='two';
 function el(tag,text,cls){const e=document.createElement(tag);if(text!=null)e.textContent=String(text);if(cls)e.className=cls;return e}
 function button(text,action,pressed){const b=el('button',text);b.type='button';if(pressed!==undefined)b.setAttribute('aria-pressed',String(pressed));b.addEventListener('click',action);return b}
@@ -30,7 +30,7 @@ function card(x){
  const seen=button('',()=>toggle(read,'read',x.id),read.has(x.id));seen.className='action-button action-read';seen.title=read.has(x.id)?'标记未读':'标记已读';seen.setAttribute('aria-label',seen.title);
  const hide=button('',()=>toggle(closed,'closed',x.id),closed.has(x.id));hide.className='action-button action-hide';hide.title=closed.has(x.id)?'恢复资源':'关闭资源';hide.setAttribute('aria-label',hide.title);links.append(star,seen,hide);body.append(links);a.append(body);return a
 }
-function sourceMenu(){const list=$('source-list');list.replaceChildren();const selected=$('source').value;for(const [id,name] of [['','全部来源'],...Object.entries(sources)]){const countPool=mode==='retail'?(data.shoppingLeads||[]):data.items;const n=countPool.filter(x=>!id||x.source===id).length;const b=button(name,()=>{if(mode==='health')setMode('all');$('source').value=id;render()},id===selected);b.append(el('b',n));list.append(b)}}
+function sourceMenu(){const list=$('source-list');list.replaceChildren();const selected=$('source').value;for(const [id,name] of [['','全部来源'],...Object.entries(sources)]){const countPool=mode==='retail'?(data.shoppingLeads||[]):data.items;const n=countPool.filter(x=>!id||x.source===id).length;const b=button(name,()=>{$('source').value=id;render()},id===selected);b.append(el('b',n));list.append(b)}}
 function renderInsights(){
  const aside=$('insights'),list=$('insight-list');
  aside.hidden=mode!=='daily';
@@ -50,12 +50,10 @@ function renderInsights(){
  }
 }
 function render(){
- $('crumb').textContent=modes[mode];$('heading').replaceChildren(document.createTextNode(mode==='all'?'资源雷达':modes[mode]),el('span','.'));$('subtitle').textContent=mode==='daily'?'每日甄选公开福利 · 把值得关注的好东西一次看完':mode==='hot'?'近 24 小时 AI 评分较高的资源 · 非社区热度排名':mode==='health'?'云端采集运行记录 · 无需本地服务':mode==='retail'?'什么值得买公开 RSS · 商品与活动线索，部分标题可能没有实际折扣，尚未 AI 核实':'寻找真正有价值的资源，让信息有序浮现。';
+ $('crumb').textContent=modes[mode];$('heading').replaceChildren(document.createTextNode(mode==='all'?'资源雷达':modes[mode]),el('span','.'));$('subtitle').textContent=mode==='daily'?'每日甄选公开福利 · 把值得关注的好东西一次看完':mode==='hot'?'近 24 小时 AI 评分较高的资源 · 非社区热度排名':mode==='retail'?'什么值得买公开 RSS · 商品与活动线索，部分标题可能没有实际折扣，尚未 AI 核实':'寻找真正有价值的资源，让信息有序浮现。';
  document.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===mode)));document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===view)));
- $('nav-count').textContent=data.items.length;$('overview').hidden=mode!=='daily';$('retail-banner').hidden=mode!=='daily';$('retail-count').textContent=(data.shoppingLeads||[]).length;$('controls').hidden=mode==='health';$('export').disabled=mode==='health';$('content-shell').classList.toggle('daily-layout',mode==='daily');sourceMenu();renderInsights();
+ $('nav-count').textContent=data.items.length;$('overview').hidden=mode!=='daily';$('retail-banner').hidden=mode!=='daily';$('retail-count').textContent=(data.shoppingLeads||[]).length;$('controls').hidden=false;$('export').disabled=false;$('content-shell').classList.toggle('daily-layout',mode==='daily');sourceMenu();renderInsights();
  const target=$('results');target.replaceChildren();target.className='';
- if(mode==='health'){visible=[];const r=data.review||{};$('note').textContent='本轮审核 '+(r.reviewed??0)+' 条 · 失败批次 '+(r.failedBatches??0)+' · 未审候选 '+(r.unreviewedCandidates??0)+' · 未审内容不公开';const table=el('div',null,'source-table');for(const s of data.sources){const row=el('div',null,'source-row'),caption=el('div');caption.append(el('strong',sources[s.id]||s.id),el('small',' · 拉取 '+s.fetched+' 条'));
-const stat=r.sourceReview?.[s.id];if(stat)caption.append(el('small',' · 待审候选 '+stat.eligible+' · 本轮抽审 '+stat.shortlisted+' · 近7天公开 '+stat.published));row.append(caption,el('span',s.status==='ok'?'● 正常':s.status==='degraded'?'◐ 部分可用':'○ 失败',s.status==='ok'?'good':'warn'));table.append(row)}target.append(data.sources.length?table:el('div','等待首次采集。','empty'));return}
  let base=getBase();if(mode!=='hidden')base=base.filter(x=>!closed.has(x.id));
  if(mode==='daily'){$('total').textContent=base.length;$('deals').textContent=base.filter(x=>x.reason?.includes('优惠')||x.reason?.includes('会员')).length;$('due').textContent=base.filter(todayDue).length;$('high').textContent=base.filter(x=>x.quality===5).length;$('summary').textContent=base.length?'本期共 '+base.length+' 条精选，涵盖 '+Object.keys(groups).filter(k=>base.some(x=>x.bucket===k)).map(k=>groups[k][0]).join('、')+'。不凑数，活动细节以原平台为准。':'暂无符合精选标准的资源，晚间云端更新后可查看。'}
  const channel=$('channels');channel.replaceChildren();for(const [key,label] of [['','全部分类'],...Object.entries(groups).map(([k,v])=>[k,v[0]])]){const n=base.filter(x=>!key||x.bucket===key).length;const pill=button('',()=>{bucket=key;render()},bucket===key);pill.className='channel-pill';pill.append(el('span',label,'channel-name'),el('span',n,'channel-count'));channel.append(pill)}
@@ -75,4 +73,4 @@ $('menu').addEventListener('click',()=>{const open=$('sidebar').classList.toggle
 document.addEventListener('keydown',e=>{if(e.key==='/'&&!['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName)){e.preventDefault();$('sidebar').classList.add('open');$('menu').setAttribute('aria-expanded','true');$('query').focus()}});
 $('export').addEventListener('click',()=>{const url=URL.createObjectURL(new Blob([JSON.stringify(visible,null,2)],{type:'application/json'}));const a=el('a');a.href=url;a.download='radar-resources.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)});
 for(const [id,name] of Object.entries(sources)){const op=el('option',name);op.value=id;$('source').append(op)}
-fetch('./data.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('data');return r.json()}).then(s=>{if(!Array.isArray(s.items)||!Array.isArray(s.daily)||!Array.isArray(s.sources))throw Error('schema');data=s;$('update').textContent=s.updatedAt?'最近更新（北京） '+time(s.updatedAt):'等待首次云端更新';data.daily.sort((a,b)=>b.date.localeCompare(a.date));for(const d of data.daily){const op=el('option',d.date);op.value=d.date;$('date').append(op)}if(data.daily.length)$('date').value=data.daily[0].date;render()}).catch(()=>{$('note').textContent='数据加载失败，请稍后刷新。'});
+fetch('./data.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('data');return r.json()}).then(s=>{if(!Array.isArray(s.items)||!Array.isArray(s.daily)||!Array.isArray(s.shoppingLeads))throw Error('schema');data=s;$('update').textContent=s.updatedAt?'最近更新（北京） '+time(s.updatedAt):'等待首次云端更新';data.daily.sort((a,b)=>b.date.localeCompare(a.date));for(const d of data.daily){const op=el('option',d.date);op.value=d.date;$('date').append(op)}if(data.daily.length)$('date').value=data.daily[0].date;render()}).catch(()=>{$('note').textContent='数据加载失败，请稍后刷新。'});

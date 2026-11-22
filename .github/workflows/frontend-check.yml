@@ -50,7 +50,8 @@ jobs:
           for f in Path('site/art').glob('*.svg'):
               ElementTree.parse(f)
           d = json.loads(Path('site/data.json').read_text())
-          assert {'items','daily','sources'} <= d.keys()
+          assert {'items','daily','shoppingLeads'} <= d.keys()
+          assert not ({'sources','review'} & d.keys()), 'Operational telemetry is public'
           print('Syntax, DOM IDs, SVG and static snapshot checks passed.')
           PY
       - uses: actions/upload-artifact@v4

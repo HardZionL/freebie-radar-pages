@@ -162,8 +162,9 @@ def main():
         previous=dict(old)
         previous['shoppingLeads']=available[:30]
         previous['updatedAt']=iso(now)
-        previous['sources']=[{k:v[k] for k in ('id','status','fetched','inserted')}
-                             for v in raw.get('sources',[]) if v.get('id') in HOSTS]
+        # Never ship operational telemetry or collector health to GitHub Pages.
+        previous.pop('sources',None)
+        previous.pop('review',None)
         save(args.root/'site/data.json',previous)
         print('Source-only update: '+str(len(previous['shoppingLeads']))+
               ' safe public shopping leads; no AI request made.',flush=True)
@@ -228,22 +229,14 @@ def main():
     if (args.daily or args.bootstrap or args.retail or now.astimezone(TZ).time()>=dt.time(20,30)) and not any(a['date']==day for a in archive):
         recent=[a for a in archive if a['date']>=(now.astimezone(TZ).date()-dt.timedelta(days=3)).isoformat()]
         archive.append({'date':day,'items':select_daily(items,recent,day,now)})
-    sources=[{k:r[k] for k in ('id','status','fetched','inserted')} for r in raw.get('sources',[]) if r.get('id') in HOSTS]
     leads=[x for x in leads.values() if x['id'] not in rows]
     leads.sort(key=lambda x:x['published'] or x['firstSeen'],reverse=True)
     leads=leads[:30]
-    public_by_source={}
-    for item in items:
-        src=item['source']
-        public_by_source[src]=public_by_source.get(src,0)+1
-    review_stats={'reviewed':done,'failedBatches':errors,
-                  'unreviewedCandidates':max(0,len(candidates)-done),
-                  'mode':'bootstrap' if args.bootstrap else 'retail' if args.retail else 'regular',
-                  'sourceReview':{src:{'eligible':eligible_by_source.get(src,0),
-                                       'shortlisted':shortlisted_by_source.get(src,0),
-                                       'published':public_by_source.get(src,0)}
-                                  for src in HOSTS if src in eligible_by_source or src in public_by_source}}
-    save(args.root/'site/data.json',{'updatedAt':iso(now),'items':items,'daily':sorted(archive,key=lambda x:x['date'],reverse=True),'shoppingLeads':leads,'sources':sources,'review':review_stats})
+    # Public snapshot contains only curated resources and safe source-only deals.
+    # Internal review counts remain in GitHub Actions logs, not public site/data.json.
+    save(args.root/'site/data.json',{'updatedAt':iso(now),'items':items,
+                                    'daily':sorted(archive,key=lambda x:x['date'],reverse=True),
+                                    'shoppingLeads':leads})
     save(args.root/'state/reviewed.json',seen)
     print('Public shopping leads (unverified): '+str(len(leads)),flush=True)
     print(f'Mode={"bootstrap" if args.bootstrap else "retail" if args.retail else "regular"}; reviewed {done}/{len(pending)} shortlisted items; {errors} batch failures; {len(items)} published items; daily={len(archive[0]["items"]) if archive else 0}.')
