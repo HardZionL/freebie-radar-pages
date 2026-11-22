@@ -1,1 +1,209 @@
-{"updatedAt":null,"items":[],"daily":[],"sources":[],"review":{}}
+{
+  "updatedAt": "2026-11-22T07:49:23+00:00",
+  "items": [
+    {
+      "id": "7da2b96a927816e0420ca9f2ec5814d19d5afd7beba7cc538f2cbfa53164463e",
+      "source": "linuxdo-welfare",
+      "title": "commandcode goat套餐要过期了,放hub上了",
+      "url": "https://linux.do/t/topic/3220798",
+      "published": "2026-11-22T06:06:14+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "ai",
+      "quality": 3,
+      "reason": "有明确开发者福利信息",
+      "firstSeen": "2026-11-22T07:49:23+00:00"
+    },
+    {
+      "id": "b8414b031e42e6acec37f1536188d48c58d3c6a34625088210658c18c5fb11fb",
+      "source": "linuxdo-welfare",
+      "title": "移动/联通/电信积分兑话费",
+      "url": "https://linux.do/t/topic/3220618",
+      "published": "2026-11-22T05:16:47+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "shopping",
+      "quality": 4,
+      "reason": "有明确优惠信息，实际价格需核实",
+      "firstSeen": "2026-11-22T07:49:23+00:00"
+    },
+    {
+      "id": "544c05015da3638cea81b169bb26ab40694b7b4c6ff5f005af96fc626d68f1f1",
+      "source": "linuxdo-welfare",
+      "title": "亚马逊版 WorkBuddy ,免费用Claude Opus 5.5!",
+      "url": "https://linux.do/t/topic/3220493",
+      "published": "2026-11-22T04:49:28+00:00",
+      "expires": null,
+      "price": 0,
+      "bucket": "ai",
+      "quality": 3,
+      "reason": "有明确免费领取或使用信息",
+      "firstSeen": "2026-11-22T07:49:23+00:00"
+    },
+    {
+      "id": "a0c3ddf544bea99f6aaec5a5945e2a86e28d0cc179320e2d009baa6a6303b06b",
+      "source": "linuxdo-welfare",
+      "title": "谷歌 AI Pro 黑五半价来了!99.99 美元/年",
+      "url": "https://linux.do/t/topic/3220135",
+      "published": "2026-11-22T03:39:13+00:00",
+      "expires": "2026-11-26T23:59:59+00:00",
+      "price": null,
+      "bucket": "ai",
+      "quality": 4,
+      "reason": "有明确优惠信息，实际价格需核实",
+      "firstSeen": "2026-11-22T07:49:23+00:00"
+    },
+    {
+      "id": "314f7d3d006cdb2a617edbdf1e70eab7b579f6f099b1721edb3e64efe724c89f",
+      "source": "linuxdo-welfare",
+      "title": "免费向量化ai搜索每月10美金",
+      "url": "https://linux.do/t/topic/3219664",
+      "published": "2026-11-22T02:01:26+00:00",
+      "expires": null,
+      "price": 0,
+      "bucket": "ai",
+      "quality": 4,
+      "reason": "有明确免费领取或使用信息",
+      "firstSeen": "2026-11-22T07:49:23+00:00"
+    },
+    {
+      "id": "d491736955efae502356b34ace4fda632175e16158c983c4708f76106366a45c",
+      "source": "linuxdo-welfare",
+      "title": "汇总Codex,Claude,Antigravity的科学家计划。正规渠道中,免费力度最大的方案了。",
+      "url": "https://linux.do/t/topic/3219550",
+      "published": "2026-11-22T01:35:43+00:00",
+      "expires": null,
+      "price": 0,
+      "bucket": "ai",
+      "quality": 5,
+      "reason": "有明确免费领取或使用信息",
+      "firstSeen": "2026-11-22T07:49:23+00:00"
+    }
+  ],
+  "daily": [
+    {
+      "date": "2026-11-22",
+      "items": [
+        {
+          "id": "d491736955efae502356b34ace4fda632175e16158c983c4708f76106366a45c",
+          "source": "linuxdo-welfare",
+          "title": "汇总Codex,Claude,Antigravity的科学家计划。正规渠道中,免费力度最大的方案了。",
+          "url": "https://linux.do/t/topic/3219550",
+          "published": "2026-11-22T01:35:43+00:00",
+          "expires": null,
+          "price": 0,
+          "bucket": "ai",
+          "quality": 5,
+          "reason": "有明确免费领取或使用信息",
+          "firstSeen": "2026-11-22T07:49:23+00:00"
+        },
+        {
+          "id": "a0c3ddf544bea99f6aaec5a5945e2a86e28d0cc179320e2d009baa6a6303b06b",
+          "source": "linuxdo-welfare",
+          "title": "谷歌 AI Pro 黑五半价来了!99.99 美元/年",
+          "url": "https://linux.do/t/topic/3220135",
+          "published": "2026-11-22T03:39:13+00:00",
+          "expires": "2026-11-26T23:59:59+00:00",
+          "price": null,
+          "bucket": "ai",
+          "quality": 4,
+          "reason": "有明确优惠信息，实际价格需核实",
+          "firstSeen": "2026-11-22T07:49:23+00:00"
+        },
+        {
+          "id": "314f7d3d006cdb2a617edbdf1e70eab7b579f6f099b1721edb3e64efe724c89f",
+          "source": "linuxdo-welfare",
+          "title": "免费向量化ai搜索每月10美金",
+          "url": "https://linux.do/t/topic/3219664",
+          "published": "2026-11-22T02:01:26+00:00",
+          "expires": null,
+          "price": 0,
+          "bucket": "ai",
+          "quality": 4,
+          "reason": "有明确免费领取或使用信息",
+          "firstSeen": "2026-11-22T07:49:23+00:00"
+        },
+        {
+          "id": "b8414b031e42e6acec37f1536188d48c58d3c6a34625088210658c18c5fb11fb",
+          "source": "linuxdo-welfare",
+          "title": "移动/联通/电信积分兑话费",
+          "url": "https://linux.do/t/topic/3220618",
+          "published": "2026-11-22T05:16:47+00:00",
+          "expires": null,
+          "price": null,
+          "bucket": "shopping",
+          "quality": 4,
+          "reason": "有明确优惠信息，实际价格需核实",
+          "firstSeen": "2026-11-22T07:49:23+00:00"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "linuxdo-welfare",
+      "status": "ok",
+      "fetched": 15,
+      "inserted": 15
+    },
+    {
+      "id": "v2ex-free",
+      "status": "ok",
+      "fetched": 10,
+      "inserted": 10
+    },
+    {
+      "id": "v2ex-deals",
+      "status": "ok",
+      "fetched": 10,
+      "inserted": 10
+    },
+    {
+      "id": "rss-smzdm",
+      "status": "ok",
+      "fetched": 0,
+      "inserted": 0
+    },
+    {
+      "id": "rss-fuliba",
+      "status": "ok",
+      "fetched": 2,
+      "inserted": 2
+    },
+    {
+      "id": "rss-ithome",
+      "status": "ok",
+      "fetched": 0,
+      "inserted": 0
+    },
+    {
+      "id": "openrouter-free",
+      "status": "ok",
+      "fetched": 2,
+      "inserted": 2
+    },
+    {
+      "id": "rss-nodeseek",
+      "status": "ok",
+      "fetched": 0,
+      "inserted": 0
+    },
+    {
+      "id": "epic-free",
+      "status": "ok",
+      "fetched": 1,
+      "inserted": 1
+    },
+    {
+      "id": "gamerpower",
+      "status": "ok",
+      "fetched": 15,
+      "inserted": 12
+    }
+  ],
+  "review": {
+    "reviewed": 15,
+    "failedBatches": 0,
+    "unreviewedCandidates": 0
+  }
+}
