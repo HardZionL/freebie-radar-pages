@@ -1,6 +1,32 @@
 {
-  "updatedAt": "2026-11-22T07:49:23+00:00",
+  "updatedAt": "2026-11-22T08:38:03+00:00",
   "items": [
+    {
+      "id": "135a4a35361707f2f9eca063666537c4f9b28187d710213d0f413dec849cf791",
+      "source": "rss-9to5toys",
+      "title": "Hello! AirPods Pro 3 drop even lower to $169 for Black Friday ($80 off)",
+      "url": "https://9to5toys.com/2026/11/22/airpods-pro-3-black-friday",
+      "published": "2026-11-22T08:29:09+00:00",
+      "expires": null,
+      "price": 576,
+      "bucket": "shopping",
+      "quality": 4,
+      "reason": "有明确优惠信息，实际价格需核实",
+      "firstSeen": "2026-11-22T08:38:03+00:00"
+    },
+    {
+      "id": "3d29a3789b09e4b9786284eb19fbcaa82a4c4de107ca5abbe8f4dc0bd12ab6f0",
+      "source": "rss-meta-appinn",
+      "title": "〖开源自荐〗Zotero Figure Guard:让深色模式下的论文插图保持原色",
+      "url": "https://meta.appinn.net/t/topic/96583",
+      "published": "2026-11-22T07:17:56+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "other",
+      "quality": 3,
+      "reason": "有明确免费领取或使用信息",
+      "firstSeen": "2026-11-22T08:38:03+00:00"
+    },
     {
       "id": "7da2b96a927816e0420ca9f2ec5814d19d5afd7beba7cc538f2cbfa53164463e",
       "source": "linuxdo-welfare",
@@ -13,6 +39,19 @@
       "quality": 3,
       "reason": "有明确开发者福利信息",
       "firstSeen": "2026-11-22T07:49:23+00:00"
+    },
+    {
+      "id": "0053d2500332309d77a6ac53caa0cdd31e65c7b9d26c70ae6755e381d7cbda47",
+      "source": "rss-meta-appinn",
+      "title": "【开发者自荐】EEP Quest:免费的浏览器整蛊解谜游戏,20 个手绘关卡",
+      "url": "https://meta.appinn.net/t/topic/96573",
+      "published": "2026-11-22T05:46:02+00:00",
+      "expires": null,
+      "price": 0,
+      "bucket": "other",
+      "quality": 3,
+      "reason": "有明确免费领取或使用信息",
+      "firstSeen": "2026-11-22T08:38:03+00:00"
     },
     {
       "id": "b8414b031e42e6acec37f1536188d48c58d3c6a34625088210658c18c5fb11fb",
@@ -78,6 +117,279 @@
       "quality": 5,
       "reason": "有明确免费领取或使用信息",
       "firstSeen": "2026-11-22T07:49:23+00:00"
+    },
+    {
+      "id": "aecce8b9c890173299ddb9e6491e18089e3d0c097f3bd76f1a0acbcfa8d7e025",
+      "source": "rss-meta-appinn",
+      "title": "CyIME:双拼邻键纠错+离线语音整句定稿+定位修改, 基于 RIME 的Android输入法",
+      "url": "https://meta.appinn.net/t/topic/96550",
+      "published": "2026-11-21T14:05:21+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "other",
+      "quality": 3,
+      "reason": "有明确免费领取或使用信息",
+      "firstSeen": "2026-11-22T08:38:03+00:00"
+    },
+    {
+      "id": "43c050ff49ef8baf353acdcee6fe9ff8976fa05e521117871bb52f4426489129",
+      "source": "rss-meta-appinn",
+      "title": "【开发者自荐】账号星图 Atlas:记清每个邮箱、手机号注册和绑定了哪些 App,网页 + iOS + 安卓三端开源免费",
+      "url": "https://meta.appinn.net/t/topic/96546",
+      "published": "2026-11-21T13:14:04+00:00",
+      "expires": null,
+      "price": 0,
+      "bucket": "other",
+      "quality": 3,
+      "reason": "有明确免费领取或使用信息",
+      "firstSeen": "2026-11-22T08:38:03+00:00"
+    },
+    {
+      "id": "e6092e9040345c6c85782bf2951d445131188be6aa29d26905b1ad79637c6bc9",
+      "source": "rss-sharewareonsale",
+      "title": "ClipFrame (100% discount)",
+      "url": "https://sharewareonsale.com/s/free-clipframe-100-discount",
+      "published": "2026-11-21T08:03:40+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "ai",
+      "quality": 4,
+      "reason": "有明确免费领取或使用信息",
+      "firstSeen": "2026-11-22T08:38:03+00:00"
+    },
+    {
+      "id": "bd3d16bdf23b5f1a28f878f8fbc47d4118a04e3cefca1d580fcf237b8695d495",
+      "source": "rss-meta-appinn",
+      "title": "〖开发者自荐〗一间草堂:你和 AI 共用的个人工作台",
+      "url": "https://meta.appinn.net/t/topic/96519",
+      "published": "2026-11-21T05:50:01+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "ai",
+      "quality": 3,
+      "reason": "有明确免费领取或使用信息",
+      "firstSeen": "2026-11-22T08:38:03+00:00"
+    },
+    {
+      "id": "7e72b6d036f76645994bd5d79d0dfb06994dfb56040d51db9efe2b2269fd6ba5",
+      "source": "rss-9to5toys",
+      "title": "LEGO Insiders Weekend 2026 is live! Browse promotions and gift ideas from Star Wars, Icons, Disney, DC, Lord of the Rings, more",
+      "url": "https://9to5toys.com/2026/11/20/lego-insiders-weekend-2026",
+      "published": "2026-11-21T05:00:00+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "shopping",
+      "quality": 3,
+      "reason": "有明确优惠信息，实际价格需核实",
+      "firstSeen": "2026-11-22T08:38:03+00:00"
+    },
+    {
+      "id": "29e03d1b63af087974272470b3cd1935ace64ffd3444c6361a55a9def4909671",
+      "source": "rss-meta-appinn",
+      "title": "〖开发者自荐〗Oopsbara:在 Windows 确认对话框旁出现的动画小伙伴",
+      "url": "https://meta.appinn.net/t/topic/96506",
+      "published": "2026-11-21T03:37:35+00:00",
+      "expires": null,
+      "price": 7.13,
+      "bucket": "other",
+      "quality": 3,
+      "reason": "有明确免费领取或使用信息",
+      "firstSeen": "2026-11-22T08:38:03+00:00"
+    },
+    {
+      "id": "7b428fc1be3a7ee6b387651547881e4ddcc4141477f7d193069b302bbb2dec46",
+      "source": "rss-meta-appinn",
+      "title": "【开发者自荐】KeyboardSwitcher:安卓输入法自动切换工具",
+      "url": "https://meta.appinn.net/t/topic/96482",
+      "published": "2026-11-20T13:29:55+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "other",
+      "quality": 3,
+      "reason": "有明确免费领取或使用信息",
+      "firstSeen": "2026-11-22T08:38:03+00:00"
+    },
+    {
+      "id": "2599da35937fcc25a84c09cc0427981322789394653567dca31b8b69601764f8",
+      "source": "rss-meta-appinn",
+      "title": "【开发者自荐】Kamira:只管截图的 Mac 小工具,留下悬浮预览和贴图,后台约 20 MB",
+      "url": "https://meta.appinn.net/t/topic/96478",
+      "published": "2026-11-20T12:19:53+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "other",
+      "quality": 3,
+      "reason": "有明确免费领取或使用信息",
+      "firstSeen": "2026-11-22T08:38:03+00:00"
+    },
+    {
+      "id": "75ad3698398d5253f93d17caffbc4f382663b1e8c836d4fe1efd6429ead46980",
+      "source": "rss-meta-appinn",
+      "title": "【开源自荐】knowvori - 生成交互性学习页面的Agent skill",
+      "url": "https://meta.appinn.net/t/topic/96475",
+      "published": "2026-11-20T11:54:12+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "ai",
+      "quality": 4,
+      "reason": "有明确免费领取或使用信息",
+      "firstSeen": "2026-11-22T08:38:03+00:00"
+    },
+    {
+      "id": "f5b18416c753f009ac4bf0244e10beb0d2f7285dab76fd8e6e5fb656290efa8b",
+      "source": "rss-meta-appinn",
+      "title": "回声口袋 - 中文音视频转文字,带时间轴和说话人区分,可导出字幕(自荐)",
+      "url": "https://meta.appinn.net/t/topic/96460",
+      "published": "2026-11-20T06:36:26+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "ai",
+      "quality": 3,
+      "reason": "有明确免费领取或使用信息",
+      "firstSeen": "2026-11-22T08:38:03+00:00"
+    },
+    {
+      "id": "59b5be2d41d4c63c25bb702210c37dd422b117b695aa09b9f5a4eb399e89460c",
+      "source": "rss-meta-appinn",
+      "title": "Epic 免费游戏 2026-11-20",
+      "url": "https://meta.appinn.net/t/topic/96452",
+      "published": "2026-11-20T04:31:15+00:00",
+      "expires": null,
+      "price": 0,
+      "bucket": "other",
+      "quality": 4,
+      "reason": "有明确免费领取或使用信息",
+      "firstSeen": "2026-11-22T08:38:03+00:00"
+    },
+    {
+      "id": "7e0c0216d1a6814f3c90ff81dfdb561f09a374b1632fee0f4f24abe12560af7a",
+      "source": "rss-meta-appinn",
+      "title": "〖开发者自荐〗Fralo,一款在 Mac 上批量给截图套框的开源工具",
+      "url": "https://meta.appinn.net/t/topic/96451",
+      "published": "2026-11-20T03:58:48+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "other",
+      "quality": 3,
+      "reason": "有明确免费领取或使用信息",
+      "firstSeen": "2026-11-22T08:38:03+00:00"
+    },
+    {
+      "id": "4258e664fa6209d32244f8fb30bfa15fd2cd2c78f9bd125007b531ef84af0698",
+      "source": "rss-meta-appinn",
+      "title": "【开发者自荐】Qi:一款原生 macOS 围棋 AI 复盘工具",
+      "url": "https://meta.appinn.net/t/topic/96431",
+      "published": "2026-11-20T01:43:13+00:00",
+      "expires": null,
+      "price": 98,
+      "bucket": "ai",
+      "quality": 3,
+      "reason": "有明确免费领取或使用信息",
+      "firstSeen": "2026-11-22T08:38:03+00:00"
+    },
+    {
+      "id": "dd83cce9c60c606e8eeb722c671db63eefbc51ef589a683f4a4b86d798865a2e",
+      "source": "rss-meta-appinn",
+      "title": "【macOS】原生批量重命名工具,简洁、易用、内存占用小、体量小。",
+      "url": "https://meta.appinn.net/t/topic/96430",
+      "published": "2026-11-20T01:42:28+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "other",
+      "quality": 3,
+      "reason": "有明确开发者福利信息",
+      "firstSeen": "2026-11-22T08:38:03+00:00"
+    },
+    {
+      "id": "e3ed0c30bdfafcbf3f830f8dce0ad5dc5fe04a1b71262ec6d1f80b59846edd14",
+      "source": "rss-meta-appinn",
+      "title": "【开发者自荐】AI Spreadsheet:面向 AI 的 Excel 工具",
+      "url": "https://meta.appinn.net/t/topic/96393",
+      "published": "2026-11-19T07:46:29+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "ai",
+      "quality": 3,
+      "reason": "有明确免费领取或使用信息",
+      "firstSeen": "2026-11-22T08:38:03+00:00"
+    },
+    {
+      "id": "31ef01889540721ee7aeabcde712506c95a197013b9ddfc7d8859aefd64bc4f7",
+      "source": "rss-meta-appinn",
+      "title": "【效率工具】职页:让每一份工作都用得上 AI",
+      "url": "https://meta.appinn.net/t/topic/96387",
+      "published": "2026-11-19T07:15:22+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "ai",
+      "quality": 3,
+      "reason": "有明确免费领取或使用信息",
+      "firstSeen": "2026-11-22T08:38:03+00:00"
+    },
+    {
+      "id": "e46d3ef1b355766b8705d2cf158162c04cefa6c17cdad9716df38eb7914f6dc4",
+      "source": "v2ex-deals",
+      "title": "支付宝黄金活动(领 18、15 无门槛红包)",
+      "url": "https://www.v2ex.com/t/1258227",
+      "published": "2026-11-19T04:01:32+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "shopping",
+      "quality": 4,
+      "reason": "有明确优惠信息，实际价格需核实",
+      "firstSeen": "2026-11-22T08:38:03+00:00"
+    },
+    {
+      "id": "d1369cf3804eb78486f782084e4e027059f8f724a4dc4a63189a1a9595df2301",
+      "source": "v2ex-deals",
+      "title": "20261119 移动领 0.5-9 元话费",
+      "url": "https://www.v2ex.com/t/1258181",
+      "published": "2026-11-19T02:00:38+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "shopping",
+      "quality": 3,
+      "reason": "有明确优惠信息，实际价格需核实",
+      "firstSeen": "2026-11-22T08:38:03+00:00"
+    },
+    {
+      "id": "c2371404112076eccd9eb9a18405802235b6948088e0d25babeaffba3a4b6566",
+      "source": "rss-meta-appinn",
+      "title": "【开源自荐】Wolvic Pico G2:旧头显的社区浏览器移植版",
+      "url": "https://meta.appinn.net/t/topic/96341",
+      "published": "2026-11-19T01:22:03+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "other",
+      "quality": 3,
+      "reason": "有明确免费领取或使用信息",
+      "firstSeen": "2026-11-22T08:38:03+00:00"
+    },
+    {
+      "id": "6c9880125b450e136ae4f32c6113da38936ac41913b1a42ad52803e7aa8f9ab8",
+      "source": "rss-giveawayoftheday",
+      "title": "AnyMP4 Video Converter 7.2.62",
+      "url": "https://www.giveawayoftheday.com/anymp4-video-converter-7-2-62",
+      "published": "2026-11-18T08:00:00+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "media",
+      "quality": 4,
+      "reason": "有明确免费领取或使用信息",
+      "firstSeen": "2026-11-22T08:38:03+00:00"
+    },
+    {
+      "id": "0d1369bda49c83dc5e489f624ef06f3555f84397cdf64a52e22afcedefd659fd",
+      "source": "v2ex-deals",
+      "title": "20261117 移动领 1-9 元话费",
+      "url": "https://www.v2ex.com/t/1257579",
+      "published": "2026-11-17T01:12:23+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "shopping",
+      "quality": 3,
+      "reason": "有明确免费领取或使用信息",
+      "firstSeen": "2026-11-22T08:38:03+00:00"
     }
   ],
   "daily": [
@@ -124,6 +436,32 @@
           "firstSeen": "2026-11-22T07:49:23+00:00"
         },
         {
+          "id": "e6092e9040345c6c85782bf2951d445131188be6aa29d26905b1ad79637c6bc9",
+          "source": "rss-sharewareonsale",
+          "title": "ClipFrame (100% discount)",
+          "url": "https://sharewareonsale.com/s/free-clipframe-100-discount",
+          "published": "2026-11-21T08:03:40+00:00",
+          "expires": null,
+          "price": null,
+          "bucket": "ai",
+          "quality": 4,
+          "reason": "有明确免费领取或使用信息",
+          "firstSeen": "2026-11-22T08:38:03+00:00"
+        },
+        {
+          "id": "135a4a35361707f2f9eca063666537c4f9b28187d710213d0f413dec849cf791",
+          "source": "rss-9to5toys",
+          "title": "Hello! AirPods Pro 3 drop even lower to $169 for Black Friday ($80 off)",
+          "url": "https://9to5toys.com/2026/11/22/airpods-pro-3-black-friday",
+          "published": "2026-11-22T08:29:09+00:00",
+          "expires": null,
+          "price": 576,
+          "bucket": "shopping",
+          "quality": 4,
+          "reason": "有明确优惠信息，实际价格需核实",
+          "firstSeen": "2026-11-22T08:38:03+00:00"
+        },
+        {
           "id": "b8414b031e42e6acec37f1536188d48c58d3c6a34625088210658c18c5fb11fb",
           "source": "linuxdo-welfare",
           "title": "移动/联通/电信积分兑话费",
@@ -135,6 +473,58 @@
           "quality": 4,
           "reason": "有明确优惠信息，实际价格需核实",
           "firstSeen": "2026-11-22T07:49:23+00:00"
+        },
+        {
+          "id": "e46d3ef1b355766b8705d2cf158162c04cefa6c17cdad9716df38eb7914f6dc4",
+          "source": "v2ex-deals",
+          "title": "支付宝黄金活动(领 18、15 无门槛红包)",
+          "url": "https://www.v2ex.com/t/1258227",
+          "published": "2026-11-19T04:01:32+00:00",
+          "expires": null,
+          "price": null,
+          "bucket": "shopping",
+          "quality": 4,
+          "reason": "有明确优惠信息，实际价格需核实",
+          "firstSeen": "2026-11-22T08:38:03+00:00"
+        },
+        {
+          "id": "6c9880125b450e136ae4f32c6113da38936ac41913b1a42ad52803e7aa8f9ab8",
+          "source": "rss-giveawayoftheday",
+          "title": "AnyMP4 Video Converter 7.2.62",
+          "url": "https://www.giveawayoftheday.com/anymp4-video-converter-7-2-62",
+          "published": "2026-11-18T08:00:00+00:00",
+          "expires": null,
+          "price": null,
+          "bucket": "media",
+          "quality": 4,
+          "reason": "有明确免费领取或使用信息",
+          "firstSeen": "2026-11-22T08:38:03+00:00"
+        },
+        {
+          "id": "59b5be2d41d4c63c25bb702210c37dd422b117b695aa09b9f5a4eb399e89460c",
+          "source": "rss-meta-appinn",
+          "title": "Epic 免费游戏 2026-11-20",
+          "url": "https://meta.appinn.net/t/topic/96452",
+          "published": "2026-11-20T04:31:15+00:00",
+          "expires": null,
+          "price": 0,
+          "bucket": "other",
+          "quality": 4,
+          "reason": "有明确免费领取或使用信息",
+          "firstSeen": "2026-11-22T08:38:03+00:00"
+        },
+        {
+          "id": "75ad3698398d5253f93d17caffbc4f382663b1e8c836d4fe1efd6429ead46980",
+          "source": "rss-meta-appinn",
+          "title": "【开源自荐】knowvori - 生成交互性学习页面的Agent skill",
+          "url": "https://meta.appinn.net/t/topic/96475",
+          "published": "2026-11-20T11:54:12+00:00",
+          "expires": null,
+          "price": null,
+          "bucket": "ai",
+          "quality": 4,
+          "reason": "有明确免费领取或使用信息",
+          "firstSeen": "2026-11-22T08:38:03+00:00"
         }
       ]
     }
@@ -142,9 +532,9 @@
   "sources": [
     {
       "id": "linuxdo-welfare",
-      "status": "ok",
-      "fetched": 15,
-      "inserted": 15
+      "status": "degraded",
+      "fetched": 0,
+      "inserted": 0
     },
     {
       "id": "v2ex-free",
@@ -161,8 +551,8 @@
     {
       "id": "rss-smzdm",
       "status": "ok",
-      "fetched": 0,
-      "inserted": 0
+      "fetched": 20,
+      "inserted": 20
     },
     {
       "id": "rss-fuliba",
@@ -173,8 +563,8 @@
     {
       "id": "rss-ithome",
       "status": "ok",
-      "fetched": 0,
-      "inserted": 0
+      "fetched": 1,
+      "inserted": 1
     },
     {
       "id": "openrouter-free",
@@ -199,11 +589,54 @@
       "status": "ok",
       "fetched": 15,
       "inserted": 12
+    },
+    {
+      "id": "rss-meta-appinn",
+      "status": "ok",
+      "fetched": 25,
+      "inserted": 25
+    },
+    {
+      "id": "rss-sharewareonsale",
+      "status": "ok",
+      "fetched": 1,
+      "inserted": 1
+    },
+    {
+      "id": "rss-giveawayoftheday",
+      "status": "ok",
+      "fetched": 10,
+      "inserted": 10
+    },
+    {
+      "id": "rss-isthereanydeal",
+      "status": "ok",
+      "fetched": 11,
+      "inserted": 2
+    },
+    {
+      "id": "rss-9to5toys",
+      "status": "ok",
+      "fetched": 25,
+      "inserted": 25
+    },
+    {
+      "id": "rss-itch-free",
+      "status": "ok",
+      "fetched": 12,
+      "inserted": 4
+    },
+    {
+      "id": "gamerpower-loot",
+      "status": "ok",
+      "fetched": 40,
+      "inserted": 15
     }
   ],
   "review": {
-    "reviewed": 15,
-    "failedBatches": 0,
-    "unreviewedCandidates": 0
+    "reviewed": 50,
+    "failedBatches": 3,
+    "unreviewedCandidates": 13,
+    "mode": "bootstrap"
   }
 }
