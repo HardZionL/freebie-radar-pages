@@ -26,8 +26,11 @@ for (const id of ['rss-smzdm','rss-fuliba','rss-ithome','rss-nodeseek']) {
   const cfg=JSON.parse(row.config);
   for (const f of cfg.feeds ?? []) {
     f.limit=maxPerSource;
-    // The RSS feed from SMZDM is itself a deal feed. Inspect its entries with AI
-    // instead of dropping all headlines that omit the shopping platform name.
+    // The original www.smzdm.com/rss/ endpoint serves lifestyle articles
+    // linking to post.smzdm.com. The public SMZDM deal RSS is feed.smzdm.com.
+    // It is read-only and all item links pass strict host+scheme sanitization.
+    if(id==='rss-smzdm') f.url='http://feed.smzdm.com/';
+    // Do not require "淘宝/京东" in a merchant product headline.
     f.titleKeywords=id==='rss-smzdm' ? [] : id==='rss-nodeseek'
       ? ['免费','白嫖','限免','福利','赠','free','0元','特价','黑五','优惠','促销','赠送']
       : words;

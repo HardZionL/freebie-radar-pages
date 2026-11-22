@@ -65,6 +65,12 @@ def shopping_lead(item,now):
     if item.get('source_id')!='rss-smzdm':return None
     x=candidate(item,now)
     if not x:return None
+    # Editorial posts belong on post.smzdm.com, NOT in shopping offers.
+    # Only permit true deal links in the curated merchant-deal feed.
+    if urlsplit(x['url']).hostname not in ('www.smzdm.com','smzdm.com','faxian.smzdm.com'):
+        return None
+    if not SHOPPING_SIGNAL.search(x['title']):
+        return None
     pub=date(x['published'])
     if pub and pub<now-dt.timedelta(days=7):return None
     return {'id':x['id'],'source':x['source'],'title':x['title'],
@@ -142,7 +148,9 @@ def main():
            if x.get('reviewStatus')=='unverified'
            and x.get('published') and (date(x['published']) or now)<now
            and (date(x['published']) or now)>=now-dt.timedelta(days=7)
-           and safe_url(x.get('url'),'rss-smzdm')==x.get('url')}
+           and safe_url(x.get('url'),'rss-smzdm')==x.get('url')
+           and urlsplit(x['url']).hostname in ('www.smzdm.com','smzdm.com','faxian.smzdm.com')
+           and SHOPPING_SIGNAL.search(x['title'])}
     for raw_item in raw.get('items',[]):
         x=shopping_lead(raw_item,now)
         if x:leads[x['id']]=x
