@@ -186,3 +186,14 @@
  .view-glyph{width:14px;height:14px}
 }
 @media(prefers-reduced-motion:reduce){.metrics .metric-card,.item,.sidebar nav button{transition:none!important;transform:none!important}}
+
+/* Shopping leads: visibly unverified, separate from AI-curated daily content. */
+.retail-banner{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 17px;margin:0 0 13px;border:1px solid #e7dac8;border-radius:14px;background:linear-gradient(115deg,#fff8efd9,#f7f2fbef);box-shadow:0 2px 12px #6b4a2911}
+.retail-banner>div{display:flex;flex-direction:column;gap:2px;min-width:0}
+.retail-banner span{font:700 9px/1.6 ui-monospace,monospace;letter-spacing:.13em;color:#b87135}
+.retail-banner strong{font-size:13px;color:#34375a}
+.retail-banner small{font-size:11px;color:#8a7b77}
+.retail-banner button{flex-shrink:0;min-height:36px;border-color:#e3d4bd;background:#fffaf6;color:#2547ab;font-size:12px;font-weight:650;border-radius:11px}
+.sidebar nav button small{font-size:9px;color:#bb7b43;margin-left:auto;letter-spacing:.025em}
+.quality[data-score="0"]{color:#a26727;font-weight:700;border:1px solid #e9d3b6;padding:2px 6px;border-radius:8px;background:#fff4e7}
+@media(max-width:760px){.retail-banner{padding:10px;gap:8px;flex-wrap:wrap}.retail-banner button{width:100%}.retail-banner strong{font-size:12px}}
