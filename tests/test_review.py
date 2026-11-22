@@ -26,9 +26,11 @@ class TestRadar(unittest.TestCase):
         self.assertEqual(x['reviewStatus'],'unverified')
         self.assertEqual(x['quality'],0)
         self.assertEqual(x['bucket'],'shopping')
-        self.assertIsNone(shopping_lead(dict(r,title='某款商品普通介绍，无价格'),now))
+        self.assertIsNotNone(shopping_lead(dict(r,title='某款商品普通介绍，无价格'),now))
+        self.assertIn('不代表真实折扣',shopping_lead(dict(r,title='某款商品普通介绍，无价格'),now)['reason'])
         self.assertIsNone(shopping_lead(dict(r,url='https://evil.invalid/p/12345/'),now))
         self.assertIsNone(shopping_lead(dict(r,source_id='rss-9to5toys'),now))
+        self.assertIsNone(shopping_lead(dict(r,published_at=iso(now-dt.timedelta(days=9))),now))
     def test_seven_day_horizon(self):
         now=dt.datetime.now(UTC)
         r=dict(source_id='rss-smzdm',url='https://www.smzdm.com/p/987/',title='视频会员七天优惠',summary='活动',category='media',published_at=iso(now-dt.timedelta(days=5)))

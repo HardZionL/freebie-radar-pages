@@ -6,6 +6,7 @@ on:
       - 'bootstrap/initial-seed.json'
       - 'bootstrap/retail-refresh.json'
       - 'bootstrap/retail-leads-seed.json'
+      - 'bootstrap/retail-leads-recheck.json'
   schedule:
     - cron: '30 0-10/2,14-22/2 * * *'
     - cron: '30 12 * * *'
@@ -76,11 +77,13 @@ jobs:
           DAILY: ${{ github.event.schedule == '30 12 * * *' || inputs.daily == true || github.event_name == 'push' }}
           BOOTSTRAP: ${{ (github.event_name == 'push' && contains(github.event.head_commit.added, 'bootstrap/initial-seed.json')) || inputs.bootstrap == true }}
           RETAIL: ${{ github.event_name == 'push' }}
+          LEADS_ONLY: ${{ github.event_name == 'push' }}
         run: |
           args=()
           if [[ "$DAILY" == "true" ]]; then args+=(--daily); fi
           if [[ "$BOOTSTRAP" == "true" ]]; then args+=(--bootstrap); fi
           if [[ "$RETAIL" == "true" ]]; then args+=(--retail); fi
+          if [[ "$LEADS_ONLY" == "true" ]]; then args+=(--leads-only); fi
           python3 scripts/review.py "$RUNNER_TEMP/candidates.json" "${args[@]}"
       - name: Upload only sanitized state and public snapshot
         uses: actions/upload-artifact@v4
