@@ -1,0 +1,8 @@
+.env
+.env.*
+*.db
+*.db-*
+*.sqlite*
+*.log
+__pycache__/
+_upstream/
