@@ -37,6 +37,10 @@ class TestRadar(unittest.TestCase):
         r=dict(source_id='rss-smzdm',url='https://www.smzdm.com/p/987/',title='视频会员七天优惠',summary='活动',category='media',published_at=iso(now-dt.timedelta(days=5)))
         self.assertIsNotNone(candidate(r,now))
         self.assertIsNone(candidate(dict(r,published_at=iso(now-dt.timedelta(days=9))),now))
+    def test_coupon_regex_never_matches_empty(self):
+        from collect_coupons import BLOCK
+        self.assertIsNone(BLOCK.search(''))
+        self.assertIsNone(BLOCK.search('美团外卖满29-14元优惠券'))
     def test_coupon_source_parser(self):
         html='''<a href="https://m.smzdm.com/p/174492951/?utm_source=x">
           美团外卖 满29-14元优惠券天天领</a>

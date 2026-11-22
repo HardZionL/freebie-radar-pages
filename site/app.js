@@ -18,7 +18,7 @@ const couponNames={coupon:'抵扣／优惠券',redpacket:'平台红包',delivery
 function offerType(x){
  if(['coupon','redpacket','delivery'].includes(x.offerType))return x.offerType;
  const t=x.title||'';
- if(!/红包|优惠券|代金券|券包|领券|神券|无门槛|满\s*\d+\s*(?:减|-|—)\s*\d+|每日可领|支付立减|外卖/.test(t))return 'product';
+ if(!/红包|优惠券|代金券|券包|领券|神券|无门槛|满\s*\d+\s*(?:减|-|—)\s*\d+|每日可领|支付立减/.test(t))return 'product';
  if(/外卖|闪购|饿了么/.test(t))return 'delivery';
  if(/红包|赠金/.test(t))return 'redpacket';
  return 'coupon'
