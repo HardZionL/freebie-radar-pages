@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-22T19:54:59+00:00",
+  "updatedAt": "2026-11-22T21:56:58+00:00",
   "items": [
     {
       "id": "461f7f7dfae9c77431cc53aa87c7499bb3ab4808e157d3a31d3414a8024284a3",
@@ -197,6 +197,21 @@
       "firstSeen": "2026-11-22T19:54:59+00:00"
     },
     {
+      "id": "93f74e8cbba62fbcf875e774bc8d9a587ba7be39c0cff6c8de64490cc8423385",
+      "source": "rss-smzdm",
+      "title": "森海塞尔 Accentum 主动降噪 头戴式无线蓝牙耳机 702.05元(需用券)",
+      "url": "https://www.smzdm.com/p/186590091",
+      "published": "2026-11-22T23:31:08+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "shopping",
+      "quality": 3,
+      "reason": "有明确优惠信息，实际价格及领取资格需核实",
+      "offerType": "product",
+      "reviewStatus": "ai-screened",
+      "firstSeen": "2026-11-22T21:56:58+00:00"
+    },
+    {
       "id": "63633c26e86f3f3ade92f17387b38e18d8790a59dc17c2ae54618699f9806b47",
       "source": "rss-smzdm",
       "title": "88VIP:帮宝适 箱装新帮宝适黑金帮L-4XL拉拉裤超薄尿不湿 112元(需用券)",
@@ -272,6 +287,21 @@
       "firstSeen": "2026-11-22T16:30:25+00:00"
     },
     {
+      "id": "bb7e3e15dab42c8bf193c647cff2523ca0d6bd799fc237177200cbfa628c4679",
+      "source": "rss-smzdm",
+      "title": "前行者 E11 轻量化三模无线蓝牙鼠标 59元",
+      "url": "https://www.smzdm.com/p/186587426",
+      "published": "2026-11-22T22:52:09+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "shopping",
+      "quality": 3,
+      "reason": "有明确优惠信息，实际价格及领取资格需核实",
+      "offerType": "product",
+      "reviewStatus": "ai-screened",
+      "firstSeen": "2026-11-22T21:56:58+00:00"
+    },
+    {
       "id": "9be5b06800d627400622cfd7af991238985591bda1809efbbd7c01ce8478beec",
       "source": "rss-smzdm",
       "title": "优立享 优力享 五层夹心牛奶威化饼干 厚切 牛奶榛子 独立袋装 5袋 25g 12.9元",
@@ -285,6 +315,21 @@
       "offerType": "product",
       "reviewStatus": "ai-screened",
       "firstSeen": "2026-11-22T19:54:59+00:00"
+    },
+    {
+      "id": "c39be7f2796f9b37bc12ca72e5ddfe078a3ba26d2f8ee8360bf1a3ffa6f58812",
+      "source": "rss-nodeseek",
+      "title": "有新商家开黑五优惠活动了",
+      "url": "https://www.nodeseek.com/post-1073113-1",
+      "published": "2026-11-22T20:43:09+00:00",
+      "expires": "2026-11-23T23:59:59+00:00",
+      "price": 199,
+      "bucket": "other",
+      "quality": 3,
+      "reason": "有明确开发者福利信息",
+      "offerType": "product",
+      "reviewStatus": "ai-screened",
+      "firstSeen": "2026-11-22T21:56:58+00:00"
     },
     {
       "id": "696709fa904017847b64a5d3264edad200d0e140faf34684ce18cc53b4de1d4d",
@@ -602,6 +647,21 @@
       "firstSeen": "2026-11-22T12:00:05+00:00"
     },
     {
+      "id": "50aa8915491e4eac3d487b41217c78a340123f0e6d5ae1426fed918cc38e6606",
+      "source": "rss-smzdm",
+      "title": "纽曼 mp3随身听学生版mp4高中学生专用英语听力音乐播放器蓝牙听歌 119元",
+      "url": "https://www.smzdm.com/p/186577003",
+      "published": "2026-11-22T17:09:06+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "shopping",
+      "quality": 3,
+      "reason": "有明确优惠信息，实际价格及领取资格需核实",
+      "offerType": "product",
+      "reviewStatus": "ai-screened",
+      "firstSeen": "2026-11-22T21:56:58+00:00"
+    },
+    {
       "id": "d772c6c0022300038d584ff2a016852270c8215a8ac3a615b6f0e2d5e43c375e",
       "source": "rss-smzdm-coupon",
       "title": "亚马逊海外购 领值友专享免邮券、大额券包 亚马逊海外购 黑五大促 全场满1500减50等大额券包 11-19 11.4k人已领 免费领取",
@@ -870,6 +930,66 @@
       "offerType": "product",
       "reviewStatus": "ai-screened",
       "firstSeen": "2026-11-22T12:00:05+00:00"
+    },
+    {
+      "id": "756f0fbe88aee645e09eac1b57aa7da5ba7ce4ec43c520252a4468398bb6ea8f",
+      "source": "rss-smzdm",
+      "title": "OPPO Enco Air4 主动降噪入耳式蓝牙耳机 139元",
+      "url": "https://www.smzdm.com/p/186565128",
+      "published": "2026-11-22T11:36:36+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "media",
+      "quality": 3,
+      "reason": "有明确优惠信息，实际价格及领取资格需核实",
+      "offerType": "product",
+      "reviewStatus": "ai-screened",
+      "firstSeen": "2026-11-22T21:56:58+00:00"
+    },
+    {
+      "id": "4bd2601770c42200ddeb0d83fa82457bf2c668ae8417c89b7e7a425aff864079",
+      "source": "rss-smzdm",
+      "title": "OPPO Enco Air4 入耳式降噪蓝牙耳机 139元",
+      "url": "https://www.smzdm.com/p/186565122",
+      "published": "2026-11-22T11:36:08+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "media",
+      "quality": 3,
+      "reason": "有明确优惠信息，实际价格及领取资格需核实",
+      "offerType": "product",
+      "reviewStatus": "ai-screened",
+      "firstSeen": "2026-11-22T21:56:58+00:00"
+    },
+    {
+      "id": "9b33ad8cc391d67ca21b614e34d79cbad6ae490d11a48f287ad416979c4cf8bb",
+      "source": "rss-smzdm",
+      "title": "OPPO Enco Air4 新声版半入耳蓝牙耳机长续航耐用电池 99元",
+      "url": "https://www.smzdm.com/p/186565120",
+      "published": "2026-11-22T11:35:22+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "media",
+      "quality": 3,
+      "reason": "有明确优惠信息，实际价格及领取资格需核实",
+      "offerType": "product",
+      "reviewStatus": "ai-screened",
+      "firstSeen": "2026-11-22T21:56:58+00:00"
+    },
+    {
+      "id": "bc903dec819b01542aaeedd114d0203f1137f717937eb9d5d4280435df601389",
+      "source": "rss-smzdm",
+      "title": "OPPO Enco Air4 无线降噪入耳式蓝牙耳机 139元",
+      "url": "https://www.smzdm.com/p/186565119",
+      "published": "2026-11-22T11:35:20+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "shopping",
+      "quality": 3,
+      "reason": "有明确优惠信息，实际价格及领取资格需核实",
+      "offerType": "product",
+      "reviewStatus": "ai-screened",
+      "firstSeen": "2026-11-22T21:56:58+00:00"
     },
     {
       "id": "779e323eb3660f822aadddf86bd64d375a5501ebd206d2ac16786940137b9e5c",
@@ -1870,7 +1990,7 @@
     {
       "id": "734248b1a09d3a2cb8d1fc8cc5134eb4ef219074cccad6c35ba5a5b15c9a7a1a",
       "source": "rss-smzdm-coupon",
-      "title": "京东 实测0.43元红包 京东超级18 弹窗领最高1888元红包 实测0.43元红包 11-18 31.4k人已领 免费领取",
+      "title": "京东 实测0.43元红包 京东超级18 弹窗领最高1888元红包 实测0.43元红包 11-18 31.5k人已领 免费领取",
       "url": "https://www.smzdm.com/p/186315183",
       "published": null,
       "expires": null,
@@ -1880,6 +2000,21 @@
       "offerType": "redpacket",
       "price": null,
       "firstSeen": "2026-11-22T12:00:05+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
+      "id": "61a58d9db203994e0d241627201b4fdbcfffef89a4e5749e93e712ee3d82e94d",
+      "source": "rss-smzdm",
+      "title": "索尼 国行原装PS5无线新版2026控制器带USB线DualSense游戏手柄PC 355元",
+      "url": "https://www.smzdm.com/p/186596599",
+      "published": "2026-11-23T04:30:18+00:00",
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "product",
+      "price": null,
+      "firstSeen": "2026-11-22T21:56:58+00:00",
       "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
     },
     {
@@ -1898,6 +2033,21 @@
       "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
     },
     {
+      "id": "8230636707d7c0315becedfa031eede3a23e0c36ee17140dd746899c4e5006b8",
+      "source": "rss-smzdm",
+      "title": "漫步者 花再NEW CYBER海景房蓝牙音响 电脑桌面桌搭居家艺术音箱 蓝牙6.0彩屏歌词高保真 1402.5元",
+      "url": "https://www.smzdm.com/p/186593394",
+      "published": "2026-11-23T00:20:21+00:00",
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "product",
+      "price": null,
+      "firstSeen": "2026-11-22T21:56:58+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
       "id": "eeb74c9d204d39d919b87b9c426bb11325fd25b1811b99984f9d4cb9e09740c9",
       "source": "rss-smzdm",
       "title": "黄山牌 迎客 浓香型白酒 整箱纯粮食酿造 光瓶口粮酒 52度 500mL 6瓶 138元(需用券)",
@@ -1910,6 +2060,21 @@
       "offerType": "product",
       "price": null,
       "firstSeen": "2026-11-22T16:30:25+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
+      "id": "62ea768912bba80735f20dfaa8c67088f781e1add29cf71dbf21a8ee335bf954",
+      "source": "rss-smzdm",
+      "title": "马歇尔 Emberton III 便携式蓝牙音箱 - 午夜蓝 916.74元",
+      "url": "https://www.smzdm.com/p/186590540",
+      "published": "2026-11-22T23:43:17+00:00",
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "product",
+      "price": null,
+      "firstSeen": "2026-11-22T21:56:58+00:00",
       "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
     },
     {
@@ -1940,6 +2105,36 @@
       "offerType": "product",
       "price": null,
       "firstSeen": "2026-11-22T19:54:59+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
+      "id": "bf0b1b32c355277654f3768cdcec4532917efd0b7882bb0be41a16e1b81215c6",
+      "source": "rss-smzdm",
+      "title": "荣耀 LIFE FlyPods X10 Pro蓝牙耳机降噪 舒适佩戴高清音质续航 169.15元",
+      "url": "https://www.smzdm.com/p/186584498",
+      "published": "2026-11-22T21:22:11+00:00",
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "product",
+      "price": null,
+      "firstSeen": "2026-11-22T21:56:58+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
+      "id": "92e4791bbdacac6f5004f8306b31ba9926e8e0129d47e1afc1d6978707deef43",
+      "source": "rss-smzdm",
+      "title": "华为 FreeClip 2 耳夹式多单元动圈蓝牙耳机 1206.52元",
+      "url": "https://www.smzdm.com/p/186582016",
+      "published": "2026-11-22T20:04:14+00:00",
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "product",
+      "price": null,
+      "firstSeen": "2026-11-22T21:56:58+00:00",
       "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
     },
     {
@@ -1985,6 +2180,21 @@
       "offerType": "product",
       "price": null,
       "firstSeen": "2026-11-22T11:56:42+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
+      "id": "59fa9966ec8f7dd5006ada903dbfe043b6889c14b2a133781c60891bd62826cc",
+      "source": "rss-smzdm",
+      "title": "mikibobo 甄选无线蓝牙耳机 不入耳 29.9元(需用券)",
+      "url": "https://www.smzdm.com/p/186579647",
+      "published": "2026-11-22T19:13:20+00:00",
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "product",
+      "price": null,
+      "firstSeen": "2026-11-22T21:56:58+00:00",
       "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
     },
     {
@@ -2227,6 +2437,51 @@
       "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
     },
     {
+      "id": "7d130c99737dc06783f90b5062b9e780e6e1abc8f1a45c604688e4e5173f6e33",
+      "source": "rss-smzdm",
+      "title": "KERZY KE133GN HiFi音质 绿色 3.5mm有线耳机 43元(需用券)",
+      "url": "https://www.smzdm.com/p/186573180",
+      "published": "2026-11-22T15:44:11+00:00",
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "product",
+      "price": null,
+      "firstSeen": "2026-11-22T21:56:58+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
+      "id": "936ebc945740a5321b2ac39a614bd4dea4cb33d2a055b1b082d1a026d8fb226e",
+      "source": "rss-smzdm",
+      "title": "JBL FLIP7 音乐万花筒七代 便携式蓝牙音箱 迷彩色 729元",
+      "url": "https://www.smzdm.com/p/186571405",
+      "published": "2026-11-22T14:55:13+00:00",
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "product",
+      "price": null,
+      "firstSeen": "2026-11-22T21:56:58+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
+      "id": "8f45b524b155512211b5a84734fa2470df97c86b9a48738d5cf4b8ad8d19c4f6",
+      "source": "rss-smzdm",
+      "title": "苹果 EarPods (USB-C)有线耳机 iPhone18/17/16/15 93元",
+      "url": "https://www.smzdm.com/p/186571315",
+      "published": "2026-11-22T14:49:30+00:00",
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "product",
+      "price": null,
+      "firstSeen": "2026-11-22T21:56:58+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
       "id": "45bf9b0a74ae8aa599600b59c688b12038ad843db84fd5dba315c4d606f97363",
       "source": "rss-smzdm",
       "title": "韶音 OpenFit Pro 挂耳式耳机 黑色 Type-C 1875元(需用券)",
@@ -2239,6 +2494,21 @@
       "offerType": "product",
       "price": null,
       "firstSeen": "2026-11-22T16:30:25+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
+      "id": "60b139f043e7e405aaecc6e745bf0bb130ca8584ff63fe91cab856bebbce2fdc",
+      "source": "rss-smzdm",
+      "title": "移动端:苹果 AirPods Pro 3 入耳式降噪蓝牙耳机 1614.15元(淘金币可抵56.97元起)",
+      "url": "https://www.smzdm.com/p/186569440",
+      "published": "2026-11-22T14:10:07+00:00",
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "product",
+      "price": null,
+      "firstSeen": "2026-11-22T21:56:58+00:00",
       "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
     },
     {
@@ -2314,6 +2584,51 @@
       "offerType": "product",
       "price": null,
       "firstSeen": "2026-11-22T16:30:25+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
+      "id": "d930f1f71ea35315451a344b857f4e11a02c8fbd978df68d0072c86b382a6cd8",
+      "source": "rss-smzdm",
+      "title": "移动端:索尼 WF-1000XM6 1919.04元(淘金币可抵143.95元起)",
+      "url": "https://www.smzdm.com/p/186559338",
+      "published": "2026-11-22T10:12:07+00:00",
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "product",
+      "price": null,
+      "firstSeen": "2026-11-22T21:56:58+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
+      "id": "361b41a3a3f748fac0e288b1262d1047ffd66dc8a347deb5215fa5ff805067c5",
+      "source": "rss-smzdm",
+      "title": "移动端:vivo Buds Clip 耳夹式蓝牙 星夜黑 耳机 573.12元(淘金币可抵3.5元起)",
+      "url": "https://www.smzdm.com/p/186555428",
+      "published": "2026-11-22T08:34:07+00:00",
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "product",
+      "price": null,
+      "firstSeen": "2026-11-22T21:56:58+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
+      "id": "9d835a3efffd70fc241cf1b5aa57d3c0beb97d954d630238e5ec58c300aebaef",
+      "source": "rss-smzdm",
+      "title": "移动端:罗技 G304 2.4G LIGHTSPEED 无线鼠标 12000DPI 白色 143.04元(淘金币可抵0.75元起)",
+      "url": "https://www.smzdm.com/p/186555541",
+      "published": "2026-11-22T08:33:23+00:00",
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "product",
+      "price": null,
+      "firstSeen": "2026-11-22T21:56:58+00:00",
       "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
     },
     {
