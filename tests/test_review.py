@@ -1,7 +1,7 @@
 import unittest, sys, datetime as dt
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
-from review import candidate,safe_url,select_daily,iso,UTC,clean,bucket_hint
+from review import candidate,safe_url,select_daily,iso,UTC,clean,bucket_hint,shopping_lead
 class TestRadar(unittest.TestCase):
     def test_urls(self):
         self.assertEqual(safe_url('https://www.smzdm.com/p/123/?token=secret#x','rss-smzdm'),'https://www.smzdm.com/p/123/')
@@ -18,6 +18,17 @@ class TestRadar(unittest.TestCase):
         self.assertEqual(bucket_hint({'title':'某品牌耳机 199 元', 'source':'rss-smzdm', 'category':'other'}),'shopping')
         self.assertEqual(bucket_hint({'title':'LEGO holiday deal', 'source':'rss-9to5toys', 'category':'other'}),'shopping')
         self.assertEqual(bucket_hint({'title':'腾讯视频会员 5 折', 'source':'rss-smzdm', 'category':'other'}),'media')
+    def test_unverified_shopping_lead_is_distinct_and_safe(self):
+        now=dt.datetime.now(UTC)
+        r=dict(source_id='rss-smzdm',url='https://www.smzdm.com/p/12345/',title='京东商城 电水壶 59.9元（需用券）',summary='无',published_at=iso(now))
+        x=shopping_lead(r,now)
+        self.assertIsNotNone(x)
+        self.assertEqual(x['reviewStatus'],'unverified')
+        self.assertEqual(x['quality'],0)
+        self.assertEqual(x['bucket'],'shopping')
+        self.assertIsNone(shopping_lead(dict(r,title='某款商品普通介绍，无价格'),now))
+        self.assertIsNone(shopping_lead(dict(r,url='https://evil.invalid/p/12345/'),now))
+        self.assertIsNone(shopping_lead(dict(r,source_id='rss-9to5toys'),now))
     def test_seven_day_horizon(self):
         now=dt.datetime.now(UTC)
         r=dict(source_id='rss-smzdm',url='https://www.smzdm.com/p/987/',title='视频会员七天优惠',summary='活动',category='media',published_at=iso(now-dt.timedelta(days=5)))

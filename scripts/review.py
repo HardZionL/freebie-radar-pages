@@ -58,6 +58,21 @@ def candidate(r,now):
     row={'id':digest_key(url),'source':src,'title':title,'url':url,'summary':summary,'published':iso(pub) if pub else None,'expires':iso(exp) if exp else None,'price':price,'category':r.get('category'),'kind':r.get('kind')}
     row['hint']=bucket_hint(row);row['fingerprint']=digest_key(url+'\n'+title+'\n'+summary)
     return row
+
+SHOPPING_SIGNAL=re.compile(r'(?:[¥￥]\s*\d+(?:\.\d+)?|\d+(?:\.\d+)?\s*(?:元|块|折|元包邮)|需用券|满\s*\d+\s*减\s*\d+|券后|到手价|历史低价|直降|优惠券|限时特价)',re.I)
+def shopping_lead(item,now):
+    # Only original deal-feed entries from the allowlisted SMZDM domain.
+    if item.get('source_id')!='rss-smzdm':return None
+    x=candidate(item,now)
+    if not x or not SHOPPING_SIGNAL.search(x['title']):return None
+    pub=date(x['published'])
+    if pub and pub<now-dt.timedelta(days=3):return None
+    return {'id':x['id'],'source':x['source'],'title':x['title'],
+            'url':x['url'],'published':x['published'],'expires':x['expires'],
+            'bucket':'shopping','reviewStatus':'unverified','quality':0,
+            'price':None,'firstSeen':iso(now),
+            'reason':'公开优惠来源的价格或用券线索；未经 AI 审核，请自行核实实际价格、券条件和库存'}
+
 class NoRedirect(HTTPRedirectHandler):
     def redirect_request(self, *args, **kwargs): return None
 def request_review(batch,key,model):
@@ -119,6 +134,16 @@ def main():
     if not key: raise SystemExit('Missing MIMO_API_KEY repository secret; no review performed.')
     old=load(args.root/'site/data.json',{'items':[],'daily':[]}); seen=load(args.root/'state/reviewed.json',{})
     raw=load(args.raw,{}); rows={x['id']:x for x in old['items'] if active(x,now)}
+    # Source-only leads are deliberately separate from AI-accepted public items.
+    # They are never counted toward the daily digest or AI star scores.
+    leads={x['id']:x for x in old.get('shoppingLeads',[])
+           if x.get('reviewStatus')=='unverified'
+           and x.get('published') and (date(x['published']) or now)<now
+           and (date(x['published']) or now)>=now-dt.timedelta(days=3)
+           and safe_url(x.get('url'),'rss-smzdm')==x.get('url')}
+    for raw_item in raw.get('items',[]):
+        x=shopping_lead(raw_item,now)
+        if x:leads[x['id']]=x
     seen={k:v for k,v in seen.items() if (date(v) or dt.datetime.min.replace(tzinfo=UTC))>=now-dt.timedelta(days=14)}
     candidates={}
     eligible_by_source={}
@@ -180,6 +205,9 @@ def main():
         recent=[a for a in archive if a['date']>=(now.astimezone(TZ).date()-dt.timedelta(days=3)).isoformat()]
         archive.append({'date':day,'items':select_daily(items,recent,day,now)})
     sources=[{k:r[k] for k in ('id','status','fetched','inserted')} for r in raw.get('sources',[]) if r.get('id') in HOSTS]
+    leads=[x for x in leads.values() if x['id'] not in rows]
+    leads.sort(key=lambda x:x['published'] or x['firstSeen'],reverse=True)
+    leads=leads[:30]
     public_by_source={}
     for item in items:
         src=item['source']
@@ -191,7 +219,8 @@ def main():
                                        'shortlisted':shortlisted_by_source.get(src,0),
                                        'published':public_by_source.get(src,0)}
                                   for src in HOSTS if src in eligible_by_source or src in public_by_source}}
-    save(args.root/'site/data.json',{'updatedAt':iso(now),'items':items,'daily':sorted(archive,key=lambda x:x['date'],reverse=True),'sources':sources,'review':review_stats})
+    save(args.root/'site/data.json',{'updatedAt':iso(now),'items':items,'daily':sorted(archive,key=lambda x:x['date'],reverse=True),'shoppingLeads':leads,'sources':sources,'review':review_stats})
     save(args.root/'state/reviewed.json',seen)
+    print('Public shopping leads (unverified): '+str(len(leads)),flush=True)
     print(f'Mode={"bootstrap" if args.bootstrap else "retail" if args.retail else "regular"}; reviewed {done}/{len(pending)} shortlisted items; {errors} batch failures; {len(items)} published items; daily={len(archive[0]["items"]) if archive else 0}.')
 if __name__=='__main__':main()
