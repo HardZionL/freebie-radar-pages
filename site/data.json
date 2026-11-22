@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-22T08:51:36+00:00",
+  "updatedAt": "2026-11-22T08:56:50+00:00",
   "items": [
     {
       "id": "fa3800bd0d9141022a177fc6bcf260667f72c7df4a69b8c838a1cd5289d62054",
@@ -353,6 +353,32 @@
       "firstSeen": "2026-11-22T08:38:03+00:00"
     },
     {
+      "id": "677f0ab9123c8270b62f6f65d27d618d0d1bbf7fd07e65c4af112701146aefa1",
+      "source": "rss-meta-appinn",
+      "title": "〖开发者自荐〗Agenterm:帮家人查电脑空间,一条命令开始远程协助",
+      "url": "https://meta.appinn.net/t/topic/96405",
+      "published": "2026-11-19T10:28:08+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "other",
+      "quality": 3,
+      "reason": "有明确开发者福利信息",
+      "firstSeen": "2026-11-22T08:56:50+00:00"
+    },
+    {
+      "id": "dee3d324de5c96e0dcd308eafcf996bc4b7b7cacba17fcc72decbbc35c107a1b",
+      "source": "rss-meta-appinn",
+      "title": "【开发者自荐】Moler:NASA-Punk 风格的 macOS 磁盘清理工具",
+      "url": "https://meta.appinn.net/t/topic/96402",
+      "published": "2026-11-19T10:07:52+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "other",
+      "quality": 3,
+      "reason": "有明确开发者福利信息",
+      "firstSeen": "2026-11-22T08:56:50+00:00"
+    },
+    {
       "id": "1581b149e82c99e214c6b984435587c31611152a298483f7942f3595cdddef4b",
       "source": "rss-giveawayoftheday",
       "title": "FileCryptor 2025",
@@ -672,18 +698,13 @@
       ]
     }
   ],
+  "shoppingLeads": [],
   "sources": [
     {
-      "id": "linuxdo-welfare",
-      "status": "degraded",
-      "fetched": 0,
-      "inserted": 0
-    },
-    {
-      "id": "v2ex-free",
+      "id": "rss-smzdm",
       "status": "ok",
-      "fetched": 10,
-      "inserted": 10
+      "fetched": 20,
+      "inserted": 20
     },
     {
       "id": "v2ex-deals",
@@ -692,83 +713,29 @@
       "inserted": 10
     },
     {
-      "id": "rss-smzdm",
-      "status": "ok",
-      "fetched": 20,
-      "inserted": 20
-    },
-    {
       "id": "rss-fuliba",
       "status": "ok",
       "fetched": 2,
       "inserted": 2
     },
     {
-      "id": "rss-ithome",
-      "status": "ok",
-      "fetched": 1,
-      "inserted": 1
-    },
-    {
-      "id": "openrouter-free",
-      "status": "ok",
-      "fetched": 2,
-      "inserted": 2
-    },
-    {
-      "id": "rss-nodeseek",
-      "status": "ok",
-      "fetched": 0,
-      "inserted": 0
-    },
-    {
-      "id": "epic-free",
-      "status": "ok",
-      "fetched": 1,
-      "inserted": 1
-    },
-    {
-      "id": "gamerpower",
-      "status": "ok",
-      "fetched": 15,
-      "inserted": 12
-    },
-    {
       "id": "rss-meta-appinn",
       "status": "ok",
-      "fetched": 20,
-      "inserted": 20
-    },
-    {
-      "id": "rss-sharewareonsale",
-      "status": "ok",
-      "fetched": 1,
-      "inserted": 1
-    },
-    {
-      "id": "rss-giveawayoftheday",
-      "status": "ok",
-      "fetched": 10,
-      "inserted": 10
-    },
-    {
-      "id": "rss-isthereanydeal",
-      "status": "ok",
-      "fetched": 11,
-      "inserted": 2
+      "fetched": 25,
+      "inserted": 25
     },
     {
       "id": "rss-9to5toys",
       "status": "ok",
-      "fetched": 20,
-      "inserted": 20
+      "fetched": 25,
+      "inserted": 25
     }
   ],
   "review": {
-    "reviewed": 20,
-    "failedBatches": 2,
-    "unreviewedCandidates": 9,
-    "mode": "regular",
+    "reviewed": 17,
+    "failedBatches": 1,
+    "unreviewedCandidates": 2,
+    "mode": "retail",
     "sourceReview": {
       "linuxdo-welfare": {
         "eligible": 0,
@@ -781,14 +748,14 @@
         "published": 3
       },
       "rss-smzdm": {
-        "eligible": 20,
-        "shortlisted": 15,
+        "eligible": 17,
+        "shortlisted": 17,
         "published": 0
       },
       "rss-meta-appinn": {
-        "eligible": 4,
-        "shortlisted": 4,
-        "published": 21
+        "eligible": 2,
+        "shortlisted": 2,
+        "published": 23
       },
       "rss-sharewareonsale": {
         "eligible": 0,
@@ -796,13 +763,13 @@
         "published": 1
       },
       "rss-giveawayoftheday": {
-        "eligible": 3,
-        "shortlisted": 3,
+        "eligible": 0,
+        "shortlisted": 0,
         "published": 4
       },
       "rss-isthereanydeal": {
-        "eligible": 2,
-        "shortlisted": 2,
+        "eligible": 0,
+        "shortlisted": 0,
         "published": 2
       },
       "rss-9to5toys": {
