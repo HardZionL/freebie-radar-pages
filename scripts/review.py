@@ -215,9 +215,10 @@ def main():
         # Rebuild source-only leads without invoking the paid AI API or
         # changing reviewed daily picks and previous AI statistics.
         available=[x for x in leads.values() if x['id'] not in rows]
-        available.sort(key=lambda x:x['published'] or x['firstSeen'],reverse=True)
+        available.sort(key=lambda x:(x.get('offerType') in ('coupon','redpacket','delivery'),
+                                    x['published'] or x['firstSeen']),reverse=True)
         previous=dict(old)
-        previous['shoppingLeads']=available[:30]
+        previous['shoppingLeads']=available[:60]
         previous['updatedAt']=iso(now)
         # Never ship operational telemetry or collector health to GitHub Pages.
         previous.pop('sources',None)
@@ -267,8 +268,9 @@ def main():
         recent=[a for a in archive if a['date']>=(now.astimezone(TZ).date()-dt.timedelta(days=3)).isoformat()]
         archive.append({'date':day,'items':select_daily(items,recent,day,now)})
     leads=[x for x in leads.values() if x['id'] not in rows]
-    leads.sort(key=lambda x:x['published'] or x['firstSeen'],reverse=True)
-    leads=leads[:30]
+    leads.sort(key=lambda x:(x.get('offerType') in ('coupon','redpacket','delivery'),
+                             x['published'] or x['firstSeen']),reverse=True)
+    leads=leads[:60]
     # Public snapshot contains only curated resources and safe source-only deals.
     # Internal review counts remain in GitHub Actions logs, not public site/data.json.
     save(args.root/'site/data.json',{'updatedAt':iso(now),'items':items,

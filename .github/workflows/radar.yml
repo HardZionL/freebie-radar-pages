@@ -9,6 +9,7 @@ on:
       - 'bootstrap/retail-leads-recheck.json'
       - 'bootstrap/smzdm-deals-feed-fix.json'
       - 'bootstrap/coupon-priority-seed.json'
+      - 'bootstrap/coupon-ai-audit-2.json'
   schedule:
     - cron: '30 0-10/2,14-22/2 * * *'
     - cron: '30 12 * * *'
@@ -81,8 +82,8 @@ jobs:
           DAILY: ${{ github.event.schedule == '30 12 * * *' || inputs.daily == true || github.event_name == 'push' }}
           BOOTSTRAP: ${{ (github.event_name == 'push' && contains(github.event.head_commit.added, 'bootstrap/initial-seed.json')) || inputs.bootstrap == true }}
           RETAIL: ${{ github.event_name == 'push' }}
-          COUPON_BOOST: ${{ github.event_name == 'push' && contains(github.event.head_commit.added, 'bootstrap/coupon-priority-seed.json') }}
-          LEADS_ONLY: ${{ github.event_name == 'push' && !contains(github.event.head_commit.added, 'bootstrap/coupon-priority-seed.json') }}
+          COUPON_BOOST: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, 'coupon-ai-audit-2') }}
+          LEADS_ONLY: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, 'coupon-ai-audit-2') }}
         run: |
           args=()
           if [[ "$DAILY" == "true" ]]; then args+=(--daily); fi
