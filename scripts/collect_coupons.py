@@ -23,13 +23,18 @@ SIGNAL = re.compile(
     r'折扣|补贴|京豆|淘金币|返券|买一送一|免费领', re.I)
 BLOCK = re.compile(r'抽奖|求购|拼车|返佣|进群|私信|代充|共享账号|账号出售')
 ARTICLE = re.compile(r'^/p/(\d{5,12})/?$')
-MAX_BYTES = 450_000
+MAX_BYTES = 1_000_000
 MAX_TOTAL = 32
 MAX_PER_PAGE = 18
 
-class NoRedirect(HTTPRedirectHandler):
-    def redirect_request(self, *args, **kwargs):
-        return None
+class SameProviderRedirect(HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        parts = urlsplit(newurl)
+        if parts.scheme != 'https' or parts.hostname not in {
+            'h5.smzdm.com','m.smzdm.com','www.smzdm.com'
+        }:
+            return None
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
 
 class Anchors(HTMLParser):
     def __init__(self):
@@ -90,9 +95,9 @@ def fetch_public_page(url):
         'User-Agent': 'ResourceRadar/1.0 (+https://github.com/HardZionL/freebie-radar-pages)',
         'Accept': 'text/html',
     })
-    with build_opener(NoRedirect()).open(req, timeout=12) as res:
+    with build_opener(SameProviderRedirect()).open(req, timeout=12) as res:
         final = urlsplit(res.geturl())
-        if final.scheme != 'https' or final.hostname != urlsplit(url).hostname:
+        if final.scheme != 'https' or final.hostname not in {'h5.smzdm.com','m.smzdm.com','www.smzdm.com'}:
             raise ValueError('Unexpected final host')
         if 'text/html' not in res.headers.get('Content-Type',''):
             raise ValueError('Not HTML')
@@ -119,7 +124,7 @@ def main(path):
                     break
             print(f'{source}: {len(offers)} eligible public offer titles, {count} added',flush=True)
         except Exception as e:
-            print(f'{source}: unavailable ({type(e).__name__}); continuing with RSS',flush=True)
+            print(f'{source}: unavailable ({type(e).__name__}: {str(e)[:90]}); continuing with RSS',flush=True)
     raw['items'].extend(added)
     path.write_text(json.dumps(raw, ensure_ascii=False), encoding='utf-8')
     print(f'Coupon and delivery candidate enrichment: {len(added)} items; no AI keys used',flush=True)
