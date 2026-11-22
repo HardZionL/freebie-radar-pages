@@ -3,6 +3,9 @@ on:
   pull_request:
     paths:
       - 'site/**'
+      - 'scripts/**'
+      - 'tests/**'
+      - '.github/workflows/radar.yml'
       - '.github/workflows/frontend-check.yml'
   workflow_dispatch:
 permissions:
@@ -21,6 +24,9 @@ jobs:
       - name: Syntax and security checks
         run: |
           node --check site/app.js
+          node --check scripts/collect.mjs
+          python3 -m py_compile scripts/review.py
+          python3 -m unittest discover -s tests -v
           python3 - <<'PY'
           from pathlib import Path
           from html.parser import HTMLParser
