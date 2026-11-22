@@ -9,6 +9,10 @@ const setLocal=key=>{const v=loadLocal(key,[]);return new Set(Array.isArray(v)?v
 const fav=setLocal('favorites'),read=setLocal('read'),closed=setLocal('closed');
 let data={items:[],daily:[],shoppingLeads:[]},mode='daily',returnMode='daily',bucket='',view=loadLocal('view','two'),visible=[];
 if(!['list','two','three'].includes(view))view='two';
+if(window.matchMedia('(max-width: 760px)').matches){
+ const mobileChoice=loadLocal('mobileView','list');
+ view=['list','two','three'].includes(mobileChoice)?mobileChoice:'list';
+}
 function el(tag,text,cls){const e=document.createElement(tag);if(text!=null)e.textContent=String(text);if(cls)e.className=cls;return e}
 function button(text,action,pressed){const b=el('button',text);b.type='button';if(pressed!==undefined)b.setAttribute('aria-pressed',String(pressed));b.addEventListener('click',action);return b}
 function dateKey(v){const d=new Date(v);if(!v||Number.isNaN(d.getTime()))return '';return new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit'}).format(d)}
@@ -26,15 +30,36 @@ function offerType(x){
 function union(){return Array.from(new Map([...(data.shoppingLeads||[]),...data.daily.flatMap(d=>d.items||[]),...data.items].map(x=>[x.id,x])).values())}
 function todayDue(x){return dateKey(x.expires)===dateKey(Date.now())&&Date.parse(x.expires)>Date.now()}
 function getBase(){if(mode==='search')return union();if(mode==='vouchers')return union().filter(x=>offerType(x)!=='product');if(mode==='retail')return data.shoppingLeads||[];if(mode==='daily')return data.daily.find(d=>d.date===$('date').value)?.items||[];if(mode==='favorites')return union().filter(x=>fav.has(x.id));if(mode==='hidden')return union().filter(x=>closed.has(x.id));if(mode==='hot')return data.items.filter(x=>stamp(x)>Date.now()-86400000&&x.quality>=4);if(mode==='deadline')return data.items.filter(todayDue);return data.items}
-function setMode(next){if(!(next in modes))return;mode=next;returnMode=next;bucket='';$('query').value='';$('source').value='';$('period').value='';$('unread').checked=false;$('sort').value=mode==='hot'?'quality':mode==='deadline'?'expiry':mode==='vouchers'||mode==='retail'?'coupon':'latest';$('sidebar').classList.remove('open');$('menu').setAttribute('aria-expanded','false');render()}
+function closeMenu(restoreFocus=false){
+ $('sidebar').classList.remove('open');
+ $('drawer-backdrop').hidden=true;
+ $('menu').setAttribute('aria-expanded','false');
+ document.body.classList.remove('drawer-active');
+ if(restoreFocus && window.matchMedia('(max-width: 760px)').matches) $('menu').focus();
+}
+function openMenu(){
+ $('sidebar').classList.add('open');
+ $('drawer-backdrop').hidden=false;
+ $('menu').setAttribute('aria-expanded','true');
+ document.body.classList.add('drawer-active');
+ $('drawer-close').focus();
+}
+function setMode(next){
+ if(!(next in modes))return;
+ mode=next;returnMode=next;bucket='';
+ $('query').value='';$('mobile-query').value='';
+ $('source').value='';$('period').value='';$('unread').checked=false;
+ $('sort').value=mode==='hot'?'quality':mode==='deadline'?'expiry':mode==='vouchers'||mode==='retail'?'coupon':'latest';
+ closeMenu();render();
+}
 function toggle(set,k,id){if(set.has(id))set.delete(id);else set.add(id);store(k,[...set]);render()}
 function card(x){
  const kind=offerType(x),unverified=x.reviewStatus==='unverified';const a=el('article',null,'item'+(read.has(x.id)?' read':'')+(kind!=='product'?' voucher-card':'')+(unverified?' unverified':'')), art=el('div',null,'thumb');a.dataset.offer=kind;art.dataset.art=groups[x.bucket]?x.bucket:'other';art.setAttribute('aria-hidden','true');a.append(art);
- const body=el('div',null,'item-content'),head=el('div',null,'item-top');const score=el('span',x.reviewStatus==='unverified'?'尚未核实':'★ '+x.quality+'/5','quality');score.dataset.score=x.quality;head.append(el('span',kind!=='product'?(couponNames[kind]||'优惠信息'):(groups[x.bucket]||groups.other)[0],'tag'),score);body.append(head,el('h3',x.title));
+ const body=el('div',null,'item-content'),head=el('div',null,'item-top');const score=el('span',x.reviewStatus==='unverified'?'尚未核实':'★ '+x.quality+'/5','quality');score.dataset.score=x.quality;head.append(el('span',kind!=='product'?(couponNames[kind]||'优惠信息'):(groups[x.bucket]||groups.other)[0],'tag'),score);const headline=el('h3',x.title);headline.title=x.title;body.append(head,headline);
  if($('show-summary').checked)body.append(el('p',x.reason||'活动信息以原平台为准','reason'));
  const meta=el('div',null,'meta');meta.append(el('span',sources[x.source]||x.source),el('span',(x.published?'发布':'发现')+' '+time(x.published||x.firstSeen)),el('span',x.expires?'截止 '+time(x.expires):'截止未注明'));if(typeof x.price==='number')meta.append(el('span','来源提取价 '+x.price+'（币种待核）'));body.append(meta);
  const links=el('div',null,'links');
- try{const url=new URL(x.url);if(url.protocol==='https:'&&!url.username&&!url.password){const a=el('a',kind!=='product'?'查看领取说明 ↗':'查看原始信息 ↗');a.href=url.href;a.target='_blank';a.rel='noopener noreferrer';a.addEventListener('click',()=>{read.add(x.id);store('read',[...read]);render()});links.append(a)}}catch{}
+ try{const url=new URL(x.url);if(url.protocol==='https:'&&!url.username&&!url.password){const a=el('a',unverified?'查看原文核实 ↗':kind!=='product'?'查看活动详情 ↗':'查看原始信息 ↗','visit-link');a.href=url.href;a.target='_blank';a.rel='noopener noreferrer';a.addEventListener('click',()=>{read.add(x.id);store('read',[...read]);render()});links.append(a)}}catch{}
  const star=button('',()=>toggle(fav,'favorites',x.id),fav.has(x.id));star.className='action-button action-fav';star.title=fav.has(x.id)?'取消收藏':'收藏';star.setAttribute('aria-label',star.title);
  const seen=button('',()=>toggle(read,'read',x.id),read.has(x.id));seen.className='action-button action-read';seen.title=read.has(x.id)?'标记未读':'标记已读';seen.setAttribute('aria-label',seen.title);
  const hide=button('',()=>toggle(closed,'closed',x.id),closed.has(x.id));hide.className='action-button action-hide';hide.title=closed.has(x.id)?'恢复资源':'关闭资源';hide.setAttribute('aria-label',hide.title);links.append(star,seen,hide);body.append(links);a.append(body);return a
@@ -59,7 +84,7 @@ function renderInsights(){
  }
 }
 function render(){
- $('crumb').textContent=modes[mode];$('heading').replaceChildren(document.createTextNode(mode==='all'?'资源雷达':modes[mode]),el('span','.'));$('subtitle').textContent=mode==='daily'?'每日甄选公开福利 · 把值得关注的好东西一次看完':mode==='hot'?'近 24 小时 AI 评分较高的资源 · 非社区热度排名':mode==='retail'?'公开商品优惠线索，尚未经过 AI 审核':mode==='vouchers'?'集中展示平台抵扣券、无门槛红包和外卖优惠，审核状态分别标注':mode==='search'?'全站搜索：已审核资源 + 未审核购物线索':'寻找真正有价值的资源，让信息有序浮现。';
+ $('crumb').textContent=modes[mode];$('mobile-page-title').textContent=modes[mode];document.body.classList.toggle('search-active',mode==='search');$('heading').replaceChildren(document.createTextNode(mode==='all'?'资源雷达':modes[mode]),el('span','.'));$('subtitle').textContent=mode==='daily'?'每日甄选公开福利 · 把值得关注的好东西一次看完':mode==='hot'?'近 24 小时 AI 评分较高的资源 · 非社区热度排名':mode==='retail'?'公开商品优惠线索，尚未经过 AI 审核':mode==='vouchers'?'集中展示平台抵扣券、无门槛红包和外卖优惠，审核状态分别标注':mode==='search'?'全站搜索：已审核资源 + 未审核购物线索':'寻找真正有价值的资源，让信息有序浮现。';
  document.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===mode)));document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===view)));
  $('nav-count').textContent=data.items.length;$('overview').hidden=mode!=='daily';$('retail-banner').hidden=mode!=='daily';$('retail-count').textContent=(data.shoppingLeads||[]).length;$('coupon-count').textContent=union().filter(x=>offerType(x)!=='product').length;$('controls').hidden=false;$('export').disabled=false;$('content-shell').classList.toggle('daily-layout',mode==='daily');sourceMenu();renderInsights();
  const target=$('results');target.replaceChildren();target.className='';
@@ -74,18 +99,44 @@ function render(){
  for(const [key,[name,en]] of Object.entries(groups)){const list=rows.filter(x=>x.bucket===key);if(!list.length)continue;const group=el('section',null,'group'),head=el('div',null,'group-head');const pixel=el('span',null,'pix');pixel.dataset.bucket=key;head.append(pixel,el('h2',name),el('em',en));if(!bucket)head.append(button('查看本类 →',()=>{bucket=key;render()}));group.append(head);const cards=el('div',null,'cards '+view);for(const x of list)cards.append(card(x));group.append(cards);target.append(group)}
 }
 for(const b of document.querySelectorAll('[data-mode]'))b.addEventListener('click',()=>setMode(b.dataset.mode));
-for(const b of document.querySelectorAll('[data-view]'))b.addEventListener('click',()=>{view=b.dataset.view;store('view',view);render()});
-$('query').addEventListener('input',()=>{
- const q=$('query').value.trim();
- if(q && mode!=='search'){returnMode=mode;mode='search';bucket='';$('source').value='';$('period').value='';$('sort').value='coupon'}
- if(!q&&mode==='search'){mode=returnMode;$('sort').value=mode==='vouchers'||mode==='retail'?'coupon':'latest'}
- render()
-});
+for(const b of document.querySelectorAll('[data-view]'))b.addEventListener('click',()=>{view=b.dataset.view;store(window.matchMedia('(max-width: 760px)').matches?'mobileView':'view',view);render()});
+function searchChanged(next,origin){
+ // Both search fields share one source of truth; typing anywhere always searches
+ // across reviewed items and distinctly unverified shopping leads.
+ if(origin!=='query')$('query').value=next;
+ if(origin!=='mobile-query')$('mobile-query').value=next;
+ const q=next.trim();
+ if(q && mode!=='search'){
+   returnMode=mode;mode='search';bucket='';$('source').value='';$('period').value='';$('sort').value='coupon';
+ }
+ if(!q && mode==='search'){mode=returnMode;$('sort').value=mode==='vouchers'||mode==='retail'?'coupon':'latest'}
+ render();
+}
+$('query').addEventListener('input',()=>searchChanged($('query').value,'query'));
+$('mobile-query').addEventListener('input',()=>searchChanged($('mobile-query').value,'mobile-query'));
+function showSearchResults(){
+ if($('mobile-query').value.trim() && mode!=='search')searchChanged($('mobile-query').value,'mobile-query');
+ $('mobile-query').blur();
+ $('note').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+}
+$('mobile-submit').addEventListener('click',showSearchResults);
+$('mobile-query').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();showSearchResults()}});
+
 for(const k of ['date','source','period','sort','unread','show-summary','quality','price','expiry'])$(k).addEventListener('input',render);
 $('advanced').addEventListener('click',()=>{const open=$('advanced-panel').hidden;$('advanced-panel').hidden=!open;$('advanced').setAttribute('aria-expanded',String(open))});
-$('reset').addEventListener('click',()=>{for(const id of ['query','source','period','price','expiry'])$(id).value='';$('quality').value='0';$('unread').checked=false;bucket='';if(mode==='search'){mode=returnMode;$('sort').value='latest'}render()});
-$('menu').addEventListener('click',()=>{const open=$('sidebar').classList.toggle('open');$('menu').setAttribute('aria-expanded',String(open))});
-document.addEventListener('keydown',e=>{if(e.key==='/'&&!['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName)){e.preventDefault();$('sidebar').classList.add('open');$('menu').setAttribute('aria-expanded','true');$('query').focus()}});
+$('reset').addEventListener('click',()=>{for(const id of ['query','mobile-query','source','period','price','expiry'])$(id).value='';$('quality').value='0';$('unread').checked=false;bucket='';if(mode==='search'){mode=returnMode;$('sort').value='latest'}render()});
+$('menu').addEventListener('click',()=>$('sidebar').classList.contains('open')?closeMenu(true):openMenu());
+$('drawer-close').addEventListener('click',()=>closeMenu(true));
+$('drawer-backdrop').addEventListener('click',()=>closeMenu(true));
+document.addEventListener('keydown',e=>{
+ if(e.key==='Escape'&&$('sidebar').classList.contains('open')){closeMenu(true);return}
+ if(e.key==='/'&&!['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName)){
+   e.preventDefault();
+   if(window.matchMedia('(max-width: 760px)').matches){closeMenu();$('mobile-query').focus()}
+   else $('query').focus();
+ }
+});
+window.addEventListener('resize',()=>{if(window.innerWidth>760 && $('sidebar').classList.contains('open'))closeMenu()});
 $('export').addEventListener('click',()=>{const url=URL.createObjectURL(new Blob([JSON.stringify(visible,null,2)],{type:'application/json'}));const a=el('a');a.href=url;a.download='radar-resources.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)});
 for(const [id,name] of Object.entries(sources)){const op=el('option',name);op.value=id;$('source').append(op)}
-fetch('./data.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('data');return r.json()}).then(s=>{if(!Array.isArray(s.items)||!Array.isArray(s.daily)||!Array.isArray(s.shoppingLeads))throw Error('schema');data=s;$('update').textContent=s.updatedAt?'最近更新（北京） '+time(s.updatedAt):'等待首次云端更新';data.daily.sort((a,b)=>b.date.localeCompare(a.date));for(const d of data.daily){const op=el('option',d.date);op.value=d.date;$('date').append(op)}if(data.daily.length)$('date').value=data.daily[0].date;render()}).catch(()=>{$('note').textContent='数据加载失败，请稍后刷新。'});
+fetch('./data.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('data');return r.json()}).then(s=>{if(!Array.isArray(s.items)||!Array.isArray(s.daily)||!Array.isArray(s.shoppingLeads))throw Error('schema');data=s;$('update').textContent=s.updatedAt?'最近更新（北京） '+time(s.updatedAt):'等待首次云端更新';$('mobile-update').textContent=s.updatedAt?'最近更新（北京） '+time(s.updatedAt):'等待首次云端更新';data.daily.sort((a,b)=>b.date.localeCompare(a.date));for(const d of data.daily){const op=el('option',d.date);op.value=d.date;$('date').append(op)}if(data.daily.length)$('date').value=data.daily[0].date;render()}).catch(()=>{$('note').textContent='数据加载失败，请稍后刷新。'});

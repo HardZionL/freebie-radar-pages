@@ -24,6 +24,8 @@ jobs:
       - name: Syntax and security checks
         run: |
           node --check site/app.js
+          node --check tests/mobile-ui.cjs
+          node tests/mobile-ui.cjs
           node --check scripts/collect.mjs
           python3 -m py_compile scripts/review.py
           python3 -m unittest discover -s tests -v
