@@ -1,6 +1,19 @@
 {
-  "updatedAt": "2026-11-22T08:38:03+00:00",
+  "updatedAt": "2026-11-22T08:51:36+00:00",
   "items": [
+    {
+      "id": "fa3800bd0d9141022a177fc6bcf260667f72c7df4a69b8c838a1cd5289d62054",
+      "source": "rss-meta-appinn",
+      "title": "AutoPrinter – 按当前窗口自动切换默认打印机的超小巧后台工具(Windows·免费)",
+      "url": "https://meta.appinn.net/t/topic/96591",
+      "published": "2026-11-22T08:39:35+00:00",
+      "expires": null,
+      "price": 0,
+      "bucket": "other",
+      "quality": 3,
+      "reason": "有明确免费领取或使用信息",
+      "firstSeen": "2026-11-22T08:51:36+00:00"
+    },
     {
       "id": "135a4a35361707f2f9eca063666537c4f9b28187d710213d0f413dec849cf791",
       "source": "rss-9to5toys",
@@ -13,6 +26,19 @@
       "quality": 4,
       "reason": "有明确优惠信息，实际价格需核实",
       "firstSeen": "2026-11-22T08:38:03+00:00"
+    },
+    {
+      "id": "8c265140764ad2c79f1c93b37bbf80f9b8d5b40672b726581267fccce0009ee6",
+      "source": "rss-meta-appinn",
+      "title": "开发者自荐】Tools3000:开源 Windows 效率工具集(搜文件/正文、截图 OCR、录屏、手势与轻量看图)",
+      "url": "https://meta.appinn.net/t/topic/96587",
+      "published": "2026-11-22T08:07:27+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "other",
+      "quality": 3,
+      "reason": "有明确免费领取或使用信息",
+      "firstSeen": "2026-11-22T08:51:36+00:00"
     },
     {
       "id": "3d29a3789b09e4b9786284eb19fbcaa82a4c4de107ca5abbe8f4dc0bd12ab6f0",
@@ -106,6 +132,19 @@
       "firstSeen": "2026-11-22T07:49:23+00:00"
     },
     {
+      "id": "ca770dfd765abd16613044c3d27b30309f2b1fc55ca263a05916853009d5a16b",
+      "source": "rss-meta-appinn",
+      "title": "AutumnMark-下一代所见即所得MarkDown编辑器,无需图床支持内嵌图片",
+      "url": "https://meta.appinn.net/t/topic/96564",
+      "published": "2026-11-22T01:42:21+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "other",
+      "quality": 3,
+      "reason": "有明确免费领取或使用信息",
+      "firstSeen": "2026-11-22T08:51:36+00:00"
+    },
+    {
       "id": "d491736955efae502356b34ace4fda632175e16158c983c4708f76106366a45c",
       "source": "linuxdo-welfare",
       "title": "汇总Codex,Claude,Antigravity的科学家计划。正规渠道中,免费力度最大的方案了。",
@@ -117,6 +156,19 @@
       "quality": 5,
       "reason": "有明确免费领取或使用信息",
       "firstSeen": "2026-11-22T07:49:23+00:00"
+    },
+    {
+      "id": "85f26c4503de252127166194a5ef3f497544ea0111417441450003bf6166769a",
+      "source": "rss-meta-appinn",
+      "title": "【开发者自荐】Logonomic:按仓库管理编程助手,从 Git 提交找回当时的对话",
+      "url": "https://meta.appinn.net/t/topic/96556",
+      "published": "2026-11-21T17:02:07+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "ai",
+      "quality": 3,
+      "reason": "有明确免费领取或使用信息",
+      "firstSeen": "2026-11-22T08:51:36+00:00"
     },
     {
       "id": "aecce8b9c890173299ddb9e6491e18089e3d0c097f3bd76f1a0acbcfa8d7e025",
@@ -301,6 +353,19 @@
       "firstSeen": "2026-11-22T08:38:03+00:00"
     },
     {
+      "id": "1581b149e82c99e214c6b984435587c31611152a298483f7942f3595cdddef4b",
+      "source": "rss-giveawayoftheday",
+      "title": "FileCryptor 2025",
+      "url": "https://www.giveawayoftheday.com/filecryptor",
+      "published": "2026-11-19T08:00:00+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "other",
+      "quality": 4,
+      "reason": "有明确免费领取或使用信息",
+      "firstSeen": "2026-11-22T08:51:36+00:00"
+    },
+    {
       "id": "e3ed0c30bdfafcbf3f830f8dce0ad5dc5fe04a1b71262ec6d1f80b59846edd14",
       "source": "rss-meta-appinn",
       "title": "【开发者自荐】AI Spreadsheet:面向 AI 的 Excel 工具",
@@ -340,6 +405,19 @@
       "firstSeen": "2026-11-22T08:38:03+00:00"
     },
     {
+      "id": "6c52301441135236bdeb0260c9564497affe316d05f202ea8a9c684237c31625",
+      "source": "rss-isthereanydeal",
+      "title": "Mark of the Deep - FREE on Epic Games on Epic Game Store",
+      "url": "https://isthereanydeal.com/giveaways/16816",
+      "published": "2026-11-19T03:34:49+00:00",
+      "expires": null,
+      "price": 0,
+      "bucket": "other",
+      "quality": 4,
+      "reason": "有明确免费领取或使用信息",
+      "firstSeen": "2026-11-22T08:51:36+00:00"
+    },
+    {
       "id": "d1369cf3804eb78486f782084e4e027059f8f724a4dc4a63189a1a9595df2301",
       "source": "v2ex-deals",
       "title": "20261119 移动领 0.5-9 元话费",
@@ -366,6 +444,19 @@
       "firstSeen": "2026-11-22T08:38:03+00:00"
     },
     {
+      "id": "79e934cc3549030d4c6b062944336fadc5a290a46d584a42ccd279ae3e6caec6",
+      "source": "rss-isthereanydeal",
+      "title": "Contractor: The Clean Up Part II on Epic Game Store",
+      "url": "https://isthereanydeal.com/giveaways/16811",
+      "published": "2026-11-18T18:48:27+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "other",
+      "quality": 5,
+      "reason": "有明确免费领取或使用信息",
+      "firstSeen": "2026-11-22T08:51:36+00:00"
+    },
+    {
       "id": "6c9880125b450e136ae4f32c6113da38936ac41913b1a42ad52803e7aa8f9ab8",
       "source": "rss-giveawayoftheday",
       "title": "AnyMP4 Video Converter 7.2.62",
@@ -379,6 +470,19 @@
       "firstSeen": "2026-11-22T08:38:03+00:00"
     },
     {
+      "id": "ade84c9e76c14bf7455762715eb7a7607db0d46b5f2d9b0be4511a14c1ddff4d",
+      "source": "rss-giveawayoftheday",
+      "title": "Imagelys Picture Lab 10.0",
+      "url": "https://www.giveawayoftheday.com/imagelys-picture-lab-10-0",
+      "published": "2026-11-17T08:00:00+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "other",
+      "quality": 4,
+      "reason": "有明确免费领取或使用信息",
+      "firstSeen": "2026-11-22T08:51:36+00:00"
+    },
+    {
       "id": "0d1369bda49c83dc5e489f624ef06f3555f84397cdf64a52e22afcedefd659fd",
       "source": "v2ex-deals",
       "title": "20261117 移动领 1-9 元话费",
@@ -390,6 +494,19 @@
       "quality": 3,
       "reason": "有明确免费领取或使用信息",
       "firstSeen": "2026-11-22T08:38:03+00:00"
+    },
+    {
+      "id": "5cd4f4d06cb2a8f8f9f96d87b0450cc012636f10560574648b3c3b092ae73a16",
+      "source": "rss-giveawayoftheday",
+      "title": "MobiKin Eraser for iOS 2.1.21",
+      "url": "https://www.giveawayoftheday.com/mobikin-eraser-for-ios-2-1-21-3",
+      "published": "2026-11-16T08:00:00+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "other",
+      "quality": 4,
+      "reason": "有明确免费领取或使用信息",
+      "firstSeen": "2026-11-22T08:51:36+00:00"
     }
   ],
   "daily": [
@@ -501,6 +618,19 @@
           "firstSeen": "2026-11-22T08:38:03+00:00"
         },
         {
+          "id": "79e934cc3549030d4c6b062944336fadc5a290a46d584a42ccd279ae3e6caec6",
+          "source": "rss-isthereanydeal",
+          "title": "Contractor: The Clean Up Part II on Epic Game Store",
+          "url": "https://isthereanydeal.com/giveaways/16811",
+          "published": "2026-11-18T18:48:27+00:00",
+          "expires": null,
+          "price": null,
+          "bucket": "other",
+          "quality": 5,
+          "reason": "有明确免费领取或使用信息",
+          "firstSeen": "2026-11-22T08:51:36+00:00"
+        },
+        {
           "id": "59b5be2d41d4c63c25bb702210c37dd422b117b695aa09b9f5a4eb399e89460c",
           "source": "rss-meta-appinn",
           "title": "Epic 免费游戏 2026-11-20",
@@ -525,6 +655,19 @@
           "quality": 4,
           "reason": "有明确免费领取或使用信息",
           "firstSeen": "2026-11-22T08:38:03+00:00"
+        },
+        {
+          "id": "1581b149e82c99e214c6b984435587c31611152a298483f7942f3595cdddef4b",
+          "source": "rss-giveawayoftheday",
+          "title": "FileCryptor 2025",
+          "url": "https://www.giveawayoftheday.com/filecryptor",
+          "published": "2026-11-19T08:00:00+00:00",
+          "expires": null,
+          "price": null,
+          "bucket": "other",
+          "quality": 4,
+          "reason": "有明确免费领取或使用信息",
+          "firstSeen": "2026-11-22T08:51:36+00:00"
         }
       ]
     }
@@ -593,8 +736,8 @@
     {
       "id": "rss-meta-appinn",
       "status": "ok",
-      "fetched": 25,
-      "inserted": 25
+      "fetched": 20,
+      "inserted": 20
     },
     {
       "id": "rss-sharewareonsale",
@@ -617,26 +760,56 @@
     {
       "id": "rss-9to5toys",
       "status": "ok",
-      "fetched": 25,
-      "inserted": 25
-    },
-    {
-      "id": "rss-itch-free",
-      "status": "ok",
-      "fetched": 12,
-      "inserted": 4
-    },
-    {
-      "id": "gamerpower-loot",
-      "status": "ok",
-      "fetched": 40,
-      "inserted": 15
+      "fetched": 20,
+      "inserted": 20
     }
   ],
   "review": {
-    "reviewed": 50,
-    "failedBatches": 3,
-    "unreviewedCandidates": 13,
-    "mode": "bootstrap"
+    "reviewed": 20,
+    "failedBatches": 2,
+    "unreviewedCandidates": 9,
+    "mode": "regular",
+    "sourceReview": {
+      "linuxdo-welfare": {
+        "eligible": 0,
+        "shortlisted": 0,
+        "published": 6
+      },
+      "v2ex-deals": {
+        "eligible": 0,
+        "shortlisted": 0,
+        "published": 3
+      },
+      "rss-smzdm": {
+        "eligible": 20,
+        "shortlisted": 15,
+        "published": 0
+      },
+      "rss-meta-appinn": {
+        "eligible": 4,
+        "shortlisted": 4,
+        "published": 21
+      },
+      "rss-sharewareonsale": {
+        "eligible": 0,
+        "shortlisted": 0,
+        "published": 1
+      },
+      "rss-giveawayoftheday": {
+        "eligible": 3,
+        "shortlisted": 3,
+        "published": 4
+      },
+      "rss-isthereanydeal": {
+        "eligible": 2,
+        "shortlisted": 2,
+        "published": 2
+      },
+      "rss-9to5toys": {
+        "eligible": 0,
+        "shortlisted": 0,
+        "published": 2
+      }
+    }
   }
 }
