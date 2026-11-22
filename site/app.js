@@ -7,7 +7,7 @@ function loadLocal(key,fallback){try{return JSON.parse(localStorage.getItem('rad
 function store(key,value){try{localStorage.setItem('radar.editorial.'+key,JSON.stringify(value))}catch{}}
 const setLocal=key=>{const v=loadLocal(key,[]);return new Set(Array.isArray(v)?v:[])};
 const fav=setLocal('favorites'),read=setLocal('read'),closed=setLocal('closed');
-let data={items:[],daily:[],sources:[],review:{}},mode='all',bucket='',view=loadLocal('view','two'),visible=[];
+let data={items:[],daily:[],sources:[],review:{}},mode='daily',bucket='',view=loadLocal('view','two'),visible=[];
 if(!['list','two','three'].includes(view))view='two';
 function el(tag,text,cls){const e=document.createElement(tag);if(text!=null)e.textContent=String(text);if(cls)e.className=cls;return e}
 function button(text,action,pressed){const b=el('button',text);b.type='button';if(pressed!==undefined)b.setAttribute('aria-pressed',String(pressed));b.addEventListener('click',action);return b}
