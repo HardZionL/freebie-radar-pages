@@ -50,3 +50,7 @@ node --check site/app.js
 ## 购物线索补充说明（2026-11-22）
 - 来源是合法公开商品资讯 RSS，不等于已经确认低价；即便标题没有标价，也可以作为「待核实线索」显示并附原文链接。覆盖最多近 7 天 30 条、仅该 RSS 相关原始商家页面。
 - `bootstrap/retail-leads-recheck.json` 仅用于一次性的源读取/页面线索刷新，不调用 MiMo API，不触碰严格审核过的每日精选。正常两小时采集仍然调用 AI 审核并同步刷新单独的购物线索。
+
+## 优惠 RSS 路由修复
+- 旧的 `https://www.smzdm.com/rss/` 返回了 `post.smzdm.com` 原创生活文章，不是电商商品优惠；现改为 Feeder 已公开标注的 `http://feed.smzdm.com/` 商品优惠 RSS，保留该来源原文和许可证，避免伪造淘宝/京东直采。
+- 购物线索只保留 `www.smzdm.com`/`faxian.smzdm.com` 等商品优惠链接，排除 `post.smzdm.com` 文章；标题需包含标价或券信息，仍然标注未核实。所有店铺活动、价格、会员资格与券规则以原网页为准。仅读取公开 RSS，不上传凭据或访问个人设备。

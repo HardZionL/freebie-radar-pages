@@ -7,6 +7,7 @@ on:
       - 'bootstrap/retail-refresh.json'
       - 'bootstrap/retail-leads-seed.json'
       - 'bootstrap/retail-leads-recheck.json'
+      - 'bootstrap/smzdm-deals-feed-fix.json'
   schedule:
     - cron: '30 0-10/2,14-22/2 * * *'
     - cron: '30 12 * * *'
