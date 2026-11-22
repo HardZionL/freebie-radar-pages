@@ -64,14 +64,16 @@ def shopping_lead(item,now):
     # Only original deal-feed entries from the allowlisted SMZDM domain.
     if item.get('source_id')!='rss-smzdm':return None
     x=candidate(item,now)
-    if not x or not SHOPPING_SIGNAL.search(x['title']):return None
+    if not x:return None
     pub=date(x['published'])
-    if pub and pub<now-dt.timedelta(days=3):return None
+    if pub and pub<now-dt.timedelta(days=7):return None
     return {'id':x['id'],'source':x['source'],'title':x['title'],
             'url':x['url'],'published':x['published'],'expires':x['expires'],
             'bucket':'shopping','reviewStatus':'unverified','quality':0,
             'price':None,'firstSeen':iso(now),
-            'reason':'公开优惠来源的价格或用券线索；未经 AI 审核，请自行核实实际价格、券条件和库存'}
+            'reason':('来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实'
+                      if SHOPPING_SIGNAL.search(x['title']) else
+                      '来自公开商品资讯 RSS，标题未提供可靠价据信息；不代表真实折扣，需打开原文核实')}
 
 class NoRedirect(HTTPRedirectHandler):
     def redirect_request(self, *args, **kwargs): return None
@@ -128,10 +130,10 @@ def load(p,default):return json.loads(p.read_text(encoding='utf-8')) if p.exists
 def save(p,data):
     p.parent.mkdir(parents=True,exist_ok=True);tmp=p.with_suffix('.tmp');tmp.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8');tmp.replace(p)
 def main():
-    ap=argparse.ArgumentParser();ap.add_argument('raw',type=Path);ap.add_argument('--daily',action='store_true');ap.add_argument('--bootstrap',action='store_true');ap.add_argument('--retail',action='store_true');ap.add_argument('--root',type=Path,default=ROOT);args=ap.parse_args()
+    ap=argparse.ArgumentParser();ap.add_argument('raw',type=Path);ap.add_argument('--daily',action='store_true');ap.add_argument('--bootstrap',action='store_true');ap.add_argument('--retail',action='store_true');ap.add_argument('--leads-only',action='store_true');ap.add_argument('--root',type=Path,default=ROOT);args=ap.parse_args()
     now=dt.datetime.now(UTC);day=now.astimezone(TZ).date().isoformat()
     key=os.environ.get('MIMO_API_KEY','').strip();model=os.environ.get('MIMO_MODEL','').strip() or 'mimo-v2.6-flash'
-    if not key: raise SystemExit('Missing MIMO_API_KEY repository secret; no review performed.')
+    if not key and not args.leads_only: raise SystemExit('Missing MIMO_API_KEY repository secret; no review performed.')
     old=load(args.root/'site/data.json',{'items':[],'daily':[]}); seen=load(args.root/'state/reviewed.json',{})
     raw=load(args.raw,{}); rows={x['id']:x for x in old['items'] if active(x,now)}
     # Source-only leads are deliberately separate from AI-accepted public items.
@@ -139,11 +141,25 @@ def main():
     leads={x['id']:x for x in old.get('shoppingLeads',[])
            if x.get('reviewStatus')=='unverified'
            and x.get('published') and (date(x['published']) or now)<now
-           and (date(x['published']) or now)>=now-dt.timedelta(days=3)
+           and (date(x['published']) or now)>=now-dt.timedelta(days=7)
            and safe_url(x.get('url'),'rss-smzdm')==x.get('url')}
     for raw_item in raw.get('items',[]):
         x=shopping_lead(raw_item,now)
         if x:leads[x['id']]=x
+    if args.leads_only:
+        # Rebuild source-only leads without invoking the paid AI API or
+        # changing reviewed daily picks and previous AI statistics.
+        available=[x for x in leads.values() if x['id'] not in rows]
+        available.sort(key=lambda x:x['published'] or x['firstSeen'],reverse=True)
+        previous=dict(old)
+        previous['shoppingLeads']=available[:30]
+        previous['updatedAt']=iso(now)
+        previous['sources']=[{k:v[k] for k in ('id','status','fetched','inserted')}
+                             for v in raw.get('sources',[]) if v.get('id') in HOSTS]
+        save(args.root/'site/data.json',previous)
+        print('Source-only update: '+str(len(previous['shoppingLeads']))+
+              ' safe public shopping leads; no AI request made.',flush=True)
+        return
     seen={k:v for k,v in seen.items() if (date(v) or dt.datetime.min.replace(tzinfo=UTC))>=now-dt.timedelta(days=14)}
     candidates={}
     eligible_by_source={}
