@@ -1,0 +1,6 @@
+{
+  "purpose": "one-time 2026-11-23 first-party AWS AI feed sanity check and limited ordinary MiMo review",
+  "once": true,
+  "frequencyAfter": "every 2 hours unchanged",
+  "pushNotifications": false
+}

@@ -10,6 +10,7 @@ on:
       - 'bootstrap/smzdm-deals-feed-fix.json'
       - 'bootstrap/coupon-priority-seed.json'
       - 'bootstrap/coupon-ai-audit-2.json'
+      - 'bootstrap/aws-official-now.json'
   schedule:
     - cron: '30 0-10/2,14-22/2 * * *'
     - cron: '30 12 * * *'
@@ -68,7 +69,7 @@ jobs:
           FETCH_TIMEOUT_MS: '15000'
           MAX_ITEMS_PER_RUN: '40'
           RADAR_BOOTSTRAP: ${{ (github.event_name == 'push' && contains(github.event.head_commit.added, 'bootstrap/initial-seed.json')) || inputs.bootstrap == true }}
-          RADAR_RETAIL: ${{ github.event_name == 'push' }}
+          RADAR_RETAIL: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, 'aws-official-now') }}
           DATABASE_PATH: ${{ runner.temp }}/radar.db
         run: |
           cp ../scripts/collect.mjs ./radar-collect.mjs
@@ -83,9 +84,9 @@ jobs:
           MIMO_MODEL: ${{ vars.MIMO_MODEL }}
           DAILY: ${{ github.event.schedule == '30 12 * * *' || inputs.daily == true || github.event_name == 'push' }}
           BOOTSTRAP: ${{ (github.event_name == 'push' && contains(github.event.head_commit.added, 'bootstrap/initial-seed.json')) || inputs.bootstrap == true }}
-          RETAIL: ${{ github.event_name == 'push' }}
+          RETAIL: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, 'aws-official-now') }}
           COUPON_BOOST: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, 'coupon-ai-audit-2') }}
-          LEADS_ONLY: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, 'coupon-ai-audit-2') }}
+          LEADS_ONLY: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, 'coupon-ai-audit-2') && !contains(github.event.head_commit.message, 'aws-official-now') }}
         run: |
           args=()
           if [[ "$DAILY" == "true" ]]; then args+=(--daily); fi
