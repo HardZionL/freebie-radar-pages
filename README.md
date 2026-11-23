@@ -79,3 +79,7 @@ node --check site/app.js
 - GitHub runner 尝试重新核验官方网页。取不到时只临时保留本次有来源的核验结果，超过 14 天仍无法重新核验则移除，避免长期传播未更新信息。
 - AI 审核候选中给官方 AI 公告和免费试用资讯更高排序，常规每轮优先最多 7 个 AI 审核席位，不取消券类严格审核。官方公开 URL 严格白名单，不读取用户 Cookie、账户或个人数据。
 - 原有蓝色按钮由于通用 `.item .links a` 样式覆盖 `.visit-link` 造成深色文字落在深蓝色背景上，现在采用更高优先级的白字按钮规则，并测试 hover/focus-visible 及手机端。
+
+## RSS 实际运行修复（2026-11-23）
+- 首次 GitHub Runner 验证确认 Quick 官方文档核验成功、24 条 AI 审核全部成功，但一个 AWS 官方 RSS 由于 ValueError 未正常解析；因此将官方博客 RSS 响应体上限由 500 KB 增至有上限的 4 MB，增加 AWS 官方明确推荐的 `https://aws.amazon.com/blogs/aws/feed/` 作为备用，并将源错误原因写入不公开的 GitHub Actions 日志，绝不把错误当作已抓到新消息。
+- 本次 RSS 专项回归只重新读取公开源、不调用付费 MiMo；下一次每两小时常规审核将继续消费合法新候选。

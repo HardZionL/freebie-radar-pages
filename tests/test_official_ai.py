@@ -46,7 +46,7 @@ class OfficialOffers(unittest.TestCase):
         self.assertEqual(seed[0]['quality'],0)
         self.assertIn('30 天',seed[0]['title'])
         self.assertIn('尚无官方',seed[0]['reason'])
-        self.assertEqual(len(FEEDS),2)
+        self.assertEqual(len(FEEDS),3)
         self.assertTrue(PROMO.search('new free trial'))
 
 if __name__=='__main__':unittest.main()

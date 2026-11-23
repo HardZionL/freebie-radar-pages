@@ -1,6 +1,6 @@
 {
-  "purpose": "one-time 2026-11-23 first-party AWS AI feed sanity check and limited ordinary MiMo review",
-  "once": true,
-  "frequencyAfter": "every 2 hours unchanged",
-  "pushNotifications": false
+  "purpose": "one-time source-only validation of expanded AWS AI RSS size cap",
+  "runType": "read-only sources, no MiMo audit on this push",
+  "previousValidation": "2026-11-23 official AWS Quick terms confirmed",
+  "frequencyAfter": "GitHub 2-hour regular schedule"
 }
