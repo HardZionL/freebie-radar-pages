@@ -1,13 +1,13 @@
 'use strict';
 const $=id=>document.getElementById(id);
 const groups={ai:['AI 与开发者','AI & Dev'],shopping:['电商优惠','E-commerce Deals'],media:['影音会员','Media Membership'],other:['其他福利','More Benefits']};
-const sources={'linuxdo-welfare':'LINUX DO','v2ex-free':'V2EX 免费赠送','v2ex-deals':'V2EX 优惠','rss-smzdm':'什么值得买','rss-smzdm-coupon':'值得买·领券频道','rss-smzdm-delivery':'值得买·外卖频道','rss-fuliba':'福利吧','rss-ithome':'IT之家','openrouter-free':'OpenRouter','rss-nodeseek':'NodeSeek','epic-free':'Epic','gamerpower':'GamerPower'};
+const sources={'linuxdo-welfare':'LINUX DO','v2ex-free':'V2EX 免费赠送','v2ex-deals':'V2EX 优惠','rss-smzdm':'什么值得买','rss-smzdm-coupon':'值得买·领券频道','rss-smzdm-delivery':'值得买·外卖频道','aws-official-ai':'AWS 官方 AI 公告','aws-quick-official':'AWS Quick 官方文档','rss-fuliba':'福利吧','rss-ithome':'IT之家','openrouter-free':'OpenRouter','rss-nodeseek':'NodeSeek','epic-free':'Epic','gamerpower':'GamerPower'};
 const modes={all:'资源流',hot:'今日热点',daily:'每日精选',retail:'购物线索 · 待核实',vouchers:'红包与优惠券',search:'全站搜索',deadline:'今日截止',favorites:'我的收藏',hidden:'已关闭'};
 function loadLocal(key,fallback){try{return JSON.parse(localStorage.getItem('radar.editorial.'+key))??fallback}catch{return fallback}}
 function store(key,value){try{localStorage.setItem('radar.editorial.'+key,JSON.stringify(value))}catch{}}
 const setLocal=key=>{const v=loadLocal(key,[]);return new Set(Array.isArray(v)?v:[])};
 const fav=setLocal('favorites'),read=setLocal('read'),closed=setLocal('closed');
-let data={items:[],daily:[],shoppingLeads:[]},mode='daily',returnMode='daily',bucket='',view=loadLocal('view','two'),visible=[];
+let data={items:[],daily:[],shoppingLeads:[],officialBenefits:[]},mode='daily',returnMode='daily',bucket='',view=loadLocal('view','two'),visible=[];
 if(!['list','two','three'].includes(view))view='two';
 if(window.matchMedia('(max-width: 760px)').matches){
  const mobileChoice=loadLocal('mobileView','list');
@@ -27,9 +27,9 @@ function offerType(x){
  if(/红包|赠金/.test(t))return 'redpacket';
  return 'coupon'
 }
-function union(){return Array.from(new Map([...(data.shoppingLeads||[]),...data.daily.flatMap(d=>d.items||[]),...data.items].map(x=>[x.id,x])).values())}
+function union(){return Array.from(new Map([...(data.shoppingLeads||[]),...data.daily.flatMap(d=>d.items||[]),...data.items,...(data.officialBenefits||[])].map(x=>[x.id,x])).values())}
 function todayDue(x){return dateKey(x.expires)===dateKey(Date.now())&&Date.parse(x.expires)>Date.now()}
-function getBase(){if(mode==='search')return union();if(mode==='vouchers')return union().filter(x=>offerType(x)!=='product');if(mode==='retail')return data.shoppingLeads||[];if(mode==='daily')return data.daily.find(d=>d.date===$('date').value)?.items||[];if(mode==='favorites')return union().filter(x=>fav.has(x.id));if(mode==='hidden')return union().filter(x=>closed.has(x.id));if(mode==='hot')return data.items.filter(x=>stamp(x)>Date.now()-86400000&&x.quality>=4);if(mode==='deadline')return data.items.filter(todayDue);return data.items}
+function getBase(){if(mode==='search')return union();if(mode==='vouchers')return union().filter(x=>offerType(x)!=='product');if(mode==='retail')return data.shoppingLeads||[];if(mode==='daily')return data.daily.find(d=>d.date===$('date').value)?.items||[];if(mode==='favorites')return union().filter(x=>fav.has(x.id));if(mode==='hidden')return union().filter(x=>closed.has(x.id));if(mode==='hot')return data.items.filter(x=>stamp(x)>Date.now()-86400000&&x.quality>=4);if(mode==='deadline')return data.items.filter(todayDue);return [...(data.officialBenefits||[]),...data.items]}
 function closeMenu(restoreFocus=false){
  $('sidebar').classList.remove('open');
  $('drawer-backdrop').hidden=true;
@@ -55,16 +55,16 @@ function setMode(next){
 function toggle(set,k,id){if(set.has(id))set.delete(id);else set.add(id);store(k,[...set]);render()}
 function card(x){
  const kind=offerType(x),unverified=x.reviewStatus==='unverified';const a=el('article',null,'item'+(read.has(x.id)?' read':'')+(kind!=='product'?' voucher-card':'')+(unverified?' unverified':'')), art=el('div',null,'thumb');a.dataset.offer=kind;art.dataset.art=groups[x.bucket]?x.bucket:'other';art.setAttribute('aria-hidden','true');a.append(art);
- const body=el('div',null,'item-content'),head=el('div',null,'item-top');const score=el('span',x.reviewStatus==='unverified'?'尚未核实':'★ '+x.quality+'/5','quality');score.dataset.score=x.quality;head.append(el('span',kind!=='product'?(couponNames[kind]||'优惠信息'):(groups[x.bucket]||groups.other)[0],'tag'),score);const headline=el('h3',x.title);headline.title=x.title;body.append(head,headline);
+ const body=el('div',null,'item-content'),head=el('div',null,'item-top');const score=el('span',x.reviewStatus==='official-confirmed'?'官方条款已核验':x.reviewStatus==='unverified'?'尚未核实':'★ '+x.quality+'/5','quality');score.dataset.score=x.quality;head.append(el('span',kind!=='product'?(couponNames[kind]||'优惠信息'):(groups[x.bucket]||groups.other)[0],'tag'),score);const headline=el('h3',x.title);headline.title=x.title;body.append(head,headline);
  if($('show-summary').checked)body.append(el('p',x.reason||'活动信息以原平台为准','reason'));
- const meta=el('div',null,'meta');meta.append(el('span',sources[x.source]||x.source),el('span',(x.published?'发布':'发现')+' '+time(x.published||x.firstSeen)),el('span',x.expires?'截止 '+time(x.expires):'截止未注明'));if(typeof x.price==='number')meta.append(el('span','来源提取价 '+x.price+'（币种待核）'));body.append(meta);
+ const meta=el('div',null,'meta');meta.append(el('span',sources[x.source]||x.source),el('span',x.reviewStatus==='official-confirmed'?'官方核验 '+(x.verifiedAt||'以原文为准'):(x.published?'发布':'发现')+' '+time(x.published||x.firstSeen)),el('span',x.reviewStatus==='official-confirmed'?'活动条件以 AWS 官方为准':x.expires?'截止 '+time(x.expires):'截止未注明'));if(typeof x.price==='number')meta.append(el('span','来源提取价 '+x.price+'（币种待核）'));body.append(meta);
  const links=el('div',null,'links');
- try{const url=new URL(x.url);if(url.protocol==='https:'&&!url.username&&!url.password){const a=el('a',unverified?'查看原文核实 ↗':kind!=='product'?'查看活动详情 ↗':'查看原始信息 ↗','visit-link');a.href=url.href;a.target='_blank';a.rel='noopener noreferrer';a.addEventListener('click',()=>{read.add(x.id);store('read',[...read]);render()});links.append(a)}}catch{}
+ try{const url=new URL(x.url);if(url.protocol==='https:'&&!url.username&&!url.password){const a=el('a',x.reviewStatus==='official-confirmed'?'查看 AWS 官方条款 ↗':unverified?'查看原文核实 ↗':kind!=='product'?'查看活动详情 ↗':'查看原始信息 ↗','visit-link');a.href=url.href;a.target='_blank';a.rel='noopener noreferrer';a.addEventListener('click',()=>{read.add(x.id);store('read',[...read]);render()});links.append(a)}}catch{}
  const star=button('',()=>toggle(fav,'favorites',x.id),fav.has(x.id));star.className='action-button action-fav';star.title=fav.has(x.id)?'取消收藏':'收藏';star.setAttribute('aria-label',star.title);
  const seen=button('',()=>toggle(read,'read',x.id),read.has(x.id));seen.className='action-button action-read';seen.title=read.has(x.id)?'标记未读':'标记已读';seen.setAttribute('aria-label',seen.title);
  const hide=button('',()=>toggle(closed,'closed',x.id),closed.has(x.id));hide.className='action-button action-hide';hide.title=closed.has(x.id)?'恢复资源':'关闭资源';hide.setAttribute('aria-label',hide.title);links.append(star,seen,hide);body.append(links);a.append(body);return a
 }
-function sourceMenu(){const list=$('source-list');list.replaceChildren();const selected=$('source').value;for(const [id,name] of [['','全部来源'],...Object.entries(sources)]){const countPool=mode==='retail'?(data.shoppingLeads||[]):mode==='search'||mode==='vouchers'||mode==='favorites'?union():data.items;const n=countPool.filter(x=>!id||x.source===id).length;const b=button(name,()=>{$('source').value=id;render()},id===selected);b.append(el('b',n));list.append(b)}}
+function sourceMenu(){const list=$('source-list');list.replaceChildren();const selected=$('source').value;for(const [id,name] of [['','全部来源'],...Object.entries(sources)]){const countPool=mode==='retail'?(data.shoppingLeads||[]):mode==='search'||mode==='vouchers'||mode==='favorites'?union():[...(data.officialBenefits||[]),...data.items];const n=countPool.filter(x=>!id||x.source===id).length;const b=button(name,()=>{$('source').value=id;render()},id===selected);b.append(el('b',n));list.append(b)}}
 function renderInsights(){
  const aside=$('insights'),list=$('insight-list');
  aside.hidden=mode!=='daily';
@@ -83,10 +83,20 @@ function renderInsights(){
    list.append(tile);
  }
 }
+function renderOfficial(){
+ const root=$('official-spotlight');
+ const item=(data.officialBenefits||[]).find(x=>x.source==='aws-quick-official'&&x.reviewStatus==='official-confirmed');
+ root.hidden=mode!=='daily'||!item;
+ if(!item)return;
+ $('official-title').textContent=item.title;
+ $('official-detail').textContent=item.reason;
+ $('official-verified').textContent='来源：AWS 官方文档 · 官方核验日期：'+(item.verifiedAt||'以原文为准')+' · 非 Claude API 额度';
+ $('official-link').href=item.url;
+}
 function render(){
  $('crumb').textContent=modes[mode];$('mobile-page-title').textContent=modes[mode];document.body.classList.toggle('search-active',mode==='search');$('heading').replaceChildren(document.createTextNode(mode==='all'?'资源雷达':modes[mode]),el('span','.'));$('subtitle').textContent=mode==='daily'?'每日甄选公开福利 · 把值得关注的好东西一次看完':mode==='hot'?'近 24 小时 AI 评分较高的资源 · 非社区热度排名':mode==='retail'?'公开商品优惠线索，尚未经过 AI 审核':mode==='vouchers'?'集中展示平台抵扣券、无门槛红包和外卖优惠，审核状态分别标注':mode==='search'?'全站搜索：已审核资源 + 未审核购物线索':'寻找真正有价值的资源，让信息有序浮现。';
  document.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===mode)));document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===view)));
- $('nav-count').textContent=data.items.length;$('overview').hidden=mode!=='daily';$('retail-banner').hidden=mode!=='daily';$('retail-count').textContent=(data.shoppingLeads||[]).length;$('coupon-count').textContent=union().filter(x=>offerType(x)!=='product').length;$('controls').hidden=false;$('export').disabled=false;$('content-shell').classList.toggle('daily-layout',mode==='daily');sourceMenu();renderInsights();
+ $('nav-count').textContent=data.items.length;$('overview').hidden=mode!=='daily';$('retail-banner').hidden=mode!=='daily';$('retail-count').textContent=(data.shoppingLeads||[]).length;$('coupon-count').textContent=union().filter(x=>offerType(x)!=='product').length;$('controls').hidden=false;$('export').disabled=false;$('content-shell').classList.toggle('daily-layout',mode==='daily');sourceMenu();renderInsights();renderOfficial();
  const target=$('results');target.replaceChildren();target.className='';
  let base=getBase();if(mode!=='hidden')base=base.filter(x=>!closed.has(x.id));
  if(mode==='daily'){$('total').textContent=base.length;$('deals').textContent=base.filter(x=>x.reason?.includes('优惠')||x.reason?.includes('会员')).length;$('due').textContent=base.filter(todayDue).length;$('high').textContent=base.filter(x=>x.quality===5).length;$('summary').textContent=base.length?'本期共 '+base.length+' 条精选，涵盖 '+Object.keys(groups).filter(k=>base.some(x=>x.bucket===k)).map(k=>groups[k][0]).join('、')+'。不凑数，活动细节以原平台为准。':'暂无符合精选标准的资源，晚间云端更新后可查看。'}
