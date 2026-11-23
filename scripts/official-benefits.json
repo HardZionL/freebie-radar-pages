@@ -1,0 +1,18 @@
+[
+  {
+    "id": "aws-quick-plus-30d",
+    "source": "aws-quick-official",
+    "bucket": "ai",
+    "title": "AWS Quick 新用户免费试用 Plus 30 天｜AWS 官方确认",
+    "url": "https://docs.aws.amazon.com/quick/latest/userguide/standalone-plans.html",
+    "reason": "AWS 官方说明新注册账号可免费体验 Plus 30 天，无需信用卡；到期后可选择免费版。Quick 是否保证提供 Claude Opus 5.5 及具体用量尚无官方明确承诺，不是 Claude API 免费额度。",
+    "reviewStatus": "official-confirmed",
+    "quality": 0,
+    "published": null,
+    "firstSeen": "2026-11-23",
+    "verifiedAt": "2026-11-23",
+    "expires": null,
+    "price": null,
+    "offerType": "product"
+  }
+]

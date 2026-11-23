@@ -75,6 +75,8 @@ jobs:
           node --import tsx radar-collect.mjs "$RUNNER_TEMP/candidates.json"
       - name: Enrich public coupon and delivery candidates without credentials
         run: python3 scripts/collect_coupons.py "$RUNNER_TEMP/candidates.json"
+      - name: Monitor official AWS AI announcements and current Quick trial terms
+        run: python3 scripts/collect_official_ai.py "$RUNNER_TEMP/candidates.json"
       - name: Review only new candidates and generate safe public snapshot
         env:
           MIMO_API_KEY: ${{ secrets.MIMO_API_KEY }}

@@ -11,7 +11,8 @@ HOSTS={'linuxdo-welfare':('linux.do',),'v2ex-free':('v2ex.com',),'v2ex-deals':('
 'rss-meta-appinn':('meta.appinn.net',),'rss-sharewareonsale':('sharewareonsale.com',),
 'rss-giveawayoftheday':('giveawayoftheday.com',),'rss-isthereanydeal':('isthereanydeal.com',),
 'rss-9to5toys':('9to5toys.com',),'rss-itch-free':('itch.io',),
-'rss-smzdm-coupon':('smzdm.com',),'rss-smzdm-delivery':('smzdm.com',)}
+'rss-smzdm-coupon':('smzdm.com',),'rss-smzdm-delivery':('smzdm.com',),
+'aws-official-ai':('aws.amazon.com',),'aws-quick-official':('docs.aws.amazon.com',)}
 BUCKETS={'ai':'AI 与开发者','shopping':'电商优惠','media':'影音会员','other':'其他福利'}
 QUOTAS={'ai':4,'shopping':3,'media':3,'other':2}
 REASONS={'free':'有明确免费领取或使用信息','discount':'有明确优惠信息，实际价格及领取资格需核实','membership':'会员活动，资格和续费条件需核实','developer':'有明确开发者福利信息'}
@@ -139,8 +140,12 @@ def shortlist(candidates,review_cap):
         groups[key]=[x for x in groups[key] if x['id'] not in selected]
     groups['shopping'].sort(key=lambda x:(x['source'] in ('rss-smzdm','rss-smzdm-coupon','rss-smzdm-delivery'),
                                            x['published'] or ''),reverse=True)
+    # Give verified-source AI announcements an opportunity before forum chatter.
+    groups['ai'].sort(key=lambda x:(x['source']=='aws-official-ai',
+                                   bool(re.search(r'试用|免费|free|trial|credit|折扣|discount',x['title'],re.I)),
+                                   x['published'] or ''),reverse=True)
     remaining=max(0,review_cap-len(pending))
-    quotas={'shopping':max(3,remaining//4),'ai':max(4,remaining//3),
+    quotas={'shopping':max(3,remaining//4),'ai':max(7,remaining//3),
             'media':max(3,remaining//6),'other':max(2,remaining//6)}
     for name,cap in quotas.items():
         for _ in range(cap):
@@ -196,7 +201,17 @@ def main():
     key=os.environ.get('MIMO_API_KEY','').strip();model=os.environ.get('MIMO_MODEL','').strip() or 'mimo-v2.6-flash'
     if not key and not args.leads_only: raise SystemExit('Missing MIMO_API_KEY repository secret; no review performed.')
     old=load(args.root/'site/data.json',{'items':[],'daily':[]}); seen=load(args.root/'state/reviewed.json',{})
-    raw=load(args.raw,{}); rows={x['id']:x for x in old['items'] if active(x,now)}
+    raw=load(args.raw,{})
+    # Strict editorial whitelist: source-confirmed policy notes are not AI scores.
+    official=[]
+    for x in raw.get('officialBenefits',old.get('officialBenefits',[])):
+        if not isinstance(x,dict) or x.get('reviewStatus')!='official-confirmed':continue
+        if x.get('source')!='aws-quick-official' or safe_url(x.get('url'),'aws-quick-official')!=x.get('url'):continue
+        if not date(x.get('verifiedAt')) or date(x.get('verifiedAt'))<now-dt.timedelta(days=14):continue
+        official.append({k:x[k] for k in ('id','source','bucket','title','url','reason','reviewStatus',
+                 'quality','published','firstSeen','verifiedAt','expires','price','offerType') if k in x})
+    official=official[:4]
+    rows={x['id']:x for x in old['items'] if active(x,now)}
     # Source-only leads are deliberately separate from AI-accepted public items.
     # They are never counted toward the daily digest or AI star scores.
     leads={x['id']:x for x in old.get('shoppingLeads',[])
@@ -219,6 +234,7 @@ def main():
                                     x['published'] or x['firstSeen']),reverse=True)
         previous=dict(old)
         previous['shoppingLeads']=available[:60]
+        previous['officialBenefits']=official
         previous['updatedAt']=iso(now)
         # Never ship operational telemetry or collector health to GitHub Pages.
         previous.pop('sources',None)
@@ -275,7 +291,7 @@ def main():
     # Internal review counts remain in GitHub Actions logs, not public site/data.json.
     save(args.root/'site/data.json',{'updatedAt':iso(now),'items':items,
                                     'daily':sorted(archive,key=lambda x:x['date'],reverse=True),
-                                    'shoppingLeads':leads})
+                                    'shoppingLeads':leads,'officialBenefits':official})
     save(args.root/'state/reviewed.json',seen)
     print('Public shopping leads (unverified): '+str(len(leads)),flush=True)
     print(f'Mode={"bootstrap" if args.bootstrap else "retail" if args.retail else "regular"}; reviewed {done}/{len(pending)} shortlisted items; {errors} batch failures; {len(items)} published items; daily={len(archive[0]["items"]) if archive else 0}.')
