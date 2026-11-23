@@ -13,7 +13,7 @@ class OfficialOffers(unittest.TestCase):
         self.assertFalse(quick_trial_is_confirmed('<p>Claude Opus 5.5 free forever</p>'))
         self.assertFalse(quick_trial_is_confirmed('<p>Quick Plus is available at a monthly price.</p>'))
     def test_first_party_rss_only_and_real_freshness(self):
-        now=dt.datetime(2026,11,23,UTC)
+        now=dt.datetime(2026,11,23,tzinfo=UTC)
         rss='''<rss><channel>
           <item><title>AWS Quick free trial for new users</title>
           <link>https://aws.amazon.com/blogs/aws/quick-offer/?a=1</link>
