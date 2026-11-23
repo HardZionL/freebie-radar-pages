@@ -16,11 +16,12 @@ DOCS='https://docs.aws.amazon.com/quick/latest/userguide/standalone-plans.html'
 FEEDS=(
     'https://aws.amazon.com/blogs/machine-learning/feed/',
     'https://aws.amazon.com/blogs/aws/category/artificial-intelligence/feed/',
+    'https://aws.amazon.com/blogs/aws/feed/',
 )
 PROMO=re.compile(r'free (?:trial|tier|credits?|plan)|\btrial\b|no.cost|no charge|'
                  r'promotion|discount|student|free and plus|credits? for|'
                  r'免费|试用|抵扣|额度|优惠|赠送',re.I)
-MAX_BYTES=500_000
+MAX_BYTES=4_000_000
 UTC=dt.timezone.utc
 
 class NoOffsite(HTTPRedirectHandler):
@@ -105,7 +106,7 @@ def main(path,root=ROOT,opener=None,now=None):
                 if row['url'] not in known:
                     known.add(row['url']);found.append(row)
         except Exception as e:
-            print('AWS official RSS unavailable: '+type(e).__name__,flush=True)
+            print('AWS official RSS unavailable ('+feed+'): '+type(e).__name__+': '+str(e)[:140],flush=True)
     raw['items'].extend(found[:20])
     seed=json.loads((root/'scripts/official-benefits.json').read_text(encoding='utf-8'))
     offer=seed[0]
