@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-25T17:03:01+00:00",
+  "updatedAt": "2026-11-25T17:35:20+00:00",
   "items": [
     {
       "id": "07877f68827cc637d597de6a3813e6c007642f9cbe69274c8da75e7ed0663481",
@@ -15,6 +15,36 @@
       "offerType": "product",
       "reviewStatus": "ai-screened",
       "firstSeen": "2026-11-25T17:03:01+00:00"
+    },
+    {
+      "id": "76d35cf0faa0da64f4d8d3501d95c3303301b410b9f2596274407da0b1e2e56e",
+      "source": "rss-smzdm",
+      "title": "健安喜 皇冠97鱼油软胶囊97%纯度 60粒 53元(需买3件,需用券)",
+      "url": "https://www.smzdm.com/p/186772819",
+      "published": "2026-11-25T21:02:32+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "shopping",
+      "quality": 3,
+      "reason": "有明确优惠信息，实际价格及领取资格需核实",
+      "offerType": "product",
+      "reviewStatus": "ai-screened",
+      "firstSeen": "2026-11-25T17:35:20+00:00"
+    },
+    {
+      "id": "82ab30c9a19ce801ced7f77a397382dce4502b507c50a3e3bfa655bb291590a6",
+      "source": "rss-smzdm",
+      "title": "得力 桌面书立置物架收纳桌上书架书写书靠书挡 办公书靠2片学习用品白色PK164 4.9元",
+      "url": "https://www.smzdm.com/p/186771475",
+      "published": "2026-11-25T20:23:42+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "shopping",
+      "quality": 3,
+      "reason": "有明确优惠信息，实际价格及领取资格需核实",
+      "offerType": "product",
+      "reviewStatus": "ai-screened",
+      "firstSeen": "2026-11-25T17:35:20+00:00"
     },
     {
       "id": "89f51a799e9c282cb33ab9c8fdf9e018f591acd69440011b71eed95287101a7a",
@@ -60,6 +90,21 @@
       "offerType": "product",
       "reviewStatus": "ai-screened",
       "firstSeen": "2026-11-25T17:03:01+00:00"
+    },
+    {
+      "id": "2911060db26081919b815ec5fa56a888203ff1d4414ccb409fa5aba79aee4979",
+      "source": "rss-meta-appinn",
+      "title": "【开发者自荐】Popamp:皮肤用矢量绘制、放大不模糊的 Winamp 2 风格音乐播放器",
+      "url": "https://meta.appinn.net/t/topic/96906",
+      "published": "2026-11-25T13:52:25+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "other",
+      "quality": 3,
+      "reason": "有明确免费领取或使用信息",
+      "offerType": "product",
+      "reviewStatus": "ai-screened",
+      "firstSeen": "2026-11-25T17:35:20+00:00"
     },
     {
       "id": "9ebdb7714164e4b99eab85e62928ce91cf38e7d09905a405a38aa2e4ce377285",
@@ -465,6 +510,21 @@
       "offerType": "product",
       "reviewStatus": "ai-screened",
       "firstSeen": "2026-11-25T00:56:57+00:00"
+    },
+    {
+      "id": "b2361ea944899530f15e884d7d7682d5600b639a7627393af76438e7b3511c45",
+      "source": "rss-meta-appinn",
+      "title": "【开源自荐】FreeFolio 支持空间管理与单文件浏览的本地优先原生工作台",
+      "url": "https://meta.appinn.net/t/topic/96875",
+      "published": "2026-11-25T06:42:12+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "other",
+      "quality": 4,
+      "reason": "有明确免费领取或使用信息",
+      "offerType": "product",
+      "reviewStatus": "ai-screened",
+      "firstSeen": "2026-11-25T17:35:20+00:00"
     },
     {
       "id": "c9c226c33c9de805cac5f8a28451cdab45c60d7f807d08890f819af8df8e29ad",
@@ -4436,21 +4496,6 @@
       "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
     },
     {
-      "id": "76d35cf0faa0da64f4d8d3501d95c3303301b410b9f2596274407da0b1e2e56e",
-      "source": "rss-smzdm",
-      "title": "健安喜 皇冠97鱼油软胶囊97%纯度 60粒 53元(需买3件,需用券)",
-      "url": "https://www.smzdm.com/p/186772819",
-      "published": "2026-11-25T21:02:32+00:00",
-      "expires": null,
-      "bucket": "shopping",
-      "reviewStatus": "unverified",
-      "quality": 0,
-      "offerType": "product",
-      "price": null,
-      "firstSeen": "2026-11-25T17:03:01+00:00",
-      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
-    },
-    {
       "id": "a07d0ede251897b8024d293e315dc994f2f92c6caab8d1350ed3718497d7da24",
       "source": "rss-smzdm",
       "title": "JEEP SPIRIT 男款三合一冲锋衣 89元(需用券)",
@@ -5154,6 +5199,21 @@
       "price": null,
       "firstSeen": "2026-11-25T04:07:45+00:00",
       "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
+      "id": "665aaecdc56db747a35eeb795e6d9bd3798d2e032f4ad3f63c0f3690aa1c2ac7",
+      "source": "rss-smzdm",
+      "title": "好娃娃 999好娃娃维生素d3滴剂24粒星婴幼儿童生长发育成人孕妇补钙VD 12.9元",
+      "url": "https://www.smzdm.com/p/186736473",
+      "published": "2026-11-25T10:49:28+00:00",
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "product",
+      "price": null,
+      "firstSeen": "2026-11-25T17:35:20+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
     }
   ],
   "officialBenefits": [
@@ -5168,7 +5228,7 @@
       "quality": 0,
       "published": null,
       "firstSeen": "2026-11-23",
-      "verifiedAt": "2026-11-25T17:02:59+00:00",
+      "verifiedAt": "2026-11-25T17:35:19+00:00",
       "expires": null,
       "price": null,
       "offerType": "product"
