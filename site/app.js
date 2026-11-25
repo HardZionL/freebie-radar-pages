@@ -1,7 +1,7 @@
 'use strict';
 const $=id=>document.getElementById(id);
 const groups={ai:['AI 与开发者','AI & Dev'],shopping:['电商优惠','E-commerce Deals'],media:['影音会员','Media Membership'],other:['其他福利','More Benefits']};
-const sources={'linuxdo-welfare':'LINUX DO','v2ex-free':'V2EX 免费赠送','v2ex-deals':'V2EX 优惠','rss-smzdm':'什么值得买','rss-smzdm-coupon':'值得买·领券频道','rss-smzdm-delivery':'值得买·外卖频道','aws-official-ai':'AWS 官方 AI 公告','aws-quick-official':'AWS Quick 官方文档','hn-offers':'Hacker News 社区优惠','producthunt-deals':'Product Hunt 新品优惠','xhs-public-index':'小红书公开索引 · 未核实','xhs-curated':'小红书公开链接 · 人工提交','rss-fuliba':'福利吧','rss-ithome':'IT之家','openrouter-free':'OpenRouter','rss-nodeseek':'NodeSeek','epic-free':'Epic','gamerpower':'GamerPower'};
+const sources={'linuxdo-welfare':'LINUX DO','v2ex-free':'V2EX 免费赠送','v2ex-deals':'V2EX 优惠','rss-smzdm':'什么值得买','rss-smzdm-coupon':'值得买·领券频道','rss-smzdm-delivery':'值得买·外卖频道','aws-official-ai':'AWS 官方 AI 公告','aws-quick-official':'AWS Quick 官方文档','hn-offers':'Hacker News 社区优惠','producthunt-deals':'Product Hunt 新品优惠','xhs-public-index':'小红书公开索引 · 未核实','xhs-curated':'小红书公开链接 · 站长整理','xhs-community':'小红书公开笔记 · 读者提供','rss-fuliba':'福利吧','rss-ithome':'IT之家','openrouter-free':'OpenRouter','rss-nodeseek':'NodeSeek','epic-free':'Epic','gamerpower':'GamerPower'};
 const modes={all:'资源流',hot:'今日热点',daily:'每日精选',retail:'购物线索 · 待核实',vouchers:'红包与优惠券',search:'全站搜索',deadline:'今日截止',favorites:'我的收藏',hidden:'已关闭'};
 function loadLocal(key,fallback){try{return JSON.parse(localStorage.getItem('radar.editorial.'+key))??fallback}catch{return fallback}}
 function store(key,value){try{localStorage.setItem('radar.editorial.'+key,JSON.stringify(value))}catch{}}

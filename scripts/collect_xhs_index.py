@@ -17,6 +17,8 @@ from xml.etree import ElementTree as ET
 
 ROOT=Path(__file__).resolve().parents[1]
 BING='https://www.bing.com/search'
+GITHUB_ISSUES='https://api.github.com/repos/HardZionL/freebie-radar-pages/issues?state=open&per_page=30'
+ISSUE_TITLE_PREFIX='[小红书优惠]'
 # Fixed queries, never interpolated from untrusted content.
 QUERIES=(
   'site:xiaohongshu.com/explore/ 外卖 红包 满减',
@@ -94,6 +96,63 @@ def public_bing_rss(query,opener=None):
         if len(raw)>MAX_BYTES:raise ValueError('Search RSS response too large')
         return raw.decode('utf-8',errors='replace')
 
+def parse_public_issues(blob,now,seen):
+    """Accept public volunteer submissions, never arbitrary linked web content.
+
+    Uses GitHub's own issue creation timestamp, not submitted/pasted dates.
+    No user identity or issue body is persisted to the public snapshot.
+    """
+    if not isinstance(blob,list) or len(blob)>30:
+        raise ValueError('Unexpected public GitHub issue listing')
+    out=[]
+    note_pattern=re.compile(
+        r'https://(?:www\.)?xiaohongshu\.com/(?:explore|discovery/item)/[0-9a-f]{16,32}(?:\?[^\s)>\]]*)?',
+        re.I)
+    for issue in blob:
+        if not isinstance(issue,dict) or issue.get('state')!='open' or issue.get('pull_request'):
+            continue
+        headline=str(issue.get('title') or '').strip()
+        if not headline.startswith(ISSUE_TITLE_PREFIX):
+            continue
+        title=clean_title(headline[len(ISSUE_TITLE_PREFIX):].strip())
+        body=str(issue.get('body') or '')[:4000]
+        match=note_pattern.search(body)
+        url=canonical_note(match.group(0).rstrip('.,;') if match else '')
+        try:
+            submitted=dt.datetime.fromisoformat(str(issue.get('created_at') or '').replace('Z','+00:00'))
+            if submitted.tzinfo is None:continue
+            age=(now-submitted.astimezone(dt.timezone.utc)).total_seconds()
+        except (ValueError,TypeError):
+            continue
+        if url is None or url in seen or len(title)<10 or not OFFER_RE.search(title) or RISK_RE.search(title):
+            continue
+        if age<0 or age>7*86400:
+            continue
+        seen.add(url)
+        out.append({
+            'source_id':'xhs-community','title':title,'url':url,
+            'published_at':None,'expires_at':None,
+            'summary':'GitHub 读者提交的小红书公开优惠笔记线索；未核实内容、金额、资格或时效。'
+                      '仅提供原始笔记链接，可能需要在小红书 App 中按标题搜索。',
+            'category':'goods','kind':'deal','price':None,'is_free':False,'score':0,
+        })
+        if len(out)>=MAX_PER_ROUND:
+            break
+    return out
+
+def public_github_issues(opener=None):
+    req=Request(GITHUB_ISSUES,headers={
+        'Accept':'application/vnd.github+json',
+        'User-Agent':'ResourceRadar/1.0 (public GitHub issue submissions)'})
+    with (opener or build_opener(NoRedirect())).open(req,timeout=12) as res:
+        end=urlsplit(res.geturl())
+        if (end.scheme!='https' or end.hostname!='api.github.com' or
+                end.path!='/repos/HardZionL/freebie-radar-pages/issues'):
+            raise ValueError('Unexpected GitHub API redirect')
+        raw=res.read(MAX_BYTES+1)
+        if len(raw)>MAX_BYTES:raise ValueError('Public issue response too large')
+        return json.loads(raw)
+
 def parse_curated(blob,now,seen):
     if not isinstance(blob,list) or len(blob)>30:
         raise ValueError('Curated input must be an array with at most 30 entries')
@@ -141,6 +200,13 @@ def main(path):
         except Exception as e:
             errors+=1
             print('XHS public search index unavailable ('+type(e).__name__+'); no direct XHS access attempted',flush=True)
+    community=[]
+    try:
+        community=parse_public_issues(public_github_issues(),dt.datetime.now(dt.timezone.utc),seen)
+        print(f'XHS public issue contributions: {len(community)} eligible public links',flush=True)
+    except Exception as e:
+        print('XHS public issue contributions unavailable ('+type(e).__name__+'); '
+              'continuing with public index and curated links',flush=True)
     curated=[]
     curated_file=ROOT/'bootstrap/xhs-curated.json'
     try:
@@ -148,9 +214,9 @@ def main(path):
                               dt.datetime.now(dt.timezone.utc),seen)
     except (OSError,ValueError) as e:
         print('XHS curated link list unavailable: '+type(e).__name__,flush=True)
-    raw['items'].extend((collected+curated)[:MAX_PER_ROUND])
+    raw['items'].extend((collected+community+curated)[:MAX_PER_ROUND])
     path.write_text(json.dumps(raw,ensure_ascii=False),encoding='utf-8')
-    print(f'XHS keyless discovery: {len(collected)} indexed candidates; {len(curated)} curated link candidates; {errors} search-feed failures; '
+    print(f'XHS keyless discovery: {len(collected)} indexed; {len(community)} public submissions; {len(curated)} curated; {errors} search-feed failures; '
           'notes may be stale; MiMo review required',flush=True)
 
 if __name__=='__main__':
