@@ -1,0 +1,24 @@
+name: 小红书公开优惠线索
+description: 提供公开笔记链接与活动信息，供资源雷达 AI 初筛（不保证收录）
+title: "[小红书优惠] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        只提供公开可访问的原笔记链接与真实优惠标题。请勿填写密码、Cookie、邀请码、手机号、个人隐私或其他敏感数据。
+        优惠真假、使用条件和截止时间以原平台为准；提交后需要人工和 AI 审核，并非马上显示。
+  - type: input
+    id: public-link
+    attributes:
+      label: 公开笔记链接
+      description: 只接受以 https://www.xiaohongshu.com/explore/ 开头的原帖链接；不接受短链或私信内容
+      placeholder: https://www.xiaohongshu.com/explore/真实笔记ID
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: 补充说明（选填）
+      description: 简述是否需要新用户、特定城市及会员资格；请勿填写个人信息
+    validations:
+      required: false
