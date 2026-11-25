@@ -1,6 +1,36 @@
 {
-  "updatedAt": "2026-11-25T05:37:00+00:00",
+  "updatedAt": "2026-11-25T05:44:54+00:00",
   "items": [
+    {
+      "id": "d2559573f606daf40ed5df3bdae647d1dc7b9b8e361df73572dfe46eb76b18dc",
+      "source": "rss-smzdm",
+      "title": "《学而思 Reading A-Z 美国小学同步阅读 3级上》 82.45元(满300-150元)",
+      "url": "https://www.smzdm.com/p/186746155",
+      "published": "2026-11-25T13:43:51+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "shopping",
+      "quality": 4,
+      "reason": "有明确优惠信息，实际价格及领取资格需核实",
+      "offerType": "coupon",
+      "reviewStatus": "ai-screened",
+      "firstSeen": "2026-11-25T05:44:54+00:00"
+    },
+    {
+      "id": "f8c1f1dcde258995361bd19e78c929f63515a51f57fe477a4142735ca9d6da63",
+      "source": "rss-smzdm",
+      "title": "今日必买:穿女王装喝俄式下午茶!哈尔滨中央大街哈布斯堡江景酒店 华尔兹·超享双床房 1晚(含早) 299元/晚",
+      "url": "https://www.smzdm.com/p/186746087",
+      "published": "2026-11-25T13:43:11+00:00",
+      "expires": "2027-11-17T23:59:59+00:00",
+      "price": 299,
+      "bucket": "shopping",
+      "quality": 4,
+      "reason": "有明确优惠信息，实际价格及领取资格需核实",
+      "offerType": "product",
+      "reviewStatus": "ai-screened",
+      "firstSeen": "2026-11-25T05:44:54+00:00"
+    },
     {
       "id": "2b4f4521fd6986577994ab68a90f8f63c8d5f344f99c15adde90e50ee21871f1",
       "source": "rss-smzdm",
@@ -510,6 +540,21 @@
       "offerType": "product",
       "reviewStatus": "ai-screened",
       "firstSeen": "2026-11-25T04:25:04+00:00"
+    },
+    {
+      "id": "fe4e6c2eb71036e72b8b6a8b2a53e3934f19821b28b568287bb551622550e968",
+      "source": "rss-smzdm",
+      "title": "洁柔 抽纸粉Face软抽可湿水面巾纸 3层 100抽*24包 29.4元返10积分后",
+      "url": "https://www.smzdm.com/p/186713707",
+      "published": "2026-11-24T22:18:29+00:00",
+      "expires": null,
+      "price": 58.8,
+      "bucket": "shopping",
+      "quality": 4,
+      "reason": "有明确优惠信息，实际价格及领取资格需核实",
+      "offerType": "product",
+      "reviewStatus": "ai-screened",
+      "firstSeen": "2026-11-25T05:44:54+00:00"
     },
     {
       "id": "f595c5a33cc17cdc4106e62173c27e1a720b92548776b3f0f70bb045e7f08a6a",
@@ -4224,6 +4269,51 @@
       "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
     },
     {
+      "id": "413c6844b41072772b0f9d27f017fc66536cde8c79c2da19fbe61683e5209a25",
+      "source": "rss-smzdm",
+      "title": "UGG 女式经典短靴 II,可可粉 936.4元包邮",
+      "url": "https://www.smzdm.com/p/186614898",
+      "published": "2026-11-25T13:43:47+00:00",
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "product",
+      "price": null,
+      "firstSeen": "2026-11-25T05:44:54+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
+      "id": "a492b05087c52e59f220ebb44f4071322cf96484d73b05fa6e36abb4b8a1d0a8",
+      "source": "rss-smzdm",
+      "title": "狮王 小狮王儿童牙刷6-12岁3支装宝宝婴儿细毛软毛牙刷颜色 6-12岁儿童牙刷3支 12.61元",
+      "url": "https://www.smzdm.com/p/186726062",
+      "published": "2026-11-25T13:43:29+00:00",
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "product",
+      "price": null,
+      "firstSeen": "2026-11-25T05:44:54+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
+      "id": "331a9b4086bc00b4f98d103ef402084fb587247a17bedd5f1d93fbc3998b2a29",
+      "source": "rss-smzdm",
+      "title": "汉王 Hanvon N6Pro 6英寸手写电纸本 1863.21元",
+      "url": "https://www.smzdm.com/p/186746179",
+      "published": "2026-11-25T13:43:23+00:00",
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "product",
+      "price": null,
+      "firstSeen": "2026-11-25T05:44:54+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
       "id": "ee5ea1f319df9dc243f6ba7fa65369193980a0e9a01d9f9363ef267fc9fc0d27",
       "source": "rss-smzdm",
       "title": "UGG 中性儿童经典 Hop 一脚蹬, 板岩色 834.96元",
@@ -4972,51 +5062,6 @@
       "price": null,
       "firstSeen": "2026-11-25T04:07:45+00:00",
       "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
-    },
-    {
-      "id": "0011c658fec16d2b9f29a34c2a55d93e5530cb6113c5307f2244ae5bd3001709",
-      "source": "rss-smzdm",
-      "title": "HELLY HANSEN HH标志棉质织腰带 男女通用 B00KE0A8UI 138.42元",
-      "url": "https://www.smzdm.com/p/186738652",
-      "published": "2026-11-25T11:02:18+00:00",
-      "expires": null,
-      "bucket": "shopping",
-      "reviewStatus": "unverified",
-      "quality": 0,
-      "offerType": "product",
-      "price": null,
-      "firstSeen": "2026-11-25T04:07:45+00:00",
-      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
-    },
-    {
-      "id": "1f87927259d6abd226a8e970e78c092c559ea3232ee9deab4894c8394b74f10c",
-      "source": "rss-smzdm",
-      "title": "神丹 无铅工艺溏心松花皮蛋20枚 27.9元(需用券)",
-      "url": "https://www.smzdm.com/p/186738459",
-      "published": "2026-11-25T11:01:48+00:00",
-      "expires": null,
-      "bucket": "shopping",
-      "reviewStatus": "unverified",
-      "quality": 0,
-      "offerType": "product",
-      "price": null,
-      "firstSeen": "2026-11-25T04:07:45+00:00",
-      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
-    },
-    {
-      "id": "946ac98d3f324d77b4e6583cb3c114a431898f3182d4e72c51b9777b7164e14c",
-      "source": "rss-smzdm",
-      "title": "国家补贴:美的 纯钛系列 YS20P705-Ti 养生壶 2L 196.09元(需用券)",
-      "url": "https://www.smzdm.com/p/186738477",
-      "published": "2026-11-25T11:01:45+00:00",
-      "expires": null,
-      "bucket": "shopping",
-      "reviewStatus": "unverified",
-      "quality": 0,
-      "offerType": "product",
-      "price": null,
-      "firstSeen": "2026-11-25T04:07:45+00:00",
-      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
     }
   ],
   "officialBenefits": [
@@ -5031,7 +5076,7 @@
       "quality": 0,
       "published": null,
       "firstSeen": "2026-11-23",
-      "verifiedAt": "2026-11-25T05:36:58+00:00",
+      "verifiedAt": "2026-11-25T05:44:52+00:00",
       "expires": null,
       "price": null,
       "offerType": "product"
