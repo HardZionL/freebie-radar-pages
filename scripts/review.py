@@ -141,6 +141,10 @@ def shortlist(candidates,review_cap):
         groups[key]=[x for x in groups[key] if x['id'] not in selected]
     groups['shopping'].sort(key=lambda x:(x['source']=='x-deals',x['source'] in ('rss-smzdm','rss-smzdm-coupon','rss-smzdm-delivery'),
                                            x['published'] or ''),reverse=True)
+    # In small half-hour batches, reserve the regular shopping slot for actual
+    # product deals when possible; coupons already have their own 2 positions.
+    if review_cap<=8:
+        groups['shopping'].sort(key=lambda x:x['offerType']=='product',reverse=True)
     # Give verified-source AI announcements an opportunity before forum chatter.
     groups['ai'].sort(key=lambda x:(x['source']=='aws-official-ai',x['source']=='x-deals',
                                    bool(re.search(r'试用|免费|free|trial|credit|折扣|discount',x['title'],re.I)),
