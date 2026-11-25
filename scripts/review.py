@@ -15,7 +15,7 @@ HOSTS={'linuxdo-welfare':('linux.do',),'v2ex-free':('v2ex.com',),'v2ex-deals':('
 'rss-smzdm-coupon':('smzdm.com',),'rss-smzdm-delivery':('smzdm.com',),
 'aws-official-ai':('aws.amazon.com',),'aws-quick-official':('docs.aws.amazon.com',),
 'hn-offers':('news.ycombinator.com',),'producthunt-deals':('producthunt.com',),
-'xhs-public-index':('xiaohongshu.com',)}
+'xhs-public-index':('xiaohongshu.com',),'xhs-curated':('xiaohongshu.com',)}
 BUCKETS={'ai':'AI 与开发者','shopping':'电商优惠','media':'影音会员','other':'其他福利'}
 QUOTAS={'ai':4,'shopping':3,'media':3,'other':2}
 REASONS={'free':'有明确免费领取或使用信息','discount':'有明确优惠信息，实际价格及领取资格需核实','membership':'会员活动，资格和续费条件需核实','developer':'有明确开发者福利信息'}
@@ -56,7 +56,7 @@ def safe_url(s,source):
             if p.scheme!='https' or h!='news.ycombinator.com' or p.path!='/item' or set(ids)!={'id'} or len(ids['id'])!=1 or not re.fullmatch(r'[0-9]{4,15}',ids['id'][0]):
                 return None
             return 'https://news.ycombinator.com/item?id='+ids['id'][0]
-        if source=='xhs-public-index':
+        if source in ('xhs-public-index','xhs-curated'):
             if p.scheme!='https' or h not in ('xiaohongshu.com','www.xiaohongshu.com') or not re.fullmatch(r'/explore/[0-9a-f]{16,32}/?',p.path,re.I):
                 return None
             return 'https://www.xiaohongshu.com'+p.path.rstrip('/').lower()

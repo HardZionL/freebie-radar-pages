@@ -94,6 +94,34 @@ def public_bing_rss(query,opener=None):
         if len(raw)>MAX_BYTES:raise ValueError('Search RSS response too large')
         return raw.decode('utf-8',errors='replace')
 
+def parse_curated(blob,now,seen):
+    if not isinstance(blob,list) or len(blob)>30:
+        raise ValueError('Curated input must be an array with at most 30 entries')
+    rows=[]
+    for item in blob:
+        if not isinstance(item,dict):continue
+        url=canonical_note(str(item.get('url') or ''))
+        title=clean_title(str(item.get('title') or ''))
+        when=str(item.get('addedOn') or '')
+        try:
+            entered=dt.date.fromisoformat(when)
+        except ValueError:
+            continue
+        if (url is None or url in seen or len(title)<10 or
+            not OFFER_RE.search(title) or RISK_RE.search(title) or
+            entered>now.date() or (now.date()-entered).days>7):
+            continue
+        seen.add(url)
+        rows.append({
+            'source_id':'xhs-curated','title':title,'url':url,
+            'published_at':None,'expires_at':None,
+            'summary':'站长提供的公开小红书优惠笔记线索；只核对了标题和原始网址，'
+                      '尚未实测活动与领取条件；原帖可能要求在小红书 App 内搜索标题。',
+            'category':'goods','kind':'deal','price':None,'is_free':False,'score':0,
+        })
+        if len(rows)>=MAX_PER_ROUND:break
+    return rows
+
 def main(path):
     raw=json.loads(path.read_text(encoding='utf-8'))
     seen={canonical_note(x.get('url','')) for x in raw.get('items',[])}
@@ -113,9 +141,16 @@ def main(path):
         except Exception as e:
             errors+=1
             print('XHS public search index unavailable ('+type(e).__name__+'); no direct XHS access attempted',flush=True)
-    raw['items'].extend(collected[:MAX_PER_ROUND])
+    curated=[]
+    curated_file=ROOT/'bootstrap/xhs-curated.json'
+    try:
+        curated=parse_curated(json.loads(curated_file.read_text(encoding='utf-8')),
+                              dt.datetime.now(dt.timezone.utc),seen)
+    except (OSError,ValueError) as e:
+        print('XHS curated link list unavailable: '+type(e).__name__,flush=True)
+    raw['items'].extend((collected+curated)[:MAX_PER_ROUND])
     path.write_text(json.dumps(raw,ensure_ascii=False),encoding='utf-8')
-    print(f'XHS keyless indexed discovery: {len(collected)} candidates; {errors} search-feed failures; '
+    print(f'XHS keyless discovery: {len(collected)} indexed candidates; {len(curated)} curated link candidates; {errors} search-feed failures; '
           'notes may be stale; MiMo review required',flush=True)
 
 if __name__=='__main__':
