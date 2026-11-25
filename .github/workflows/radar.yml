@@ -12,8 +12,9 @@ on:
       - 'bootstrap/coupon-ai-audit-2.json'
       - 'bootstrap/aws-official-now.json'
       - 'bootstrap/30min-rollout.json'
+      - 'bootstrap/free-community-rollout.json'
   schedule:
-    # Full sources every 2 hours; X only in 00/06/12/18 UTC windows.
+    # Full sources every 2 hours; lightweight rounds in the other slots.
     - cron: '17 0,6,12,18 * * *'
     - cron: '17 2,4,8,10,14,16,20,22 * * *'
     # Every other half-hour is a lightweight incremental round.
@@ -76,7 +77,7 @@ jobs:
           FETCH_TIMEOUT_MS: '15000'
           MAX_ITEMS_PER_RUN: '40'
           RADAR_BOOTSTRAP: ${{ (github.event_name == 'push' && contains(github.event.head_commit.added, 'bootstrap/initial-seed.json')) || inputs.bootstrap == true }}
-          RADAR_RETAIL: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, 'aws-official-now') && !contains(github.event.head_commit.message, '30min-rollout') }}
+          RADAR_RETAIL: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, 'aws-official-now') && !contains(github.event.head_commit.message, '30min-rollout') && !contains(github.event.head_commit.message, 'free-community-rollout') }}
           RADAR_QUICK: ${{ github.event.schedule == '17 1-23/2 * * *' || github.event.schedule == '47 * * * *' || (github.event_name == 'push' && contains(github.event.head_commit.message, '30min-rollout')) }}
           DATABASE_PATH: ${{ runner.temp }}/radar.db
         run: |
@@ -87,21 +88,20 @@ jobs:
       - name: Monitor official AWS AI announcements and current Quick trial terms
         if: ${{ github.event.schedule != '17 1-23/2 * * *' && github.event.schedule != '47 * * * *' }}
         run: python3 scripts/collect_official_ai.py "$RUNNER_TEMP/candidates.json"
-      - name: Optionally read X via official API (off without user secret)
+      - name: Discover free community offers from HN and Product Hunt
         env:
-          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
-          X_FETCH_ENABLED: ${{ github.event.schedule == '17 0,6,12,18 * * *' }}
-        run: python3 scripts/collect_x.py "$RUNNER_TEMP/candidates.json"
+          RADAR_QUICK: ${{ github.event.schedule == '17 1-23/2 * * *' || github.event.schedule == '47 * * * *' || (github.event_name == 'push' && contains(github.event.head_commit.message, '30min-rollout')) }}
+        run: python3 scripts/collect_community.py "$RUNNER_TEMP/candidates.json"
       - name: Review only new candidates and generate safe public snapshot
         env:
           MIMO_API_KEY: ${{ secrets.MIMO_API_KEY }}
           MIMO_MODEL: ${{ vars.MIMO_MODEL }}
-          DAILY: ${{ github.event.schedule == '30 12 * * *' || inputs.daily == true || github.event_name == 'push' }}
+          DAILY: ${{ github.event.schedule == '30 12 * * *' || inputs.daily == true }}
           BOOTSTRAP: ${{ (github.event_name == 'push' && contains(github.event.head_commit.added, 'bootstrap/initial-seed.json')) || inputs.bootstrap == true }}
-          RETAIL: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, 'aws-official-now') && !contains(github.event.head_commit.message, '30min-rollout') }}
+          RETAIL: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, 'aws-official-now') && !contains(github.event.head_commit.message, '30min-rollout') && !contains(github.event.head_commit.message, 'free-community-rollout') }}
           COUPON_BOOST: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, 'coupon-ai-audit-2') }}
-          LEADS_ONLY: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, 'coupon-ai-audit-2') && !contains(github.event.head_commit.message, 'aws-official-now') && !contains(github.event.head_commit.message, '30min-rollout') }}
-          BUDGETED: ${{ github.event_name == 'schedule' || (github.event_name == 'push' && contains(github.event.head_commit.message, '30min-rollout')) }}
+          LEADS_ONLY: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, 'coupon-ai-audit-2') && !contains(github.event.head_commit.message, 'aws-official-now') && !contains(github.event.head_commit.message, '30min-rollout') && !contains(github.event.head_commit.message, 'free-community-rollout') }}
+          BUDGETED: ${{ github.event_name == 'schedule' || (github.event_name == 'push' && (contains(github.event.head_commit.message, '30min-rollout') || contains(github.event.head_commit.message, 'free-community-rollout'))) }}
         run: |
           args=()
           if [[ "$DAILY" == "true" ]]; then args+=(--daily); fi
@@ -118,7 +118,6 @@ jobs:
           path: |
             site/data.json
             state/reviewed.json
-            state/x_read_budget.json
           retention-days: 1
           if-no-files-found: error
   publish:
@@ -139,10 +138,9 @@ jobs:
         run: |
           cp snapshot/site/data.json site/data.json
           cp snapshot/state/reviewed.json state/reviewed.json
-          cp snapshot/state/x_read_budget.json state/x_read_budget.json
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add site/data.json state/reviewed.json state/x_read_budget.json
+          git add site/data.json state/reviewed.json
           if ! git diff --cached --quiet; then
             git commit -m 'chore: refresh public resource radar'
             git push

@@ -79,7 +79,7 @@ class TestRadar(unittest.TestCase):
                  published=iso(now),fingerprint='c'+str(idx))
         for kind in ('ai','shopping','media','other'):
             for idx in range(6):
-                src='x-deals' if kind=='ai' and idx==0 else 'rss-meta-appinn'
+                src='hn-offers' if kind=='ai' and idx==0 else 'rss-meta-appinn'
                 t=dict(id=kind+str(idx),title=kind+' promotion',
                     source=src,hint=kind,offerType='product',
                     published=iso(now),fingerprint=kind+str(idx))
@@ -90,11 +90,45 @@ class TestRadar(unittest.TestCase):
         self.assertEqual(sum(x['offerType']=='delivery' for x in selected),2)
         self.assertGreaterEqual(sum(x['hint']=='ai' for x in selected),2)
         self.assertGreaterEqual(sum(x['hint']=='media' for x in selected),1)
-    def test_x_source_is_domain_limited(self):
-        self.assertEqual(safe_url('https://x.com/i/web/status/1998199819981998?track=1','x-deals'),
-                         'https://x.com/i/web/status/1998199819981998')
-        self.assertIsNone(safe_url('https://x.com.attacker.example/i/web/status/123','x-deals'))
-        self.assertIsNone(safe_url('https://evil.example/i/web/status/123','x-deals'))
+    def test_free_community_source_links_are_strict(self):
+        self.assertEqual(safe_url('https://news.ycombinator.com/item?id=45123456','hn-offers'),
+                         'https://news.ycombinator.com/item?id=45123456')
+        for url in ('https://news.ycombinator.com/item?id=45123456&to=evil',
+                    'https://news.ycombinator.com.attacker.example/item?id=45123456',
+                    'https://evil.example/item?id=45123456','http://news.ycombinator.com/item?id=45123456',
+                    'https://news.ycombinator.com/item?id=../secret'):
+            self.assertIsNone(safe_url(url,'hn-offers'))
+        self.assertEqual(safe_url('https://www.producthunt.com/posts/amazing-ai-deals?ref=x','producthunt-deals'),
+                         'https://www.producthunt.com/posts/amazing-ai-deals')
+        self.assertIsNone(safe_url('https://evil.example/posts/amazing-ai-deals','producthunt-deals'))
+        self.assertIsNone(safe_url('https://x.com/i/web/status/1998199819981998','x-deals'))
+    def test_12_item_round_guarantees_ai_and_media_slots(self):
+        now=dt.datetime.now(UTC); entries={}
+        for kind in ('ai','shopping','media','other'):
+            for idx in range(12):
+                title=('某券领券免费外卖红包'+str(idx) if kind=='shopping' and idx<9 else kind+' '+str(idx))
+                row=dict(id=kind+str(idx),title=title,source='rss-smzdm',
+                         hint=kind,offerType='delivery' if kind=='shopping' and idx<9 else 'product',
+                         published=iso(now),fingerprint=kind+str(idx))
+                entries[row['id']]=row
+        out=shortlist(entries,12)
+        self.assertEqual(len(out),12)
+        self.assertEqual(sum(x['offerType']=='delivery' for x in out),4)
+        self.assertGreaterEqual(sum(x['hint']=='ai' for x in out),4)
+        self.assertGreaterEqual(sum(x['hint']=='media' for x in out),2)
+        self.assertTrue(any(x['hint']=='shopping' and x['offerType']=='product' for x in out))
+    def test_review_format_retry_is_bounded(self):
+        from unittest.mock import patch
+        import review
+        batch=[{'title':'Test 1','summary':'trial'}]
+        calls=[]
+        def fake(b,k,m,max_tokens=0):
+            calls.append(max_tokens)
+            if len(calls)==1:raise ValueError('invalid JSON format')
+            return {0:(True,4,'ai','free')}
+        with patch.object(review,'request_review',side_effect=fake):
+            self.assertEqual(review.review_with_retry(batch,'dummy','mimo'),{0:(True,4,'ai','free')})
+        self.assertEqual(calls,[1050,1600])
     def test_quota(self):
         now=dt.datetime.now(UTC); items=[]
         for b in ['ai','shopping','media','other']:
