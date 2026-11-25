@@ -69,6 +69,32 @@ class TestRadar(unittest.TestCase):
         self.assertEqual(len(selected),24)
         self.assertEqual(len({x['id'] for x in selected}),24)
         self.assertTrue(all(x['offerType']!='product' for x in selected[:8]))
+    def test_30_minute_review_stays_balanced(self):
+        now=dt.datetime.now(UTC)
+        entries={}
+        for idx in range(8):
+            title=f'外卖优惠券领券优惠{idx}'
+            entries['coupon'+str(idx)]=dict(id='coupon'+str(idx),title=title,
+                 source='rss-smzdm-coupon',hint='shopping',offerType='delivery',
+                 published=iso(now),fingerprint='c'+str(idx))
+        for kind in ('ai','shopping','media','other'):
+            for idx in range(6):
+                src='x-deals' if kind=='ai' and idx==0 else 'rss-meta-appinn'
+                t=dict(id=kind+str(idx),title=kind+' promotion',
+                    source=src,hint=kind,offerType='product',
+                    published=iso(now),fingerprint=kind+str(idx))
+                entries[t['id']]=t
+        selected=shortlist(entries,6)
+        self.assertEqual(len(selected),6)
+        self.assertEqual(len({x['id'] for x in selected}),6)
+        self.assertEqual(sum(x['offerType']=='delivery' for x in selected),2)
+        self.assertGreaterEqual(sum(x['hint']=='ai' for x in selected),2)
+        self.assertGreaterEqual(sum(x['hint']=='media' for x in selected),1)
+    def test_x_source_is_domain_limited(self):
+        self.assertEqual(safe_url('https://x.com/i/web/status/1998199819981998?track=1','x-deals'),
+                         'https://x.com/i/web/status/1998199819981998')
+        self.assertIsNone(safe_url('https://x.com.attacker.example/i/web/status/123','x-deals'))
+        self.assertIsNone(safe_url('https://evil.example/i/web/status/123','x-deals'))
     def test_quota(self):
         now=dt.datetime.now(UTC); items=[]
         for b in ['ai','shopping','media','other']:

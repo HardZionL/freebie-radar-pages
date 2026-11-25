@@ -12,7 +12,8 @@ HOSTS={'linuxdo-welfare':('linux.do',),'v2ex-free':('v2ex.com',),'v2ex-deals':('
 'rss-giveawayoftheday':('giveawayoftheday.com',),'rss-isthereanydeal':('isthereanydeal.com',),
 'rss-9to5toys':('9to5toys.com',),'rss-itch-free':('itch.io',),
 'rss-smzdm-coupon':('smzdm.com',),'rss-smzdm-delivery':('smzdm.com',),
-'aws-official-ai':('aws.amazon.com',),'aws-quick-official':('docs.aws.amazon.com',)}
+'aws-official-ai':('aws.amazon.com',),'aws-quick-official':('docs.aws.amazon.com',),
+'x-deals':('x.com',)}
 BUCKETS={'ai':'AI 与开发者','shopping':'电商优惠','media':'影音会员','other':'其他福利'}
 QUOTAS={'ai':4,'shopping':3,'media':3,'other':2}
 REASONS={'free':'有明确免费领取或使用信息','discount':'有明确优惠信息，实际价格及领取资格需核实','membership':'会员活动，资格和续费条件需核实','developer':'有明确开发者福利信息'}
@@ -133,20 +134,25 @@ def shortlist(candidates,review_cap):
     vouchers=[x for x in groups['shopping'] if x['offerType'] in ('coupon','redpacket','delivery')]
     vouchers.sort(key=lambda x:(x['source'] in ('rss-smzdm-coupon','rss-smzdm-delivery'),
                                 x['published'] or x['fingerprint']),reverse=True)
-    count=min(max(6,review_cap//3),review_cap)
+    count=min(max(2 if review_cap<=8 else 6,review_cap//3),review_cap)
     pending=vouchers[:count]
     selected={x['id'] for x in pending}
     for key in groups:
         groups[key]=[x for x in groups[key] if x['id'] not in selected]
-    groups['shopping'].sort(key=lambda x:(x['source'] in ('rss-smzdm','rss-smzdm-coupon','rss-smzdm-delivery'),
+    groups['shopping'].sort(key=lambda x:(x['source']=='x-deals',x['source'] in ('rss-smzdm','rss-smzdm-coupon','rss-smzdm-delivery'),
                                            x['published'] or ''),reverse=True)
+    # In small half-hour batches, reserve the regular shopping slot for actual
+    # product deals when possible; coupons already have their own 2 positions.
+    if review_cap<=8:
+        groups['shopping'].sort(key=lambda x:x['offerType']=='product',reverse=True)
     # Give verified-source AI announcements an opportunity before forum chatter.
-    groups['ai'].sort(key=lambda x:(x['source']=='aws-official-ai',
+    groups['ai'].sort(key=lambda x:(x['source']=='aws-official-ai',x['source']=='x-deals',
                                    bool(re.search(r'试用|免费|free|trial|credit|折扣|discount',x['title'],re.I)),
                                    x['published'] or ''),reverse=True)
     remaining=max(0,review_cap-len(pending))
-    quotas={'shopping':max(3,remaining//4),'ai':max(7,remaining//3),
-            'media':max(3,remaining//6),'other':max(2,remaining//6)}
+    quotas=({'ai':2,'shopping':1,'media':1,'other':1} if review_cap<=8 else
+            {'shopping':max(3,remaining//4),'ai':max(7,remaining//3),
+             'media':max(3,remaining//6),'other':max(2,remaining//6)})
     for name,cap in quotas.items():
         for _ in range(cap):
             if groups[name] and len(pending)<review_cap:
@@ -196,7 +202,7 @@ def load(p,default):return json.loads(p.read_text(encoding='utf-8')) if p.exists
 def save(p,data):
     p.parent.mkdir(parents=True,exist_ok=True);tmp=p.with_suffix('.tmp');tmp.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8');tmp.replace(p)
 def main():
-    ap=argparse.ArgumentParser();ap.add_argument('raw',type=Path);ap.add_argument('--daily',action='store_true');ap.add_argument('--bootstrap',action='store_true');ap.add_argument('--retail',action='store_true');ap.add_argument('--leads-only',action='store_true');ap.add_argument('--coupon-boost',action='store_true');ap.add_argument('--root',type=Path,default=ROOT);args=ap.parse_args()
+    ap=argparse.ArgumentParser();ap.add_argument('raw',type=Path);ap.add_argument('--daily',action='store_true');ap.add_argument('--bootstrap',action='store_true');ap.add_argument('--retail',action='store_true');ap.add_argument('--leads-only',action='store_true');ap.add_argument('--coupon-boost',action='store_true');ap.add_argument('--budgeted',action='store_true');ap.add_argument('--root',type=Path,default=ROOT);args=ap.parse_args()
     now=dt.datetime.now(UTC);day=now.astimezone(TZ).date().isoformat()
     key=os.environ.get('MIMO_API_KEY','').strip();model=os.environ.get('MIMO_MODEL','').strip() or 'mimo-v2.6-flash'
     if not key and not args.leads_only: raise SystemExit('Missing MIMO_API_KEY repository secret; no review performed.')
@@ -251,7 +257,7 @@ def main():
         if c and (c['fingerprint'] not in seen or (args.coupon_boost and c['offerType']!='product')):
             candidates[c['id']]=c
             eligible_by_source[c['source']]=eligible_by_source.get(c['source'],0)+1
-    review_cap=72 if args.bootstrap else 36 if args.retail or args.coupon_boost else 24
+    review_cap=72 if args.bootstrap else 36 if args.retail or args.coupon_boost else 6 if args.budgeted else 24
     pending=shortlist(candidates,review_cap)
     shortlisted_by_source={}
     for x in pending:

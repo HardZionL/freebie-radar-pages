@@ -27,7 +27,19 @@ jobs:
           node --check tests/mobile-ui.cjs
           node tests/mobile-ui.cjs
           node --check scripts/collect.mjs
-          python3 -m py_compile scripts/review.py scripts/collect_official_ai.py
+          python3 - <<'PY'
+          from pathlib import Path
+          w=Path('.github/workflows/radar.yml').read_text()
+          schedules=[s.strip() for s in w.splitlines() if 'cron: ' in s]
+          assert len(schedules)==5,schedules
+          assert any("17 0,6,12,18 * * *" in s for s in schedules)
+          assert any("47 * * * *" in s for s in schedules)
+          assert 'X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}' in w
+          assert 'state/x_read_budget.json' in w
+          assert '--budgeted' in w
+          print('Cadence, token isolation and conservative caps: PASS')
+          PY
+          python3 -m py_compile scripts/review.py scripts/collect_x.py scripts/collect_official_ai.py
           python3 -m unittest discover -s tests -v
           python3 - <<'PY'
           from pathlib import Path
