@@ -18,7 +18,7 @@ ROOT=Path(__file__).resolve().parents[1]
 UTC=dt.timezone.utc
 HN_API='https://hn.algolia.com/api/v1/search_by_date'
 PH_FEED='https://www.producthunt.com/feed'
-KEYWORDS=('free trial','free credits')
+KEYWORDS=('free','discount')
 PROMO=re.compile(
     r'\bfree\s+(?:trial|credits?|months?|year|plan|tier|pro|premium|subscription|api)\b|'
     r'\b(?:trial|credits?|months?|year)\s+(?:for\s+)?free\b|'
@@ -26,6 +26,8 @@ PROMO=re.compile(
     r'免费试用|免费额度|开发者福利|限时免费|优惠券|限免|红包|折扣|代金券',re.I)
 STOP=re.compile(r'账号出售|代充|共享账号|求购|进群|私信|返佣|airdrop|'
                 r'crypto presale|giveaway lottery|抽奖|raffle',re.I)
+TECH=re.compile(r'\b(?:ai|api|llm|gpt|claude|gemini|developer|coding|open.source|saas|app|tool|software|cloud|model)\b|大模型|开发者|软件',re.I)
+FREE=re.compile(r'\b(?:free|freemium|open.source)\b|免费|限免',re.I)
 H_ID=re.compile(r'^[0-9]{4,15}$')
 P_SLUG=re.compile(r'^/posts/[a-z0-9][a-z0-9-]{1,120}/?$')
 MAX_BYTES=900_000
@@ -65,7 +67,7 @@ def parse_date(value):
 
 def eligible(title,summary):
     text=title+' '+summary[:250]
-    return bool(PROMO.search(text) and not STOP.search(text))
+    return bool((PROMO.search(text) or (TECH.search(text) and FREE.search(text))) and not STOP.search(text))
 
 def row(source,title,url,summary,published):
     title=' '.join(html_lib.unescape(title).split())[:180]
@@ -86,7 +88,7 @@ def parse_hn(body,now):
         if not isinstance(hit,dict):continue
         ident=str(hit.get('objectID') or '')
         created=parse_date(hit.get('created_at'))
-        if not H_ID.fullmatch(ident) or not created or not now-dt.timedelta(days=3)<=created<=now+dt.timedelta(hours=1):
+        if not H_ID.fullmatch(ident) or not created or not now-dt.timedelta(days=7)<=created<=now+dt.timedelta(hours=1):
             continue
         title=str(hit.get('title') or '')
         summary=str(hit.get('story_text') or '')
@@ -122,7 +124,7 @@ def parse_producthunt(body,now):
                 from email.utils import parsedate_to_datetime
                 when=parsedate_to_datetime(published).astimezone(UTC)
             except (TypeError,ValueError,OverflowError):continue
-        if not now-dt.timedelta(days=3)<=when<=now+dt.timedelta(hours=1):continue
+        if not now-dt.timedelta(days=5)<=when<=now+dt.timedelta(hours=1):continue
         url='https://www.producthunt.com'+p.path.rstrip('/')
         result=row('producthunt-deals',title or '',url,summary or '',when)
         if result:out.append(result)
@@ -139,18 +141,22 @@ def main(path,now=None,opener=None):
     for query in selected:
         params=urlencode({'query':query,'tags':'story','hitsPerPage':'20'})
         try:
-            rows=parse_hn(get_public(HN_API+'?'+params,opener),now)
+            body=get_public(HN_API+'?'+params,opener)
+            scanned=len(json.loads(body).get('hits',[]))
+            rows=parse_hn(body,now)
             for r in rows:
                 if r['url'] not in existing:existing.add(r['url']);new.append(r)
-            print(f'Hacker News free search: {len(rows)} relevant public leads',flush=True)
+            print(f'Hacker News free search: scanned {scanned}, {len(rows)} relevant public leads',flush=True)
         except Exception as e:
             print('Hacker News public search unavailable: '+type(e).__name__,flush=True)
     if not quick:
         try:
-            rows=parse_producthunt(get_public(PH_FEED,opener),now)
+            body=get_public(PH_FEED,opener)
+            scanned=len(ET.fromstring(body))
+            rows=parse_producthunt(body,now)
             for r in rows:
                 if r['url'] not in existing:existing.add(r['url']);new.append(r)
-            print(f'Product Hunt public RSS: {len(rows)} relevant public leads',flush=True)
+            print(f'Product Hunt public RSS: {scanned} feed elements, {len(rows)} relevant public leads',flush=True)
         except Exception as e:
             print('Product Hunt public RSS unavailable: '+type(e).__name__,flush=True)
     raw['items'].extend(new[:20])

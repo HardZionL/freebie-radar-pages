@@ -19,7 +19,7 @@ class FreeCommunityFeeds(unittest.TestCase):
             {"objectID":"45512347","title":"Just discussing the best software ideas",
              "story_text":"","created_at":"2026-11-25T03:00:00Z"},
             {"objectID":"45512348","title":"Amazing free trial for an app",
-             "story_text":"","created_at":"2026-11-20T03:00:00Z"},
+             "story_text":"","created_at":"2026-11-10T03:00:00Z"},
             {"objectID":"ABC---","title":"Free trial for all",
              "story_text":"","created_at":"2026-11-25T03:00:00Z"},
         ]}
@@ -28,6 +28,12 @@ class FreeCommunityFeeds(unittest.TestCase):
         self.assertEqual(out[0]["url"],'https://news.ycombinator.com/item?id=45512346')
         self.assertEqual(out[0]["source_id"],'hn-offers')
         self.assertEqual(out[0]["category"],'ai')
+    def test_free_developer_tool_is_candidate_not_approved(self):
+        from collect_community import eligible
+        self.assertTrue(eligible('Free AI tool for coders','Free to use as a developer'))
+        self.assertTrue(eligible('Open-source AI coding assistant','Free for independent developers'))
+        self.assertFalse(eligible('Just a beautiful notebook app','Nice notes for everyone'))
+        self.assertFalse(eligible('Free AI credits in our crypto airdrop','Referral farming'))
     def test_producthunt_atom_promotional_entries_only(self):
         now=dt.datetime(2026,11,25,4,tzinfo=UTC)
         feed='''<feed xmlns="http://www.w3.org/2005/Atom">

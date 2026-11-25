@@ -1,6 +1,6 @@
 {
   "created": "2026-11-25",
-  "goal": "One-time free-community source smoke test, 12-review cap, 2-way MiMo parallelism",
-  "paidX": false,
-  "push": false
+  "attempt": 2,
+  "goal": "Verify live free RSS/Algolia discovery and 12 items 2 parallel MiMo audited",
+  "paidX": false
 }
