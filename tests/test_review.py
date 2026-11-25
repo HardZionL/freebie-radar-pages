@@ -90,6 +90,16 @@ class TestRadar(unittest.TestCase):
         self.assertEqual(sum(x['offerType']=='delivery' for x in selected),2)
         self.assertGreaterEqual(sum(x['hint']=='ai' for x in selected),2)
         self.assertGreaterEqual(sum(x['hint']=='media' for x in selected),1)
+    def test_xhs_index_links_are_strict_and_deeplinks_cleaned(self):
+        n='681a0a8b000000002102f720'
+        target='https://www.xiaohongshu.com/explore/'+n
+        self.assertEqual(safe_url(target+'?xsec_token=redacted','xhs-public-index'),target)
+        self.assertEqual(safe_url('https://xiaohongshu.com/explore/'+n,'xhs-public-index'),target)
+        for invalid in ('http://www.xiaohongshu.com/explore/'+n,
+                        'https://www.xiaohongshu.com/search_result?query=优惠券',
+                        'https://login.xiaohongshu.com/explore/'+n,
+                        'https://evil.example/explore/'+n):
+            self.assertIsNone(safe_url(invalid,'xhs-public-index'))
     def test_free_community_source_links_are_strict(self):
         self.assertEqual(safe_url('https://news.ycombinator.com/item?id=45123456','hn-offers'),
                          'https://news.ycombinator.com/item?id=45123456')

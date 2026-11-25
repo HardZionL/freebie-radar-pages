@@ -13,6 +13,7 @@ on:
       - 'bootstrap/aws-official-now.json'
       - 'bootstrap/30min-rollout.json'
       - 'bootstrap/free-community-rollout.json'
+      - 'bootstrap/xhs-index-rollout.json'
   schedule:
     # Full sources every 2 hours; lightweight rounds in the other slots.
     - cron: '17 0,6,12,18 * * *'
@@ -77,7 +78,7 @@ jobs:
           FETCH_TIMEOUT_MS: '15000'
           MAX_ITEMS_PER_RUN: '40'
           RADAR_BOOTSTRAP: ${{ (github.event_name == 'push' && contains(github.event.head_commit.added, 'bootstrap/initial-seed.json')) || inputs.bootstrap == true }}
-          RADAR_RETAIL: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, 'aws-official-now') && !contains(github.event.head_commit.message, '30min-rollout') && !contains(github.event.head_commit.message, 'free-community-rollout') }}
+          RADAR_RETAIL: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, 'aws-official-now') && !contains(github.event.head_commit.message, '30min-rollout') && !contains(github.event.head_commit.message, 'free-community-rollout') && !contains(github.event.head_commit.message, 'xhs-index-rollout') }}
           RADAR_QUICK: ${{ github.event.schedule == '17 1-23/2 * * *' || github.event.schedule == '47 * * * *' || (github.event_name == 'push' && contains(github.event.head_commit.message, '30min-rollout')) }}
           DATABASE_PATH: ${{ runner.temp }}/radar.db
         run: |
@@ -92,16 +93,19 @@ jobs:
         env:
           RADAR_QUICK: ${{ github.event.schedule == '17 1-23/2 * * *' || github.event.schedule == '47 * * * *' || (github.event_name == 'push' && contains(github.event.head_commit.message, '30min-rollout')) }}
         run: python3 scripts/collect_community.py "$RUNNER_TEMP/candidates.json"
+      - name: Discover publicly indexed Xiaohongshu discount notes (no login)
+        if: ${{ github.event.schedule != '17 1-23/2 * * *' && github.event.schedule != '47 * * * *' }}
+        run: python3 scripts/collect_xhs_index.py "$RUNNER_TEMP/candidates.json"
       - name: Review only new candidates and generate safe public snapshot
         env:
           MIMO_API_KEY: ${{ secrets.MIMO_API_KEY }}
           MIMO_MODEL: ${{ vars.MIMO_MODEL }}
           DAILY: ${{ github.event.schedule == '30 12 * * *' || inputs.daily == true }}
           BOOTSTRAP: ${{ (github.event_name == 'push' && contains(github.event.head_commit.added, 'bootstrap/initial-seed.json')) || inputs.bootstrap == true }}
-          RETAIL: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, 'aws-official-now') && !contains(github.event.head_commit.message, '30min-rollout') && !contains(github.event.head_commit.message, 'free-community-rollout') }}
+          RETAIL: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, 'aws-official-now') && !contains(github.event.head_commit.message, '30min-rollout') && !contains(github.event.head_commit.message, 'free-community-rollout') && !contains(github.event.head_commit.message, 'xhs-index-rollout') }}
           COUPON_BOOST: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, 'coupon-ai-audit-2') }}
-          LEADS_ONLY: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, 'coupon-ai-audit-2') && !contains(github.event.head_commit.message, 'aws-official-now') && !contains(github.event.head_commit.message, '30min-rollout') && !contains(github.event.head_commit.message, 'free-community-rollout') }}
-          BUDGETED: ${{ github.event_name == 'schedule' || (github.event_name == 'push' && (contains(github.event.head_commit.message, '30min-rollout') || contains(github.event.head_commit.message, 'free-community-rollout'))) }}
+          LEADS_ONLY: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, 'coupon-ai-audit-2') && !contains(github.event.head_commit.message, 'aws-official-now') && !contains(github.event.head_commit.message, '30min-rollout') && !contains(github.event.head_commit.message, 'free-community-rollout') && !contains(github.event.head_commit.message, 'xhs-index-rollout') }}
+          BUDGETED: ${{ github.event_name == 'schedule' || (github.event_name == 'push' && (contains(github.event.head_commit.message, '30min-rollout') || contains(github.event.head_commit.message, 'free-community-rollout') || contains(github.event.head_commit.message, 'xhs-index-rollout'))) }}
         run: |
           args=()
           if [[ "$DAILY" == "true" ]]; then args+=(--daily); fi
