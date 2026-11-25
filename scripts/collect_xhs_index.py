@@ -187,9 +187,11 @@ def main(path):
     seen.discard(None)
     collected=[]
     errors=0
-    # Two changing keywords per full 2-hour round, limiting search-engine load.
-    hour=dt.datetime.now(dt.timezone.utc).hour
-    chosen=(QUERIES[hour%len(QUERIES)],QUERIES[(hour+2)%len(QUERIES)])
+    # Rotate one fixed public-index query every half hour; all four in two hours.
+    # Polling an index more frequently does not make its content real time.
+    now=dt.datetime.now(dt.timezone.utc)
+    slot=now.hour*2+(1 if now.minute>=30 else 0)
+    chosen=(QUERIES[slot%len(QUERIES)],)
     for query in chosen:
         try:
             feed=public_bing_rss(query)

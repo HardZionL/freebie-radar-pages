@@ -15,14 +15,14 @@ on:
       - 'bootstrap/free-community-rollout.json'
       - 'bootstrap/xhs-index-rollout.json'
       - 'bootstrap/xhs-curated.json'
+      - 'bootstrap/fast-cadence-rollout.json'
   schedule:
-    # Full sources every 2 hours; lightweight rounds in the other slots.
-    - cron: '17 0,6,12,18 * * *'
-    - cron: '17 2,4,8,10,14,16,20,22 * * *'
-    # Every other half-hour is a lightweight incremental round.
-    - cron: '17 1-23/2 * * *'
-    - cron: '47 * * * *'
-    # Daily digest, 20:30 Beijing = 12:30 UTC.
+    # Full hourly scan, plus flash scans every 15 minutes, off peak minute zero.
+    - cron: '07 * * * *'
+    - cron: '22,52 * * * *'
+    # Flash scan + public Xiaohongshu index at :37.
+    - cron: '37 * * * *'
+    # Single nightly digest, 20:30 Beijing, no push.
     - cron: '30 12 * * *'
   workflow_dispatch:
     inputs:
@@ -79,8 +79,8 @@ jobs:
           FETCH_TIMEOUT_MS: '15000'
           MAX_ITEMS_PER_RUN: '40'
           RADAR_BOOTSTRAP: ${{ (github.event_name == 'push' && contains(github.event.head_commit.added, 'bootstrap/initial-seed.json')) || inputs.bootstrap == true }}
-          RADAR_RETAIL: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, 'aws-official-now') && !contains(github.event.head_commit.message, '30min-rollout') && !contains(github.event.head_commit.message, 'free-community-rollout') && !contains(github.event.head_commit.message, 'xhs-index-rollout') }}
-          RADAR_QUICK: ${{ github.event.schedule == '17 1-23/2 * * *' || github.event.schedule == '47 * * * *' || (github.event_name == 'push' && contains(github.event.head_commit.message, '30min-rollout')) }}
+          RADAR_RETAIL: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, 'aws-official-now') && !contains(github.event.head_commit.message, '30min-rollout') && !contains(github.event.head_commit.message, 'free-community-rollout') && !contains(github.event.head_commit.message, 'xhs-index-rollout') && !contains(github.event.head_commit.message, 'fast-cadence-rollout') }}
+          RADAR_QUICK: ${{ github.event.schedule == '22,52 * * * *' || github.event.schedule == '37 * * * *' || (github.event_name == 'push' && contains(github.event.head_commit.message, 'fast-cadence-rollout')) }}
           DATABASE_PATH: ${{ runner.temp }}/radar.db
         run: |
           cp ../scripts/collect.mjs ./radar-collect.mjs
@@ -88,14 +88,14 @@ jobs:
       - name: Enrich public coupon and delivery candidates without credentials
         run: python3 scripts/collect_coupons.py "$RUNNER_TEMP/candidates.json"
       - name: Monitor official AWS AI announcements and current Quick trial terms
-        if: ${{ github.event.schedule != '17 1-23/2 * * *' && github.event.schedule != '47 * * * *' }}
+        if: ${{ github.event.schedule == '07 * * * *' || github.event.schedule == '37 * * * *' || github.event.schedule == '30 12 * * *' || github.event_name != 'schedule' }}
         run: python3 scripts/collect_official_ai.py "$RUNNER_TEMP/candidates.json"
       - name: Discover free community offers from HN and Product Hunt
         env:
-          RADAR_QUICK: ${{ github.event.schedule == '17 1-23/2 * * *' || github.event.schedule == '47 * * * *' || (github.event_name == 'push' && contains(github.event.head_commit.message, '30min-rollout')) }}
+          RADAR_QUICK: ${{ github.event.schedule == '22,52 * * * *' || github.event.schedule == '37 * * * *' || (github.event_name == 'push' && contains(github.event.head_commit.message, 'fast-cadence-rollout')) }}
         run: python3 scripts/collect_community.py "$RUNNER_TEMP/candidates.json"
       - name: Discover publicly indexed Xiaohongshu discount notes (no login)
-        if: ${{ github.event.schedule != '17 1-23/2 * * *' && github.event.schedule != '47 * * * *' }}
+        if: ${{ github.event.schedule == '07 * * * *' || github.event.schedule == '37 * * * *' || github.event.schedule == '30 12 * * *' || github.event_name != 'schedule' }}
         run: python3 scripts/collect_xhs_index.py "$RUNNER_TEMP/candidates.json"
       - name: Review only new candidates and generate safe public snapshot
         env:
@@ -103,10 +103,11 @@ jobs:
           MIMO_MODEL: ${{ vars.MIMO_MODEL }}
           DAILY: ${{ github.event.schedule == '30 12 * * *' || inputs.daily == true }}
           BOOTSTRAP: ${{ (github.event_name == 'push' && contains(github.event.head_commit.added, 'bootstrap/initial-seed.json')) || inputs.bootstrap == true }}
-          RETAIL: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, 'aws-official-now') && !contains(github.event.head_commit.message, '30min-rollout') && !contains(github.event.head_commit.message, 'free-community-rollout') && !contains(github.event.head_commit.message, 'xhs-index-rollout') }}
+          RETAIL: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, 'aws-official-now') && !contains(github.event.head_commit.message, '30min-rollout') && !contains(github.event.head_commit.message, 'free-community-rollout') && !contains(github.event.head_commit.message, 'xhs-index-rollout') && !contains(github.event.head_commit.message, 'fast-cadence-rollout') }}
           COUPON_BOOST: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, 'coupon-ai-audit-2') }}
-          LEADS_ONLY: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, 'coupon-ai-audit-2') && !contains(github.event.head_commit.message, 'aws-official-now') && !contains(github.event.head_commit.message, '30min-rollout') && !contains(github.event.head_commit.message, 'free-community-rollout') && !contains(github.event.head_commit.message, 'xhs-index-rollout') }}
-          BUDGETED: ${{ github.event_name == 'schedule' || (github.event_name == 'push' && (contains(github.event.head_commit.message, '30min-rollout') || contains(github.event.head_commit.message, 'free-community-rollout') || contains(github.event.head_commit.message, 'xhs-index-rollout'))) }}
+          LEADS_ONLY: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, 'coupon-ai-audit-2') && !contains(github.event.head_commit.message, 'aws-official-now') && !contains(github.event.head_commit.message, '30min-rollout') && !contains(github.event.head_commit.message, 'free-community-rollout') && !contains(github.event.head_commit.message, 'xhs-index-rollout') && !contains(github.event.head_commit.message, 'fast-cadence-rollout') }}
+          BUDGETED: ${{ github.event_name == 'schedule' || (github.event_name == 'push' && (contains(github.event.head_commit.message, '30min-rollout') || contains(github.event.head_commit.message, 'free-community-rollout') || contains(github.event.head_commit.message, 'xhs-index-rollout') || contains(github.event.head_commit.message, 'fast-cadence-rollout'))) }}
+          QUICK_REVIEW: ${{ github.event.schedule == '22,52 * * * *' || github.event.schedule == '37 * * * *' || (github.event_name == 'push' && contains(github.event.head_commit.message, 'fast-cadence-rollout')) }}
         run: |
           args=()
           if [[ "$DAILY" == "true" ]]; then args+=(--daily); fi
@@ -115,6 +116,7 @@ jobs:
           if [[ "$LEADS_ONLY" == "true" ]]; then args+=(--leads-only); fi
           if [[ "$COUPON_BOOST" == "true" ]]; then args+=(--coupon-boost); fi
           if [[ "$BUDGETED" == "true" ]]; then args+=(--budgeted); fi
+          if [[ "$QUICK_REVIEW" == "true" ]]; then args+=(--quick); fi
           python3 scripts/review.py "$RUNNER_TEMP/candidates.json" "${args[@]}"
       - name: Upload only sanitized state and public snapshot
         uses: actions/upload-artifact@v4

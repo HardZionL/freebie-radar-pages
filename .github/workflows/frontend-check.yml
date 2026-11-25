@@ -31,9 +31,11 @@ jobs:
           from pathlib import Path
           w=Path('.github/workflows/radar.yml').read_text()
           schedules=[s.strip() for s in w.splitlines() if 'cron: ' in s]
-          assert len(schedules)==5,schedules
-          assert any("17 0,6,12,18 * * *" in s for s in schedules)
-          assert any("47 * * * *" in s for s in schedules)
+          assert len(schedules)==4,schedules
+          assert any("07 * * * *" in s for s in schedules)
+          assert any("22,52 * * * *" in s for s in schedules)
+          assert any("37 * * * *" in s for s in schedules)
+          assert "QUICK_REVIEW:" in w and "args+=(--quick)" in w
           assert 'collect_community.py' in w
           assert 'X_BEARER_TOKEN' not in w
           assert 'state/x_read_budget.json' not in w

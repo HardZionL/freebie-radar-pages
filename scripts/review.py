@@ -227,7 +227,7 @@ def load(p,default):return json.loads(p.read_text(encoding='utf-8')) if p.exists
 def save(p,data):
     p.parent.mkdir(parents=True,exist_ok=True);tmp=p.with_suffix('.tmp');tmp.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8');tmp.replace(p)
 def main():
-    ap=argparse.ArgumentParser();ap.add_argument('raw',type=Path);ap.add_argument('--daily',action='store_true');ap.add_argument('--bootstrap',action='store_true');ap.add_argument('--retail',action='store_true');ap.add_argument('--leads-only',action='store_true');ap.add_argument('--coupon-boost',action='store_true');ap.add_argument('--budgeted',action='store_true');ap.add_argument('--root',type=Path,default=ROOT);args=ap.parse_args()
+    ap=argparse.ArgumentParser();ap.add_argument('raw',type=Path);ap.add_argument('--daily',action='store_true');ap.add_argument('--bootstrap',action='store_true');ap.add_argument('--retail',action='store_true');ap.add_argument('--leads-only',action='store_true');ap.add_argument('--coupon-boost',action='store_true');ap.add_argument('--budgeted',action='store_true');ap.add_argument('--quick',action='store_true');ap.add_argument('--root',type=Path,default=ROOT);args=ap.parse_args()
     now=dt.datetime.now(UTC);day=now.astimezone(TZ).date().isoformat()
     key=os.environ.get('MIMO_API_KEY','').strip();model=os.environ.get('MIMO_MODEL','').strip() or 'mimo-v2.6-flash'
     if not key and not args.leads_only: raise SystemExit('Missing MIMO_API_KEY repository secret; no review performed.')
@@ -282,7 +282,7 @@ def main():
         if c and (c['fingerprint'] not in seen or (args.coupon_boost and c['offerType']!='product')):
             candidates[c['id']]=c
             eligible_by_source[c['source']]=eligible_by_source.get(c['source'],0)+1
-    review_cap=72 if args.bootstrap else 36 if args.retail or args.coupon_boost else 12 if args.budgeted else 24
+    review_cap=72 if args.bootstrap else 36 if args.retail or args.coupon_boost else 6 if args.budgeted and args.quick else 12 if args.budgeted else 24
     pending=shortlist(candidates,review_cap)
     shortlisted_by_source={}
     for x in pending:

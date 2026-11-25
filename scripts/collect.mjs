@@ -21,7 +21,7 @@ const initialOnly = ['rss-itch-free','gamerpower-loot'];
 const ids = bootstrap ? [...regular, ...initialOnly]
   : retail ? ['rss-smzdm','v2ex-deals','rss-fuliba','rss-meta-appinn','rss-9to5toys']
   : quick ? fast : regular;
-console.log(bootstrap ? 'INITIAL BACKFILL: increased source scan' : retail ? 'RETAIL CHECK: shopping-first one-off validation' : 'NORMAL UPDATE: '+(quick?'30-minute fast incremental collection':'2-hour full source rotation'));
+console.log(bootstrap ? 'INITIAL BACKFILL: increased source scan' : retail ? 'RETAIL CHECK: shopping-first one-off validation' : 'NORMAL UPDATE: '+(quick?'15-minute fast incremental collection':'hourly full source rotation'));
 const words = ['淘宝','天猫','京东','拼多多','88VIP','PLUS会员','腾讯视频','爱奇艺','优酷','芒果','哔哩哔哩','B站大会员','大会员','联合会员','年卡','折扣','特价','好价','史低','直降','立减','降价','购物津贴','券后','低价','网易云音乐','QQ音乐','会员','红包','免单','优惠券','限免','学生优惠','话费','外卖','美团','饿了么','满减','大促','史低','百亿补贴','五折','半价','免费领取'];
 for (const id of ['rss-smzdm','rss-fuliba','rss-ithome','rss-nodeseek']) {
   const row=get('SELECT config FROM sources WHERE id = ?',id);
