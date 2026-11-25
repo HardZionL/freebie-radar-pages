@@ -1,1 +1,11 @@
-{"purpose":"one-time 30-minute cadence verification, no X billing without explicit user secret","createdOn":"2026-11-25"}
+{
+  "purpose": "one-time production smoke test of 30-minute update with six MiMo decisions",
+  "createdOn": "2026-11-25",
+  "attempt": 2,
+  "expected": {
+    "RADAR_QUICK": true,
+    "BUDGETED": true,
+    "LEADS_ONLY": false,
+    "X_api_if_no_token": "skip without charge"
+  }
+}
