@@ -40,7 +40,7 @@ jobs:
           assert '--budgeted' in w
           print('Cadence, token isolation and conservative caps: PASS')
           PY
-          python3 -m py_compile scripts/review.py scripts/collect_community.py scripts/collect_official_ai.py
+          python3 -m py_compile scripts/review.py scripts/collect_community.py scripts/collect_official_ai.py scripts/collect_xhs_index.py
           python3 -m unittest discover -s tests -v
           python3 - <<'PY'
           from pathlib import Path
