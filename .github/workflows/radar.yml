@@ -14,6 +14,7 @@ on:
       - 'bootstrap/30min-rollout.json'
       - 'bootstrap/free-community-rollout.json'
       - 'bootstrap/xhs-index-rollout.json'
+      - 'bootstrap/xhs-curated.json'
   schedule:
     # Full sources every 2 hours; lightweight rounds in the other slots.
     - cron: '17 0,6,12,18 * * *'

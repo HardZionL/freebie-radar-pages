@@ -2,7 +2,7 @@ import sys
 import unittest
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
-from collect_xhs_index import canonical_note,parse_feed,public_bing_rss,clean_title,QUERIES
+from collect_xhs_index import canonical_note,parse_feed,public_bing_rss,clean_title,QUERIES,parse_curated
 
 def rss(items):
     return '<rss version="2.0"><channel><title>Bing</title>'+items+'</channel></rss>'
@@ -40,6 +40,22 @@ class PublicXhsIndex(unittest.TestCase):
         with self.assertRaises(ValueError):parse_feed('<html><body>captcha</body></html>')
         with self.assertRaises(ValueError):public_bing_rss('user controlled query')
         self.assertEqual(len(QUERIES),4)
+    def test_admin_curated_links_are_screened_and_time_bounded(self):
+        import datetime as dt
+        note='681a0a8b000000002102f720'
+        now=dt.datetime(2026,11,25,tzinfo=dt.timezone.utc)
+        good='https://www.xiaohongshu.com/explore/'+note+'?tracking=user'
+        rows=parse_curated([
+            {'url':good,'title':'美团外卖满29减15红包领取指南','addedOn':'2026-11-25'},
+            {'url':good,'title':'美团外卖满29减15红包领取指南','addedOn':'2026-11-25'},
+            {'url':'https://evil.example/explore/'+note,'title':'红包券大额','addedOn':'2026-11-25'},
+            {'url':good,'title':'红包天天领私信联系我','addedOn':'2026-11-25'},
+            {'url':good,'title':'美团外卖券促销','addedOn':'2026-10-01'},
+        ],now,set())
+        self.assertEqual(len(rows),1)
+        self.assertEqual(rows[0]['source_id'],'xhs-curated')
+        self.assertIsNone(rows[0]['published_at'])
+        self.assertEqual(rows[0]['url'],'https://www.xiaohongshu.com/explore/'+note)
     def test_title_cleanup(self):
         self.assertEqual(clean_title('福利券今晚领取 - 小红书'),'福利券今晚领取')
 if __name__=='__main__':unittest.main()
