@@ -34,12 +34,13 @@ jobs:
           assert len(schedules)==5,schedules
           assert any("17 0,6,12,18 * * *" in s for s in schedules)
           assert any("47 * * * *" in s for s in schedules)
-          assert 'X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}' in w
-          assert 'state/x_read_budget.json' in w
+          assert 'collect_community.py' in w
+          assert 'X_BEARER_TOKEN' not in w
+          assert 'state/x_read_budget.json' not in w
           assert '--budgeted' in w
           print('Cadence, token isolation and conservative caps: PASS')
           PY
-          python3 -m py_compile scripts/review.py scripts/collect_x.py scripts/collect_official_ai.py
+          python3 -m py_compile scripts/review.py scripts/collect_community.py scripts/collect_official_ai.py
           python3 -m unittest discover -s tests -v
           python3 - <<'PY'
           from pathlib import Path
