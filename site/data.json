@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-26T00:55:09+00:00",
+  "updatedAt": "2026-11-26T01:09:20+00:00",
   "items": [
     {
       "id": "97fdfab2d58144184eef86e8c945a915d517ed5fdac22081d9e66812b9ab5fe2",
@@ -240,6 +240,36 @@
       "offerType": "product",
       "reviewStatus": "ai-screened",
       "firstSeen": "2026-11-26T00:32:26+00:00"
+    },
+    {
+      "id": "e10e7600022dd7e2c87e38afafb8dae8effb0ebc9b35e2a446322f9647a70a02",
+      "source": "rss-smzdm",
+      "title": "HELLY HANSEN 男款防泼水透气运动夹克 580.83元(需用券)",
+      "url": "https://www.smzdm.com/p/186773852",
+      "published": "2026-11-25T21:42:39+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "shopping",
+      "quality": 3,
+      "reason": "有明确优惠信息，实际价格及领取资格需核实",
+      "offerType": "product",
+      "reviewStatus": "ai-screened",
+      "firstSeen": "2026-11-26T01:09:20+00:00"
+    },
+    {
+      "id": "0cd65d9c4c063b5178255d5ab3ceb01780b0048dbdd4179838b023c155a3a3d1",
+      "source": "rss-smzdm",
+      "title": "坦博尔 轻薄短款羽绒服 251.84元(需用券)",
+      "url": "https://www.smzdm.com/p/186773777",
+      "published": "2026-11-25T21:40:26+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "shopping",
+      "quality": 3,
+      "reason": "有明确优惠信息，实际价格及领取资格需核实",
+      "offerType": "product",
+      "reviewStatus": "ai-screened",
+      "firstSeen": "2026-11-26T01:09:20+00:00"
     },
     {
       "id": "b0733904e8147e6eb069412fe0d9a3b9dc687d162cf674d913633b80ce99dc39",
@@ -4876,6 +4906,21 @@
       "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
     },
     {
+      "id": "094f671fd92e8afb257a0997a907b555a628a98f6f9734344a0c58126b9ba06d",
+      "source": "rss-smzdm",
+      "title": "三枪 231g重磅纯棉保暖内衣 2件装 59元",
+      "url": "https://www.smzdm.com/p/186781988",
+      "published": "2026-11-26T01:21:30+00:00",
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "product",
+      "price": null,
+      "firstSeen": "2026-11-26T01:09:20+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
       "id": "3402abee7008f0832cfee646467741bb075fc7a8891091e59d99db45bff466c2",
       "source": "rss-smzdm",
       "title": "米良品 国潮狮子招财镇宅摆件 一对装 19.9元(需用券)",
@@ -4981,6 +5026,36 @@
       "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
     },
     {
+      "id": "d75aec2737f3646a2c896a9b0e591b0a68945dceb70772a2f062b7f9c9b1901c",
+      "source": "rss-smzdm",
+      "title": "carhartt 男款复古休闲裤 89元",
+      "url": "https://www.smzdm.com/p/186780321",
+      "published": "2026-11-26T00:37:13+00:00",
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "product",
+      "price": null,
+      "firstSeen": "2026-11-26T01:09:20+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
+      "id": "a13a5b651d083b81f5cab9cdcf6689691c4d3d803b4b9c40d59f6a8c944bfbef",
+      "source": "rss-smzdm",
+      "title": "雪中飞 男款轻薄立领排骨羽绒服 650+高蓬90%绒 99元(需用券)",
+      "url": "https://www.smzdm.com/p/186778476",
+      "published": "2026-11-25T23:55:37+00:00",
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "product",
+      "price": null,
+      "firstSeen": "2026-11-26T01:09:20+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
       "id": "d7ce99a5cc3e25c86e2635d72ab1d017b9d40d04297fcf769fedc952b278bc9d",
       "source": "rss-smzdm",
       "title": "移动端:曼秀雷敦 薄荷润唇膏 9.9元(淘金币可抵0.52元起)",
@@ -5041,6 +5116,21 @@
       "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
     },
     {
+      "id": "d9248ce89465498d8a82defcb65105cac74ecb33fcdf27920569d69d55a195b5",
+      "source": "rss-smzdm",
+      "title": "荣耀 MagicPad 3 12.5英寸(8GB、256GB) 平板电脑 3094元(需用券)",
+      "url": "https://www.smzdm.com/p/186774771",
+      "published": "2026-11-25T22:20:25+00:00",
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "product",
+      "price": null,
+      "firstSeen": "2026-11-26T01:09:20+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
       "id": "d3c1f305a134c6b6010e8175ce806ce6bc8cbc80640f7aac852759190fcef514",
       "source": "rss-smzdm",
       "title": "88VIP:徐福记 白桃味棉花糖208g结婚宝宝满月喜糖零食糖果 4.91元",
@@ -5086,6 +5176,21 @@
       "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
     },
     {
+      "id": "5970bc7275c644dddfe88285cbceafe9023745bd76c88a85b45e49bd6251af41",
+      "source": "rss-smzdm",
+      "title": "男款加绒保暖德绒打底衫 300g 29.9元(需用券)",
+      "url": "https://www.smzdm.com/p/186773466",
+      "published": "2026-11-25T21:27:16+00:00",
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "product",
+      "price": null,
+      "firstSeen": "2026-11-26T01:09:20+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
       "id": "7d4e833dbe2aa892936501b1634733db7b0fd43ce17b17ccbc0bb67630ec76bc",
       "source": "rss-smzdm",
       "title": "波司登 男女款连帽中长款羽绒服 459元(需用券)",
@@ -5101,6 +5206,21 @@
       "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
     },
     {
+      "id": "fb93c0d5eae3b6b468988b708b6fa607bcf24c93370d1a6ef319f38e3dbde995",
+      "source": "rss-smzdm",
+      "title": "波司登 男女款滑雪羽绒服90鹅绒 609元(需用券)",
+      "url": "https://www.smzdm.com/p/186773092",
+      "published": "2026-11-25T21:13:27+00:00",
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "product",
+      "price": null,
+      "firstSeen": "2026-11-26T01:09:20+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
       "id": "f0af1f13fc62a278b853354157c36b5f130bb5c8b5e3eb683cca66be3c70db11",
       "source": "rss-smzdm",
       "title": "Krupp Corp 100支纯净拉绒秋冬保暖纯棉四件套 200*230cm 239元",
@@ -5113,6 +5233,21 @@
       "offerType": "product",
       "price": null,
       "firstSeen": "2026-11-25T21:54:56+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
+      "id": "8473a0914e7b5de346096de2268f134f36b7c60144aee3124fd99c0296876e3b",
+      "source": "rss-smzdm",
+      "title": "冰洁 95鸭绒中长款羽绒服 379.12元",
+      "url": "https://www.smzdm.com/p/186772928",
+      "published": "2026-11-25T21:05:27+00:00",
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "product",
+      "price": null,
+      "firstSeen": "2026-11-26T01:09:20+00:00",
       "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
     },
     {
@@ -5534,111 +5669,6 @@
       "price": null,
       "firstSeen": "2026-11-26T00:55:09+00:00",
       "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
-    },
-    {
-      "id": "5810076c8c0e58d71bcd7e7a9462d6336afbec81fede41127eee970601a62b2f",
-      "source": "rss-smzdm",
-      "title": "雅戈尔 男款鹅绒羽绒服 589.4元",
-      "url": "https://www.smzdm.com/p/186752079",
-      "published": "2026-11-25T14:36:30+00:00",
-      "expires": null,
-      "bucket": "shopping",
-      "reviewStatus": "unverified",
-      "quality": 0,
-      "offerType": "product",
-      "price": null,
-      "firstSeen": "2026-11-25T16:12:07+00:00",
-      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
-    },
-    {
-      "id": "d974b9c904b3f0ffa3846dd77e2ea510691aac8b0527df73acd3f847df35cdd3",
-      "source": "rss-smzdm",
-      "title": "普丽普莱 甫酶q10软胶囊美国原装200ma240粒辅酶a10 辅酶q10 240粒*1瓶 115.1元(需用券)",
-      "url": "https://www.smzdm.com/p/186750168",
-      "published": "2026-11-25T14:13:55+00:00",
-      "expires": null,
-      "bucket": "shopping",
-      "reviewStatus": "unverified",
-      "quality": 0,
-      "offerType": "product",
-      "price": null,
-      "firstSeen": "2026-11-25T17:03:01+00:00",
-      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
-    },
-    {
-      "id": "06d7945fafc71b6237091ddd3b1aca3d5e2a3364ac2edcf23c819288a896db7e",
-      "source": "rss-smzdm",
-      "title": "今世缘 国缘系列 国缘 四开 42%vol 浓香型白酒 500ml*2瓶 礼盒装 810元(需用券)",
-      "url": "https://www.smzdm.com/p/186749659",
-      "published": "2026-11-25T14:11:18+00:00",
-      "expires": null,
-      "bucket": "shopping",
-      "reviewStatus": "unverified",
-      "quality": 0,
-      "offerType": "product",
-      "price": null,
-      "firstSeen": "2026-11-25T17:03:01+00:00",
-      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
-    },
-    {
-      "id": "413c6844b41072772b0f9d27f017fc66536cde8c79c2da19fbe61683e5209a25",
-      "source": "rss-smzdm",
-      "title": "UGG 女式经典短靴 II,可可粉 936.4元包邮",
-      "url": "https://www.smzdm.com/p/186614898",
-      "published": "2026-11-25T13:43:47+00:00",
-      "expires": null,
-      "bucket": "shopping",
-      "reviewStatus": "unverified",
-      "quality": 0,
-      "offerType": "product",
-      "price": null,
-      "firstSeen": "2026-11-25T05:44:54+00:00",
-      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
-    },
-    {
-      "id": "a492b05087c52e59f220ebb44f4071322cf96484d73b05fa6e36abb4b8a1d0a8",
-      "source": "rss-smzdm",
-      "title": "狮王 小狮王儿童牙刷6-12岁3支装宝宝婴儿细毛软毛牙刷颜色 6-12岁儿童牙刷3支 12.61元",
-      "url": "https://www.smzdm.com/p/186726062",
-      "published": "2026-11-25T13:43:29+00:00",
-      "expires": null,
-      "bucket": "shopping",
-      "reviewStatus": "unverified",
-      "quality": 0,
-      "offerType": "product",
-      "price": null,
-      "firstSeen": "2026-11-25T05:44:54+00:00",
-      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
-    },
-    {
-      "id": "331a9b4086bc00b4f98d103ef402084fb587247a17bedd5f1d93fbc3998b2a29",
-      "source": "rss-smzdm",
-      "title": "汉王 Hanvon N6Pro 6英寸手写电纸本 1863.21元",
-      "url": "https://www.smzdm.com/p/186746179",
-      "published": "2026-11-25T13:43:23+00:00",
-      "expires": null,
-      "bucket": "shopping",
-      "reviewStatus": "unverified",
-      "quality": 0,
-      "offerType": "product",
-      "price": null,
-      "firstSeen": "2026-11-25T05:44:54+00:00",
-      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
-    },
-    {
-      "id": "ee5ea1f319df9dc243f6ba7fa65369193980a0e9a01d9f9363ef267fc9fc0d27",
-      "source": "rss-smzdm",
-      "title": "UGG 中性儿童经典 Hop 一脚蹬, 板岩色 834.96元",
-      "url": "https://www.smzdm.com/p/186712799",
-      "published": "2026-11-25T13:36:18+00:00",
-      "expires": null,
-      "bucket": "shopping",
-      "reviewStatus": "unverified",
-      "quality": 0,
-      "offerType": "product",
-      "price": null,
-      "firstSeen": "2026-11-25T05:37:00+00:00",
-      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
     }
   ],
   "officialBenefits": [
@@ -5653,7 +5683,7 @@
       "quality": 0,
       "published": null,
       "firstSeen": "2026-11-23",
-      "verifiedAt": "2026-11-26T00:55:07+00:00",
+      "verifiedAt": "2026-11-26T01:09:19+00:00",
       "expires": null,
       "price": null,
       "offerType": "product"
