@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-26T19:29:11+00:00",
+  "updatedAt": "2026-11-26T19:48:19+00:00",
   "items": [
     {
       "id": "9e775621df2737c31e0f22c3f5a313eb1083504e39ef828457496747ee61777c",
@@ -75,6 +75,36 @@
       "offerType": "product",
       "reviewStatus": "ai-screened",
       "firstSeen": "2026-11-26T19:29:11+00:00"
+    },
+    {
+      "id": "10acf74e3c779bf3fffa1d2831c33c63fb6ee47dc9f1b77df5484d89475d6ff3",
+      "source": "rss-smzdm",
+      "title": "良品铺子 虎皮凤爪鸡爪鸡肉熟食卤味宿舍解馋零食夜宵开袋即食500g 27.9元",
+      "url": "https://www.smzdm.com/p/186829083",
+      "published": "2026-11-26T19:58:50+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "shopping",
+      "quality": 3,
+      "reason": "有明确优惠信息，实际价格及领取资格需核实",
+      "offerType": "product",
+      "reviewStatus": "ai-screened",
+      "firstSeen": "2026-11-26T19:48:19+00:00"
+    },
+    {
+      "id": "2d42297c67ff892253204fc39b87616a91387a6d6795b4ae95ef76c6485602a5",
+      "source": "rss-smzdm",
+      "title": "绿箭 无糖口香糖约40粒56g*3瓶(薄荷+茉莉+玫瑰) 清新 休闲零食糖果 19.9元",
+      "url": "https://www.smzdm.com/p/186828782",
+      "published": "2026-11-26T19:57:16+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "shopping",
+      "quality": 3,
+      "reason": "有明确优惠信息，实际价格及领取资格需核实",
+      "offerType": "product",
+      "reviewStatus": "ai-screened",
+      "firstSeen": "2026-11-26T19:48:19+00:00"
     },
     {
       "id": "b8bdd6c79ea5754850537afe5f879c454fd6f096c56ca8867eac37fcc0cd8926",
@@ -180,6 +210,21 @@
       "offerType": "product",
       "reviewStatus": "ai-screened",
       "firstSeen": "2026-11-26T19:09:54+00:00"
+    },
+    {
+      "id": "336a816880a1ba44f643aeaa3e2c63ed9ccb59bedf36d34d3d4c3e8360048e50",
+      "source": "rss-meta-appinn",
+      "title": "【开发者自荐】拾卡 SubCard · 订阅与账号管理:理清会员订阅,查看邮箱、手机号注册和绑定了哪些 App和网站?IOS免费内测",
+      "url": "https://meta.appinn.net/t/topic/96981",
+      "published": "2026-11-26T14:19:56+00:00",
+      "expires": null,
+      "price": 0,
+      "bucket": "ai",
+      "quality": 3,
+      "reason": "有明确开发者福利信息",
+      "offerType": "product",
+      "reviewStatus": "ai-screened",
+      "firstSeen": "2026-11-26T19:48:19+00:00"
     },
     {
       "id": "0bf5a606e7064ce59408d996d21f5776ec5f6fdc26c5838a50c8bb1f080b5d9d",
@@ -3497,36 +3542,6 @@
       "firstSeen": "2026-11-22T12:00:05+00:00"
     },
     {
-      "id": "27ec29eb96d568d3b391eb59e95045d3e65642fd5998e31f4e872d67ce2c7be1",
-      "source": "rss-smzdm-coupon",
-      "title": "美团到店 周末堂食半价 每日可领:美团到店 吃喝玩乐 美食团购满300-40/190-27/120-15/80-40等神券 10:03 99k+人已领 免费领取",
-      "url": "https://www.smzdm.com/p/161616968",
-      "published": null,
-      "expires": null,
-      "price": null,
-      "bucket": "shopping",
-      "quality": 4,
-      "reason": "有明确优惠信息，实际价格及领取资格需核实",
-      "offerType": "coupon",
-      "reviewStatus": "ai-screened",
-      "firstSeen": "2026-11-22T12:00:05+00:00"
-    },
-    {
-      "id": "1fe2547177e1f2ceb2c019f8e2f6000734c299f58965c1127de9955f973addd3",
-      "source": "rss-smzdm-coupon",
-      "title": "美团外卖 每周三10点!抢38-18元神 每日可领:美团外卖 大额外卖福利天天领 (周三抢券啦!) 11-25 99k+人已领 免费领取",
-      "url": "https://www.smzdm.com/p/155019333",
-      "published": null,
-      "expires": null,
-      "price": null,
-      "bucket": "shopping",
-      "quality": 4,
-      "reason": "有明确优惠信息，实际价格及领取资格需核实",
-      "offerType": "delivery",
-      "reviewStatus": "ai-screened",
-      "firstSeen": "2026-11-22T12:00:05+00:00"
-    },
-    {
       "id": "2d5a6a4b3279e9fdc87625fef277f76e44d0a15d306ec525684b07ff82a42c52",
       "source": "rss-smzdm-coupon",
       "title": "美团闪购 今日必买:美团闪购 时令水果专 今日必买:美团闪购 时令水果专场 领59-20/69-25/99-30神券 ¥29.99 ¥31.8 ¥34.59 44.1k人已领 免费领取",
@@ -3551,6 +3566,36 @@
       "price": null,
       "bucket": "shopping",
       "quality": 4,
+      "reason": "有明确优惠信息，实际价格及领取资格需核实",
+      "offerType": "delivery",
+      "reviewStatus": "ai-screened",
+      "firstSeen": "2026-11-22T12:00:05+00:00"
+    },
+    {
+      "id": "27ec29eb96d568d3b391eb59e95045d3e65642fd5998e31f4e872d67ce2c7be1",
+      "source": "rss-smzdm-coupon",
+      "title": "美团到店 周末堂食半价 每日可领:美团到店 吃喝玩乐 美食团购满300-40/190-27/120-15/80-40等神券 11-26 99k+人已领 免费领取",
+      "url": "https://www.smzdm.com/p/161616968",
+      "published": null,
+      "expires": null,
+      "price": null,
+      "bucket": "shopping",
+      "quality": 3,
+      "reason": "有明确优惠信息，实际价格及领取资格需核实",
+      "offerType": "coupon",
+      "reviewStatus": "ai-screened",
+      "firstSeen": "2026-11-22T12:00:05+00:00"
+    },
+    {
+      "id": "1fe2547177e1f2ceb2c019f8e2f6000734c299f58965c1127de9955f973addd3",
+      "source": "rss-smzdm-coupon",
+      "title": "美团外卖 每周三10点!抢38-18元神 每日可领:美团外卖 大额外卖福利天天领 (周三抢券啦!) 11-26 99k+人已领 免费领取",
+      "url": "https://www.smzdm.com/p/155019333",
+      "published": null,
+      "expires": null,
+      "price": null,
+      "bucket": "shopping",
+      "quality": 3,
       "reason": "有明确优惠信息，实际价格及领取资格需核实",
       "offerType": "delivery",
       "reviewStatus": "ai-screened",
@@ -5239,6 +5284,21 @@
       "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
     },
     {
+      "id": "66d680acf5505d568558083e5d58a051835a87d68893b583f1fef9ee1a1ca244",
+      "source": "rss-smzdm",
+      "title": "京东京造 盐焗开心果 1.13kg 115.43元",
+      "url": "https://www.smzdm.com/p/186834086",
+      "published": "2026-11-26T22:04:03+00:00",
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "product",
+      "price": null,
+      "firstSeen": "2026-11-26T19:48:19+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
       "id": "775a93610e4e7c38eeb2d6e3c4fa3d72bee472b772d95649d4bc1d5a2bbcf71a",
       "source": "rss-smzdm",
       "title": "千禾 金标生抽1.52kg*2瓶+蚝油510g*2 瓶 寻味酱香礼盒装 19.85元(需买3件,需用券)",
@@ -5266,6 +5326,21 @@
       "offerType": "product",
       "price": null,
       "firstSeen": "2026-11-26T19:09:54+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
+      "id": "1a906d980e9bb23c9fa5effa8533a6631238e9ff95cda5027681e3ff244fdef1",
+      "source": "rss-smzdm",
+      "title": "碧翠园 泥巴派 巧克力抹茶脏脏蛋糕 蓝莓5个+抹茶5个 29.9元(需用券)",
+      "url": "https://www.smzdm.com/p/186827445",
+      "published": "2026-11-26T19:44:20+00:00",
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "product",
+      "price": null,
+      "firstSeen": "2026-11-26T19:48:19+00:00",
       "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
     },
     {
@@ -5689,6 +5764,36 @@
       "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
     },
     {
+      "id": "363c98c8d053a418c27790b4625eb4fcbfdc5e525eae378eb36577bc1da2f87c",
+      "source": "rss-smzdm",
+      "title": "ON 金标乳清蛋白粉 分离乳清为主 5.64磅 牛奶巧克力味 袋装 698元",
+      "url": "https://www.smzdm.com/p/186811836",
+      "published": "2026-11-26T14:12:13+00:00",
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "product",
+      "price": null,
+      "firstSeen": "2026-11-26T19:48:19+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
+      "id": "6197a2f68671271dd18f1c66c2f1343d4a57d0617290c6f146436514cac7412d",
+      "source": "rss-smzdm",
+      "title": "益节 EJE 益节 MoveFree益节氨糖软骨素钙片维骨力中老年关节氨糖骨胶原 129.63元(需用券)",
+      "url": "https://www.smzdm.com/p/186811780",
+      "published": "2026-11-26T14:11:38+00:00",
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "product",
+      "price": null,
+      "firstSeen": "2026-11-26T19:48:19+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
       "id": "b5b123569e0e51e8b01d1432619e16e924394163d3adceb5577c5c8f14c5a698",
       "source": "rss-smzdm",
       "title": "宝克 速干中性笔CS三球珠 1500米巨能写6支 拍2共12支 9.4元(需买2件,需用券)",
@@ -5764,6 +5869,21 @@
       "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
     },
     {
+      "id": "0d3c0f9bbc8975c5783b54badf2a2d1a44d408a393c0a033101e5289b6e6575e",
+      "source": "rss-smzdm",
+      "title": "USEEK茶有戏桑椹五指毛桃桂花本草冻干粉五行中式养生冲饮5颗 8.9元(需用券)",
+      "url": "https://www.smzdm.com/p/186800305",
+      "published": "2026-11-26T10:48:55+00:00",
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "product",
+      "price": null,
+      "firstSeen": "2026-11-26T19:48:19+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
       "id": "683869dfb7dc4de57ed0220eb6ea5688d9f2ff21cc7490d1e378b27d42f6963e",
       "source": "rss-smzdm",
       "title": "今日必买:《哈利·波特》(20周年纪念版、套装共20册) 189元(需用券)",
@@ -5792,81 +5912,6 @@
       "price": null,
       "firstSeen": "2026-11-26T10:00:16+00:00",
       "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
-    },
-    {
-      "id": "8bc08769e364fde2ec716e5b860c78b00fd8fdccdeae7d556df24fc66d206ab4",
-      "source": "rss-smzdm-coupon",
-      "title": "天猫精选 爆款直降+领1505元消费券 天猫 双11狂欢节巅峰返场 爆款直降 领1505元消费券 11-12 20.5k人已领 免费领取",
-      "url": "https://www.smzdm.com/p/184014662",
-      "published": null,
-      "expires": null,
-      "bucket": "shopping",
-      "reviewStatus": "unverified",
-      "quality": 0,
-      "offerType": "product",
-      "price": null,
-      "firstSeen": "2026-11-26T09:20:49+00:00",
-      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
-    },
-    {
-      "id": "844d496d4927e671a99577c8c9b9722369f1759e91b0e4fccf827a778262eb24",
-      "source": "rss-smzdm-delivery",
-      "title": "皮爷咖啡 Peet's 皮爷咖啡黑咖啡+贝果任选1(10:30前) 精选 127天新低 ¥ 20. 8 需用券 8.1折 ¥25.8 美团网 11-25 3 67%",
-      "url": "https://www.smzdm.com/p/186654118",
-      "published": null,
-      "expires": null,
-      "bucket": "shopping",
-      "reviewStatus": "unverified",
-      "quality": 0,
-      "offerType": "product",
-      "price": null,
-      "firstSeen": "2026-11-26T09:20:49+00:00",
-      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
-    },
-    {
-      "id": "6f29631646ee3ebac40155d5ca81038f3402ebbdd7f0c5556689de1adf8b608e",
-      "source": "rss-smzdm-delivery",
-      "title": "瑞幸咖啡 双杯套餐(联名萌怪出街撞色PU徽章) ¥ 31. 9 8.6折 ¥36.9 美团网 11-25 0 100%",
-      "url": "https://www.smzdm.com/p/186773063",
-      "published": null,
-      "expires": null,
-      "bucket": "shopping",
-      "reviewStatus": "unverified",
-      "quality": 0,
-      "offerType": "product",
-      "price": null,
-      "firstSeen": "2026-11-26T09:20:49+00:00",
-      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
-    },
-    {
-      "id": "fdac4dbedc662ef1fbf03f969211fbd862128fd5b66bea3e4f03dbd6f6202b03",
-      "source": "rss-smzdm-delivery",
-      "title": "肯德基 周四随心配2+1 35天新低 ¥ 17. 9 需用券 7.8折 ¥22.9 美团网 11-26 2 --",
-      "url": "https://www.smzdm.com/p/186799193",
-      "published": null,
-      "expires": null,
-      "bucket": "shopping",
-      "reviewStatus": "unverified",
-      "quality": 0,
-      "offerType": "product",
-      "price": null,
-      "firstSeen": "2026-11-26T08:57:09+00:00",
-      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
-    },
-    {
-      "id": "bafe31ce5291cbae4e4f1c156931c735b7676dd8769dbc52ec792dec22dc41a7",
-      "source": "rss-smzdm",
-      "title": "瑞幸 咖啡经典浓缩咖啡液薄荷黑巧风味18mL*32颗/盒0糖0脂黑咖啡美式拿铁 79元",
-      "url": "https://www.smzdm.com/p/186791758",
-      "published": "2026-11-26T08:47:43+00:00",
-      "expires": null,
-      "bucket": "shopping",
-      "reviewStatus": "unverified",
-      "quality": 0,
-      "offerType": "product",
-      "price": null,
-      "firstSeen": "2026-11-26T19:29:11+00:00",
-      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
     }
   ],
   "officialBenefits": [
@@ -5881,7 +5926,7 @@
       "quality": 0,
       "published": null,
       "firstSeen": "2026-11-23",
-      "verifiedAt": "2026-11-26T19:29:09+00:00",
+      "verifiedAt": "2026-11-26T19:48:17+00:00",
       "expires": null,
       "price": null,
       "offerType": "product"
