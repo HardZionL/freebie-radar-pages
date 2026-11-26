@@ -1,6 +1,51 @@
 {
-  "updatedAt": "2026-11-26T09:20:49+00:00",
+  "updatedAt": "2026-11-26T10:00:16+00:00",
   "items": [
+    {
+      "id": "b8bdd6c79ea5754850537afe5f879c454fd6f096c56ca8867eac37fcc0cd8926",
+      "source": "rss-smzdm",
+      "title": "《数学帮帮忙》全套礼盒装 131.55元包邮(需用券)",
+      "url": "https://www.smzdm.com/p/186824638",
+      "published": "2026-11-26T17:59:33+00:00",
+      "expires": null,
+      "price": 131.55,
+      "bucket": "shopping",
+      "quality": 4,
+      "reason": "有明确优惠信息，实际价格及领取资格需核实",
+      "offerType": "product",
+      "reviewStatus": "ai-screened",
+      "firstSeen": "2026-11-26T10:00:16+00:00"
+    },
+    {
+      "id": "da7d950c004cbee1d3404670de6f9366ae94ab2bf3955a420e8f2a70b4e3a563",
+      "source": "rss-smzdm",
+      "title": "大众 上汽大众刹车油DOT4制动液朗逸郎艺帕萨特Polo凌渡途观途岳原厂 HZY4上汽大众原厂刹车油 1瓶装(人工更换) 51元",
+      "url": "https://www.smzdm.com/p/186824642",
+      "published": "2026-11-26T17:59:15+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "shopping",
+      "quality": 3,
+      "reason": "有明确优惠信息，实际价格及领取资格需核实",
+      "offerType": "product",
+      "reviewStatus": "ai-screened",
+      "firstSeen": "2026-11-26T10:00:16+00:00"
+    },
+    {
+      "id": "0f61ced146aecfc1b898b1a911e4d990df7af13820b8b13b959e01e89ae486ed",
+      "source": "rss-smzdm",
+      "title": "海威曼 高清室外枪机摄像头防水手机远程无线wifi监控器360度无死角云台旋转无死角夜视全景语音对话 枪机【WiFi版】内存卡 15天循环录像卡 139元",
+      "url": "https://www.smzdm.com/p/186824643",
+      "published": "2026-11-26T17:58:33+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "shopping",
+      "quality": 3,
+      "reason": "有明确优惠信息，实际价格及领取资格需核实",
+      "offerType": "product",
+      "reviewStatus": "ai-screened",
+      "firstSeen": "2026-11-26T10:00:16+00:00"
+    },
     {
       "id": "c27060b853b8504b6d9714d277428b0c825e69c390f8e6440b611ecc58ec9dcc",
       "source": "rss-smzdm",
@@ -30,6 +75,36 @@
       "offerType": "product",
       "reviewStatus": "ai-screened",
       "firstSeen": "2026-11-26T08:57:09+00:00"
+    },
+    {
+      "id": "0bf5a606e7064ce59408d996d21f5776ec5f6fdc26c5838a50c8bb1f080b5d9d",
+      "source": "rss-smzdm-coupon",
+      "title": "京东 领1元打5折券 京东 服装真5折 每日20点可领满1元打5折优惠券 11-24 7.0k人已领 免费领取",
+      "url": "https://www.smzdm.com/p/186687509",
+      "published": null,
+      "expires": null,
+      "price": null,
+      "bucket": "shopping",
+      "quality": 4,
+      "reason": "有明确优惠信息，实际价格及领取资格需核实",
+      "offerType": "coupon",
+      "reviewStatus": "ai-screened",
+      "firstSeen": "2026-11-26T10:00:16+00:00"
+    },
+    {
+      "id": "7b2be2bc6aab50dc6d897a7057fe1fdab552d555fadb9c8d4a885c561bf3b62e",
+      "source": "rss-meta-appinn",
+      "title": "【开发者自荐】一起野:免费的多人露营装备认领清单,无需注册",
+      "url": "https://meta.appinn.net/t/topic/96967",
+      "published": "2026-11-26T09:47:07+00:00",
+      "expires": null,
+      "price": 0,
+      "bucket": "other",
+      "quality": 3,
+      "reason": "有明确开发者福利信息",
+      "offerType": "product",
+      "reviewStatus": "ai-screened",
+      "firstSeen": "2026-11-26T10:00:16+00:00"
     },
     {
       "id": "5978305d4f141327643b292106e654c74d4d89bbfc9d277f67d5b87f62ddf9df",
@@ -4815,6 +4890,21 @@
   ],
   "shoppingLeads": [
     {
+      "id": "f0d9cef5995a3ccb7a4f5adab02ee0280bae1b1a1dff92b9e0426fd83a69edcc",
+      "source": "rss-smzdm",
+      "title": "淘宝 百亿补贴 进入弹窗可领最高666元百补优惠券 实测0.15元+5元(每日可领) 实测0.15元+5元",
+      "url": "https://www.smzdm.com/p/186824006",
+      "published": "2026-11-26T17:52:21+00:00",
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "coupon",
+      "price": null,
+      "firstSeen": "2026-11-26T10:00:16+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
       "id": "44fe899e24dc85dd257c70609449fab630f280139e3877aa3255c20606c40e0a",
       "source": "rss-smzdm-coupon",
       "title": "京东 京东支付小金库加码红包 京东支付小金库加码红包 11-19 9.1k人已领 免费领取",
@@ -4855,21 +4945,6 @@
       "reviewStatus": "unverified",
       "quality": 0,
       "offerType": "redpacket",
-      "price": null,
-      "firstSeen": "2026-11-25T16:12:07+00:00",
-      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
-    },
-    {
-      "id": "0bf5a606e7064ce59408d996d21f5776ec5f6fdc26c5838a50c8bb1f080b5d9d",
-      "source": "rss-smzdm-coupon",
-      "title": "京东 领1元打5折券 京东 服装真5折 每日20点可领满1元打5折优惠券 11-24 7.0k人已领 免费领取",
-      "url": "https://www.smzdm.com/p/186687509",
-      "published": null,
-      "expires": null,
-      "bucket": "shopping",
-      "reviewStatus": "unverified",
-      "quality": 0,
-      "offerType": "coupon",
       "price": null,
       "firstSeen": "2026-11-25T16:12:07+00:00",
       "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
@@ -4947,6 +5022,21 @@
       "offerType": "redpacket",
       "price": null,
       "firstSeen": "2026-11-22T12:00:05+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
+      "id": "7b15719cc9d0cad8875259b79dd338f0c6e6a4690ff41913f8323d2866a24584",
+      "source": "rss-smzdm",
+      "title": "今日必买:阿宽 新疆炒米粉+贵州牛肉米线4大袋组合装 21.84元淘金币到手19.85元",
+      "url": "https://www.smzdm.com/p/186823407",
+      "published": "2026-11-26T17:26:41+00:00",
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "product",
+      "price": null,
+      "firstSeen": "2026-11-26T10:00:16+00:00",
       "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
     },
     {
@@ -5052,6 +5142,21 @@
       "offerType": "product",
       "price": null,
       "firstSeen": "2026-11-26T09:20:49+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
+      "id": "c7341795bac446c0c88b5512023dd1297aaefbbbf01f2871ea77a08d7a3d0b0e",
+      "source": "rss-smzdm",
+      "title": "国家补贴:海尔 云溪4.0系列 XQG100-BLEG583HU1 滚筒洗衣机 10kg 2310.3元(需用券)",
+      "url": "https://www.smzdm.com/p/186820469",
+      "published": "2026-11-26T16:55:06+00:00",
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "product",
+      "price": null,
+      "firstSeen": "2026-11-26T10:00:16+00:00",
       "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
     },
     {
@@ -5370,6 +5475,21 @@
       "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
     },
     {
+      "id": "c71e2e70c40777f563286c1e064af1aea125467a2562c0b6a06de785d94d4454",
+      "source": "rss-smzdm-delivery",
+      "title": "塔斯汀 秘汁手扒鸡TG031(吃鸡必选) 34天新低 ¥ 19. 9 8.7折 ¥22.9 美团网 11-25 0 100%",
+      "url": "https://www.smzdm.com/p/186772309",
+      "published": null,
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "product",
+      "price": null,
+      "firstSeen": "2026-11-26T10:00:16+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
       "id": "8bc08769e364fde2ec716e5b860c78b00fd8fdccdeae7d556df24fc66d206ab4",
       "source": "rss-smzdm-coupon",
       "title": "天猫精选 爆款直降+领1505元消费券 天猫 双11狂欢节巅峰返场 爆款直降 领1505元消费券 11-12 20.4k人已领 免费领取",
@@ -5668,51 +5788,6 @@
       "price": null,
       "firstSeen": "2026-11-25T17:03:01+00:00",
       "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
-    },
-    {
-      "id": "49451f7745d38850b78e363bf53b8cfd2064dfe4209259620a8e7aadf090f5f6",
-      "source": "rss-smzdm-delivery",
-      "title": "塔斯汀 放飞星期三 2份双享翅根桶TG2304 133天新低 ¥ 25. 5 8.4折 ¥30.5 美团网 11-25 0 100%",
-      "url": "https://www.smzdm.com/p/186772220",
-      "published": null,
-      "expires": null,
-      "bucket": "shopping",
-      "reviewStatus": "unverified",
-      "quality": 0,
-      "offerType": "product",
-      "price": null,
-      "firstSeen": "2026-11-25T21:54:56+00:00",
-      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
-    },
-    {
-      "id": "4851dfc31f9733fa3e5aff7d8bd91cedcb77138b1b5b3056def3d25dbbf3e49b",
-      "source": "rss-smzdm-delivery",
-      "title": "塔斯汀 闻鸡起舞TG029(吃鸡单人餐) ¥ 20. 9 8.4折 ¥24.9 美团网 11-25 0 100%",
-      "url": "https://www.smzdm.com/p/186772167",
-      "published": null,
-      "expires": null,
-      "bucket": "shopping",
-      "reviewStatus": "unverified",
-      "quality": 0,
-      "offerType": "product",
-      "price": null,
-      "firstSeen": "2026-11-25T21:54:56+00:00",
-      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
-    },
-    {
-      "id": "5970bc7275c644dddfe88285cbceafe9023745bd76c88a85b45e49bd6251af41",
-      "source": "rss-smzdm",
-      "title": "男款加绒保暖德绒打底衫 300g 29.9元(需用券)",
-      "url": "https://www.smzdm.com/p/186773466",
-      "published": "2026-11-25T21:27:16+00:00",
-      "expires": null,
-      "bucket": "shopping",
-      "reviewStatus": "unverified",
-      "quality": 0,
-      "offerType": "product",
-      "price": null,
-      "firstSeen": "2026-11-26T01:09:20+00:00",
-      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
     }
   ],
   "officialBenefits": [
@@ -5727,7 +5802,7 @@
       "quality": 0,
       "published": null,
       "firstSeen": "2026-11-23",
-      "verifiedAt": "2026-11-26T09:20:48+00:00",
+      "verifiedAt": "2026-11-26T10:00:14+00:00",
       "expires": null,
       "price": null,
       "offerType": "product"
