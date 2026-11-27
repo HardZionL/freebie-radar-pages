@@ -1,6 +1,21 @@
 {
-  "updatedAt": "2026-11-27T21:31:48+00:00",
+  "updatedAt": "2026-11-27T22:18:16+00:00",
   "items": [
+    {
+      "id": "b2e051597535c766fd2f45c773504a2dd4df84d1dc2d8dc6406763b60d4a7f74",
+      "source": "rss-smzdm",
+      "title": "保友办公家具 保友金豪E2 Pro人体工学椅 2755.72元(需用券)",
+      "url": "https://www.smzdm.com/p/186909286",
+      "published": "2026-11-28T05:06:16+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "shopping",
+      "quality": 3,
+      "reason": "有明确优惠信息，实际价格及领取资格需核实",
+      "offerType": "product",
+      "reviewStatus": "ai-screened",
+      "firstSeen": "2026-11-27T22:18:16+00:00"
+    },
     {
       "id": "a87d10237d2a971d5cf06d326655d1932a5b6754e9faf270b09cf82b5f212c62",
       "source": "rss-smzdm",
@@ -15,6 +30,21 @@
       "offerType": "product",
       "reviewStatus": "ai-screened",
       "firstSeen": "2026-11-27T21:31:48+00:00"
+    },
+    {
+      "id": "787e3fa362680431ff49740c6ff9deff2dcb1ffe56ed6123531c148ce23fdd60",
+      "source": "rss-smzdm",
+      "title": "金百达 银爵系列 DDR4 3600MHz 台式机内存 马甲条 3200 8G 309元",
+      "url": "https://www.smzdm.com/p/186908592",
+      "published": "2026-11-28T04:14:07+00:00",
+      "expires": null,
+      "price": null,
+      "bucket": "shopping",
+      "quality": 3,
+      "reason": "有明确优惠信息，实际价格及领取资格需核实",
+      "offerType": "product",
+      "reviewStatus": "ai-screened",
+      "firstSeen": "2026-11-27T22:18:16+00:00"
     },
     {
       "id": "d4ede751906dfa484e7292eb86deaa94841fa77629a6316eba090acca94838f9",
@@ -302,6 +332,21 @@
       "firstSeen": "2026-11-27T21:31:48+00:00"
     },
     {
+      "id": "0b1266a3ec3e156a8dd46190c5c565c499c128786768ea0028e7c2fadf62ffbe",
+      "source": "rss-meta-appinn",
+      "title": "【开发者自荐】Blob0:在 Mac 上管理 Cloudflare R2 和 S3 文件",
+      "url": "https://meta.appinn.net/t/topic/97089",
+      "published": "2026-11-27T15:04:00+00:00",
+      "expires": "2026-11-30T23:59:59+00:00",
+      "price": null,
+      "bucket": "other",
+      "quality": 4,
+      "reason": "有明确开发者福利信息",
+      "offerType": "product",
+      "reviewStatus": "ai-screened",
+      "firstSeen": "2026-11-27T22:18:16+00:00"
+    },
+    {
       "id": "ae6a051eb30487647cd17d1cf041c07aa40d2769c2c9884b30b9a9c240c47369",
       "source": "linuxdo-welfare",
       "title": "花一晚上搓了个虾蹬生成视频公益站",
@@ -510,6 +555,21 @@
       "offerType": "product",
       "reviewStatus": "ai-screened",
       "firstSeen": "2026-11-27T13:03:29+00:00"
+    },
+    {
+      "id": "590d59c12d1336092f117000c7b8bb8f8021d3b6792b9508564dce9dd0fecc34",
+      "source": "rss-meta-appinn",
+      "title": "【开发者自荐】Audio Print - Mac 桌面实时字幕与音视频精听工具",
+      "url": "https://meta.appinn.net/t/topic/97067",
+      "published": "2026-11-27T08:17:59+00:00",
+      "expires": null,
+      "price": 9.9,
+      "bucket": "other",
+      "quality": 4,
+      "reason": "有明确开发者福利信息",
+      "offerType": "product",
+      "reviewStatus": "ai-screened",
+      "firstSeen": "2026-11-27T22:18:16+00:00"
     },
     {
       "id": "571f021fcbecd29c913cf62c82a34855266adedb742666d01aac1a340571348b",
@@ -4440,66 +4500,6 @@
       "offerType": "product",
       "reviewStatus": "ai-screened",
       "firstSeen": "2026-11-22T21:56:58+00:00"
-    },
-    {
-      "id": "bc903dec819b01542aaeedd114d0203f1137f717937eb9d5d4280435df601389",
-      "source": "rss-smzdm",
-      "title": "OPPO Enco Air4 无线降噪入耳式蓝牙耳机 139元",
-      "url": "https://www.smzdm.com/p/186565119",
-      "published": "2026-11-22T11:35:20+00:00",
-      "expires": null,
-      "price": null,
-      "bucket": "shopping",
-      "quality": 3,
-      "reason": "有明确优惠信息，实际价格及领取资格需核实",
-      "offerType": "product",
-      "reviewStatus": "ai-screened",
-      "firstSeen": "2026-11-22T21:56:58+00:00"
-    },
-    {
-      "id": "35f3f2d60c2838014679277a786f3b9e7895380ce54c72ac4870340c63db6e1c",
-      "source": "rss-smzdm",
-      "title": "PLUS会员:金鱼 柠檬洗洁精 可洗奶瓶果蔬A类洗洁剂洗涤灵洗碗液去油1.3kg*2瓶 14.81元(需用券)",
-      "url": "https://www.smzdm.com/p/186564079",
-      "published": "2026-11-22T11:12:26+00:00",
-      "expires": null,
-      "price": null,
-      "bucket": "shopping",
-      "quality": 3,
-      "reason": "有明确优惠信息，实际价格及领取资格需核实",
-      "offerType": "product",
-      "reviewStatus": "ai-screened",
-      "firstSeen": "2026-11-23T02:55:50+00:00"
-    },
-    {
-      "id": "779e323eb3660f822aadddf86bd64d375a5501ebd206d2ac16786940137b9e5c",
-      "source": "rss-meta-appinn",
-      "title": "【开发者自荐】Doodle, Please!:在 iPhone 上画一块石头,能把水里的木筏抬起来吗?",
-      "url": "https://meta.appinn.net/t/topic/96596",
-      "published": "2026-11-22T09:39:08+00:00",
-      "expires": null,
-      "price": 64.73,
-      "bucket": "other",
-      "quality": 3,
-      "reason": "有明确免费领取或使用信息",
-      "offerType": "product",
-      "reviewStatus": "ai-screened",
-      "firstSeen": "2026-11-22T12:00:05+00:00"
-    },
-    {
-      "id": "5713d18663f8cf0900ee58168127c6bf01696e2350265da7a1bd6486d05b7ff7",
-      "source": "rss-smzdm",
-      "title": "Ritter SPORT 瑞特滋(RITTER 榛子仁碎夹心牛奶巧克力100g休闲零食糖果情人节礼物送女友七夕 12.25元(需用券)",
-      "url": "https://www.smzdm.com/p/186556217",
-      "published": "2026-11-22T08:42:23+00:00",
-      "expires": null,
-      "price": null,
-      "bucket": "shopping",
-      "quality": 3,
-      "reason": "有明确优惠信息，实际价格及领取资格需核实",
-      "offerType": "product",
-      "reviewStatus": "ai-screened",
-      "firstSeen": "2026-11-22T19:54:59+00:00"
     }
   ],
   "daily": [
@@ -5794,7 +5794,7 @@
     {
       "id": "f36ecb745630b46cda4526feb4d448f1ca17596c7c4f55dbf36a2d154b4e6d9c",
       "source": "rss-smzdm-coupon",
-      "title": "京东 京东 黑五UGC 每日摸鱼答题 京东 黑五UGC 每日摸鱼答题 瓜分百万超市卡 实测0.25元(每日可领) 11-26 7.1k人已领 免费领取",
+      "title": "京东 京东 黑五UGC 每日摸鱼答题 京东 黑五UGC 每日摸鱼答题 瓜分百万超市卡 实测0.25元(每日可领) 11-26 7.2k人已领 免费领取",
       "url": "https://www.smzdm.com/p/186823844",
       "published": null,
       "expires": null,
@@ -5992,21 +5992,6 @@
       "title": "铭瑄 256G 512G 1T固态硬盘台式机笔记本SATA3.0台式机终结者瑷雪 121.25元",
       "url": "https://www.smzdm.com/p/186908594",
       "published": "2026-11-28T04:15:07+00:00",
-      "expires": null,
-      "bucket": "shopping",
-      "reviewStatus": "unverified",
-      "quality": 0,
-      "offerType": "product",
-      "price": null,
-      "firstSeen": "2026-11-27T21:31:48+00:00",
-      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
-    },
-    {
-      "id": "787e3fa362680431ff49740c6ff9deff2dcb1ffe56ed6123531c148ce23fdd60",
-      "source": "rss-smzdm",
-      "title": "金百达 银爵系列 DDR4 3600MHz 台式机内存 马甲条 3200 8G 309元",
-      "url": "https://www.smzdm.com/p/186908592",
-      "published": "2026-11-28T04:14:07+00:00",
       "expires": null,
       "bucket": "shopping",
       "reviewStatus": "unverified",
@@ -6299,6 +6284,21 @@
       "offerType": "product",
       "price": null,
       "firstSeen": "2026-11-27T21:31:48+00:00",
+      "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
+    },
+    {
+      "id": "eb7e45103cc1dce5ee2ebe7f3e68c927b4d513912e25f104e3149ae6ed008abb",
+      "source": "rss-smzdm",
+      "title": "榕力 创意黄铜领航舵解压摆件 29.9元",
+      "url": "https://www.smzdm.com/p/186900480",
+      "published": "2026-11-27T23:08:11+00:00",
+      "expires": null,
+      "bucket": "shopping",
+      "reviewStatus": "unverified",
+      "quality": 0,
+      "offerType": "product",
+      "price": null,
+      "firstSeen": "2026-11-27T22:18:16+00:00",
       "reason": "来源标题包含价格或优惠条件；但未经 AI 审核，实际价格、券和库存待核实"
     },
     {
@@ -6689,7 +6689,7 @@
       "quality": 0,
       "published": null,
       "firstSeen": "2026-11-23",
-      "verifiedAt": "2026-11-27T21:31:45+00:00",
+      "verifiedAt": "2026-11-27T22:18:15+00:00",
       "expires": null,
       "price": null,
       "offerType": "product"
